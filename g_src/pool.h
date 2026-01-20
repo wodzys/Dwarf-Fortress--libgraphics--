@@ -134,6 +134,16 @@ public:
 			add_capacity(n-capacity());
 			}
 		}
+	void ensure_slot_count(size_t n) {
+		if (n>unused_slots.size())
+			{
+			if (glob) 
+				{
+				garbage_collect(*this,*glob);
+				}
+			reserve(capacity()+n-unused_slots.size());
+			}
+		}
 	object_pool(std::vector<T *> *g=nullptr) : glob(g) {}
 	~object_pool()
 		{

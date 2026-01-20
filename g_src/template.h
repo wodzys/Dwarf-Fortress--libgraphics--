@@ -521,7 +521,7 @@ T *flatten(T **ptr_ptr) {
 		}
 	else
 		{
-		return *ptr_ptr;
+		return ptr_ptr?*ptr_ptr:nullptr;
 		}
 	}
 
