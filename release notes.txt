@@ -36,6 +36,14 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.05 (November 18, 2025):
+
+General updates
+	(*) Fixed crash with animal domestication status sorting
+	(*) Fixed happiness sorting
+
+******************************************************
+
 Release notes for 53.04 (November 17, 2025):
 
 Continuing to improve the Siege Update.  You can now view and set the status of your siege engines from a centralized tab.  Lots of improvement for invader AI, and ogres look properly scary now.  There are also some general improvements to item pictures, as well as various stability fixes.
