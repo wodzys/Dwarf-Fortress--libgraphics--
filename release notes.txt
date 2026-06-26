@@ -36,6 +36,55 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.01 (November 3, 2025):
+
+This is the Siege Update.  Invaders should cause some more trouble now.  Aside from a few minor things mentioned below, you don't have to create a new fort or world for this update.
+
+We've done about half of the possible changes we were contemplating on the roadmap and we will certainly be doing some more, especially the magical stuff, as work continues.  This update is a nice self-contained improvement for regular siege behavior, so we're posting it without further delay.
+
+Siege update - Attack
+	(*) Invaders can build stairs and floors.
+	(*) Invaders can break down constructions and many blocking buildings
+	(*) Invaders can bring battering rams to bash through constructions and buildings.
+	(*) Invaders can dig through natural walls (including trolls with great picks in new worlds.)
+	(*) Invaders can be lead by historical military-related position holders.
+	(*) Invaders track where deaths and trap incidents have occurred and eventually plan to avoid them.
+	(*) Invader army composition is more varied, and invaders have different behavioral roles.
+	(*) Invader can be more skilled and have better equipment.
+	(*) Invaders can free their caged companions.
+	(*) Goblins use more of the underground creatures (in new worlds.)
+	(*) Flying invaders and invaders with flying mounts behavior improved.
+	(*) Invaders enter over a wider edge width.
+	(*) Difficulty settings allow you to change invader behavior and add restrictions.
+
+Siege update - Defense
+	(*) New bolt thrower siege engine.  These fire regular bolts and can be freely rotated to any direction if an operator can stand behind it.
+	(*) Catapult and ballista siege engines are placed with fixed firing arcs but can target in the full arc rather than firing only in cardinal directions, and they can fire vertically somewhat.
+	(*) Boulders thrown by catapults explode on impact, ejecting sharp rock shards.
+	(*) Reinforced walls can be made with two building material and one metal per tile.  These are much more resistant to damage.
+	(*) Materials of constructions and buildings matter more for damage amount.
+	(*) Siege operators aren't as quick to abandon their positions.
+	(*) Added siege operator default work detail (in new forts.)
+	(*) Made fortress patrollers more careful to hit the nodes of their routes exactly.
+	(*) War dogs should stay with their masters when their masters have squad orders.
+
+Audio updates
+	(*) New song Danger Room!  Plays in the lively tavern.
+
+General updates
+	(*) Made carrying of the wounded more reliable.
+	(*) Fix for non-square worlds.
+	(*) Fix for archery training so they use unquivered ammo stacks properly.
+	(*) Fixed issue with cavern critters sometimes failing to enter the map.
+	(*) Fixed issue causing wilderness populations to slowly drain.
+	(*) Fixed necromancer experimentation.
+	(*) Fixed a typo in post world generation settlement placement.
+	(*) Major optimization for pond filling.
+	(*) Some general optimization and memory safety cleanup.
+	(*) Fixed some plural names.
+
+******************************************************
+
 Release notes for 52.05 (October 1, 2025):
 
 General updates

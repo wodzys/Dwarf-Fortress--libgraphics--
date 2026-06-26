@@ -4,6 +4,20 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.01:
+
+	Danger Room audio track.
+	Building graphics - new siege engines and reinforced walls
+	Marked ogre and blind cave ogre difficulties up so they bring fewer during sieges.
+	Troll great picks and sacks of blocks.
+	Gave dwarves SIEGE_SKILLED_MINERS so they don't embarrass themselves when invading your fort.
+	Environment: shoddy constructions, reinforced walls, new rock block wall.
+	Animations for invader siege engineering/digging and rams.
+	Siege operator work detail icon.
+	Fixed typo in material lua script.
+
+******************************************************
+
 Auxiliary file changes for 52.05:
 
 	Fixed wereiguana/jackal images again.

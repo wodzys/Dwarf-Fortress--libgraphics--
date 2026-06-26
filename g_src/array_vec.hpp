@@ -2,9 +2,13 @@
 
 #include <variant>
 
+// std::inplace_vector is coming C++26, but that's C++26; this isn't actually used in many places, so we'll just fix it when we get there
 template<typename T,size_t S>
 struct array_vector {
     static constexpr size_t capacity=S;
+    using iterator=typename std::array<T,capacity>::iterator;
+    using value_type=T;
+    using size_type=size_t;
     std::array<T,capacity> underlying;
     size_t cur_size;
     bool try_push_back(const T &p) {
@@ -60,7 +64,29 @@ struct array_vector {
     size_t size() {
         return cur_size;
         }
+    iterator insert(iterator it,const T &p) {
+        if (!full())
+			{
+            std::move_backward(it,end()-1,end());
+            *it=p;
+            cur_size+=1;
+            return it;
+            }
+		return begin()-1; // Invalid
+		}
+    iterator insert(iterator it,T &&p) {
+        if (!full())
+            {
+			std::move_backward(it,end()-1,end());
+            *it=std::move(p);
+            cur_size+=1;
+            }
+		return begin()-1; // Invalid
+        }
 	array_vector() : cur_size(0) {}
+    array_vector(T init_value) : cur_size(0) {
+        underlying.fill(init_value);
+        }
     array_vector(std::initializer_list<T> &&list) {
         if (list.size() > capacity) throw "Initializer list too large for array_vector!";
         for (auto &p : list)
