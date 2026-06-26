@@ -36,6 +36,12 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.14 (May 20, 2026):
+
+This small patch fixes a crash to do with the changes to announcements from last time.
+
+******************************************************
+
 Release notes for 53.13 (May 13, 2026):
 
 This patch gives messengers more tasks, like the ability to make peace and improve or open trade relations.  You can assign messengers in the same menu where you assign other positions like the manager and broker, and you can give them missions from the world screen (button on the lower right.)  There are also some optimizations and other fixes.
