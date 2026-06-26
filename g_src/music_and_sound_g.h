@@ -71,8 +71,6 @@ enum MusicContextType
 	MUSIC_CONTEXT_SUMMER,
 	MUSIC_CONTEXT_AUTUMN,
 	MUSIC_CONTEXT_WINTER,
-	MUSIC_CONTEXT_EXCLUSIVE_MAIN,
-	MUSIC_CONTEXT_EXCLUSIVE_TITLE,
 	MUSIC_CONTEXTNUM,
 	MUSIC_CONTEXT_NONE=-1
 };
@@ -199,8 +197,6 @@ enum Song
 	SONG_PONY_RIDER,
 	SONG_TWO_COINS,
 	SONG_LOSING_IS_FUN,
-	SONG_DANGER_ROOM,
-	SONG_NABIDAS,
 	SONGNUM,
 	SONG_NONE=-1
 	};
@@ -572,11 +568,11 @@ class musicsoundst
 
 		int get_custom_sound(std::string &token);
 
-		void set_custom_song(std::string &token,filest &filename,string &title,string &author, bool loops);
+		void set_custom_song(std::string &token,std::string &filename,string &title,string &author, bool loops);
 
-		void set_custom_sound(std::string &token,filest &filename);
+		void set_custom_sound(std::string &token,std::string &filename);
 
-		void prepare_sounds(const std::filesystem::path &src_dir);
+		void prepare_sounds(const string &src_dir);
 
 	private:
 

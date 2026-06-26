@@ -275,7 +275,7 @@ class flagarrayst
 				}
 			}
 
-		bool has_flag(long checkflag) const
+		bool has_flag(long checkflag)
 			{
 			if(checkflag<0)return false;
 			long slot=checkflag>>3;
@@ -547,12 +547,6 @@ namespace std {
   };
 };
 
-inline SDL_Surface *IMG_Loadfile(const filest &f) {
-	auto path=f.any_location_unchecked(); // IMG_Load will just return NULL if the file is not found
-	auto str=path.string();
-	return IMG_Load(str.c_str());
-	}
-
 // Being a texture catalog interface, with opengl, sdl and truetype capability
 class textures
 {
@@ -601,16 +595,16 @@ class textures
   // If convert_magenta is true and the file does not have built-in transparency,
   // any magenta (255,0,255 RGB) is converted to full transparency
   // The calculated size of individual tiles is saved to disp_x, disp_y
-  void load_multi_pdim(const std::filesystem::path &filename,svector<long> &tex_pos,long dimx,long dimy,
+  void load_multi_pdim(const string &filename,svector<long> &tex_pos,long dimx,long dimy,
 		       bool convert_magenta,
 		       long *disp_x, long *disp_y);
-  void load_multi_pdim(const std::filesystem::path &filename,long *tex_pos,long dimx,long dimy,
+  void load_multi_pdim(const string &filename,long *tex_pos,long dimx,long dimy,
 		       bool convert_magenta,
 		       long *disp_x, long *disp_y);
-  void refresh_multi_pdim(const std::filesystem::path &filename,svector<long> &tex_pos,long dimx,long dimy,
+  void refresh_multi_pdim(const string &filename,svector<long> &tex_pos,long dimx,long dimy,
 		       bool convert_magenta);
   // Loads a single texture from a file, returning the handle
-  cached_texturest load(const std::filesystem::path &filename, bool convert_magenta);
+  cached_texturest load(const string &filename, bool convert_magenta);
   // To delete a texture..
   void delete_texture(int32_t pos);
   void delete_texture(SDL_Surface *srf);
@@ -697,36 +691,6 @@ struct std::hash<texture_fullid>
 		}
 	};
 #endif
-
-struct benchmark_callbackst {
-	using clock=std::chrono::steady_clock;
-	using time_point=std::chrono::time_point<clock>;
-	benchmark_callbackst()=delete;
-	benchmark_callbackst(std::function<void(time_point)> cb) : callback(cb) {
-		initial=std::chrono::steady_clock::now();
-		}
-	~benchmark_callbackst() {
-		callback(initial);
-		}
-private:
-	std::chrono::time_point<std::chrono::steady_clock> initial;
-	std::function<void(time_point)> callback;
-	};
-
-template<typename clock=std::chrono::steady_clock>
-struct timerst {
-	using time_point=std::chrono::time_point<clock>;
-	timerst() {
-		initial=clock::now();
-		}
-	template<typename count>
-	int64_t elapsed() {
-		auto now=clock::now();
-		return std::chrono::duration_cast<count>(now-initial).count();
-		}
-private:
-	std::chrono::time_point<std::chrono::steady_clock> initial;
-	};
 
 //typedef int texture_ttfid; // Just the texpos
 
@@ -882,17 +846,12 @@ class enablerst : public enabler_inputst
   };
 
   struct async_msg {
-    enum msg_t { quit, complete, set_fps, set_gfps, push_resize, pop_resize, reset_textures, show_message } msg;
+    enum msg_t { quit, complete, set_fps, set_gfps, push_resize, pop_resize, reset_textures } msg;
     union {
       int fps; // set_fps, set_gfps
       struct { // push_resize
         int x, y;
       };
-	  struct {
-		  const char *text;
-		  const char *caption;
-		  UINT type;
-		  };
     };
     async_msg() {}
     async_msg(msg_t m) { msg = m; }
@@ -997,18 +956,9 @@ class enablerst : public enabler_inputst
   std::array<char, 32> last_text_input;
   bool listening_to_text;
   inline const char* get_text_input() { return last_text_input.data(); }
-  std::atomic_int last_message_result=-1;
   void set_listen_to_text(bool listening);
   void set_text_input(SDL_Event ev);
   void clear_text_input();
-  void show_message_box(const char *text, const char *caption = "Alert", UINT type = MB_OK) {
-	async_msg msg(async_msg::show_message);
-	msg.text = text;
-	msg.caption = caption;
-	msg.type = type;
-	async_frombox.write(msg);
-	async_fromcomplete.acquire();
-	}
 };
 #endif
 

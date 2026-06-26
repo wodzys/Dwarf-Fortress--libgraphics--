@@ -736,12 +736,6 @@ void enablerst::async_wait() {
     case async_msg::reset_textures:
       reset_textures = true;
       break;
-	case async_msg::show_message:
-		{
-		MessageBox(NULL,r.text,r.caption,r.type);
-		async_fromcomplete.release();
-		break;
-		}
     default:
       puts("EMERGENCY: Unknown case in async_wait");
       abort();
@@ -1081,7 +1075,6 @@ int enablerst::loop(string cmdline) {
 #ifdef WIN32
   glaiel::crashlogs::set_crashlog_folder("crashlogs");
   glaiel::crashlogs::set_crashlog_header_message("Crashed before main menu. Yikes!");
-  glaiel::crashlogs::set_on_write_crashlog_callback(crashlog_post_func);
   glaiel::crashlogs::begin_monitoring();
 #endif
   // Initialize the tick counters
@@ -1226,7 +1219,8 @@ void enablerst::set_fps(int fps) {
     async_frombox.write(m);
     async_fromcomplete.acquire();
   } else {
-    if (fps <= 0) fps = 1048576;
+    if (fps == 0)
+      fps = 1048576;
     this->fps = fps;
     fps_per_gfps = fps / gfps;
     struct async_cmd cmd;
@@ -1316,8 +1310,8 @@ int main (int argc, char* argv[]) {
   // Load keyboard map
   keybinding_init();
   //NOTE: this order is important!  load_keybindings does not overwrite keys, so loading prefs first is correct
-  enabler.load_keybindings(filest("prefs/interface.txt"));
-  enabler.load_keybindings(filest("data/init/interface.txt").with_flags(FILE_FLAG_ALWAYS_BASE_FIRST));//only adds new keys from new versions etc.
+  enabler.load_keybindings("prefs/interface.txt");
+  enabler.load_keybindings("data/init/interface.txt");//only adds new keys from new versions etc.
 
   string cmdLine;
   for (int i = 1; i < argc; ++i) { 

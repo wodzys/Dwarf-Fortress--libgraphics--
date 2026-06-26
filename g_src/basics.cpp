@@ -61,10 +61,6 @@ void emit_logs()
 	gamelog_file.close();
 	}
 
-std::mutex gamelog_mutex;
-
-std::mutex errorlog_mutex;
-
 #ifdef FAST_ERRORLOG
 std::ofstream error_feed;
 bool error_opened=false;
@@ -91,6 +87,10 @@ void errorlog_string(const string &str)
 	//fseed.close();
 }
 #else
+
+std::mutex gamelog_mutex;
+
+std::mutex errorlog_mutex;
 
 void errorlog_string(const string &str)
 {

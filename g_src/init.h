@@ -56,7 +56,6 @@ enum InitDisplayFlag
         INIT_DISPLAY_FLAG_NOT_RESIZABLE,
 //        INIT_DISPLAY_FLAG_ARB_SYNC,
 	INIT_DISPLAY_FLAG_INTERFACE_SCALING_TO_DESIRED_HEIGHT_WIDTH,
-	INIT_DISPLAY_FLAG_LOAD_TITLE_GRAPHICS,
 	INIT_DISPLAY_FLAGNUM
 };
 
@@ -105,7 +104,7 @@ class init_displayst
 enum InitMediaFlag
 {
 	INIT_MEDIA_FLAG_SOUND_OFF,
-	INIT_MEDIA_FLAG_PORTABLE_MODE,
+	INIT_MEDIA_FLAG_UNUSED_01_02,
 	INIT_MEDIA_FLAG_COMPRESS_SAVES,
 	INIT_MEDIA_FLAGNUM
 };
@@ -122,7 +121,6 @@ class init_mediast
 		int32_t volume_music_adv;
 		int32_t volume_ambience_adv;
 		int32_t volume_sfx_adv;
-		string title_music_str;
 
 
 		init_mediast()

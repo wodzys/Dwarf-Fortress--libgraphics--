@@ -568,17 +568,13 @@ namespace widgets {
             }
     };
 
-    #define WIDGET_STACK_DEFER_FLAG_POP BIT1
-    #define WIDGET_STACK_DEFER_FLAG_BREAK_DOWN BIT2
-
     // As container, but simply displays the last of its children, rather than all.
     class widget_stack : public container
         {
-        uint8_t defer_flags=0;
+        bool do_pop=false;
         std::shared_ptr<widget> deferred_replacement=NULL;
     public:
-        void pop() { defer_flags=WIDGET_STACK_DEFER_FLAG_POP; }
-        void pop_and_close() { defer_flags=(WIDGET_STACK_DEFER_FLAG_POP|WIDGET_STACK_DEFER_FLAG_BREAK_DOWN); }
+        void pop() { do_pop=true; }
         void deferred_replace(std::shared_ptr<widget> widget);
         void do_replacements();
         virtual void arrange();
@@ -1020,10 +1016,6 @@ namespace widgets {
     };
 
 }
-
-std::shared_ptr<widgets::container> warning_modal_ok(const std::string &text);
-
-std::shared_ptr<widgets::container> confirm_modal_yesno(const std::string &text,std::function<void()> yes_callback,std::function<void()> no_callback);
 
 enum InterfaceBreakdownTypes
 {

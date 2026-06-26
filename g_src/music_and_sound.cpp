@@ -444,63 +444,43 @@ int musicsoundst::get_custom_sound(string &token)
 
 void errorlog_string(const string &str);
 
-void musicsoundst::set_custom_song(string &token,filest &file,string &title,string &author, bool loops)
+void musicsoundst::set_custom_song(string &token,string &file,string &title,string &author, bool loops)
 	{
 	if (loaded_music.count(token)) return;
 
 	int id=next_song_id;
 	next_song_id++;
 
-	auto file_actual_opt=file.any_location();
-
-	if (!file_actual_opt)
+	loading_files.push_back(std::async([this, token, file, title, author, id, loops]() mutable -> loading_music_filest
 		{
-		errorlog_string("No file found at " + file.canon_location().string());
-		return;
-		}
-
-	auto file_actual=file_actual_opt.value().string();
-
-	loading_files.push_back(std::async([this, token,file_actual, title, author, id, loops]() mutable -> loading_music_filest
-		{
-		if (set_song(file_actual,id,loops))
+		if (set_song(file,id,loops))
 			{
 			return loading_music_filest{ token, music_datast{id, title, author} };
 			}
 		else
 			{
-			errorlog_string("Could not load music file "+file_actual);
+			errorlog_string("Could not load music file "+file);
 			return loading_music_filest{ token, music_datast{-1, title, author} };
 			}
 		}));
 	}
 
-void musicsoundst::set_custom_sound(string &token,filest &file)
+void musicsoundst::set_custom_sound(string &token,string &file)
 	{
 	if (loaded_sounds.count(token)) return;
 
 	int id=next_sound_id;
 	next_sound_id++;
 
-	auto file_actual_opt=file.any_location();
-
-	if (!file_actual_opt)
+	loading_files.push_back(std::async([this, token,file, id]() mutable -> loading_music_filest
 		{
-		errorlog_string("No file found at " + file.canon_location().string());
-		return;
-		}
-
-	auto file_actual=file_actual_opt.value().string();
-
-	loading_files.push_back(std::async([this, token,file_actual, id]() mutable -> loading_music_filest
-		{
-		if (set_sound(file_actual,id))
+		if (set_sound(file,id))
 			{
 			return loading_music_filest{ token, id };
 			}
 		else
 			{
-			errorlog_string("Could not load sound file "+file_actual);
+			errorlog_string("Could not load sound file "+file);
 			return loading_music_filest{ token, -1 };
 			}
 		}));
@@ -516,130 +496,150 @@ extern thread_local string errorlog_prefix;
 struct sound_file_infost
 {
 	std::string token;
-	filest filename;
+	std::string filename;
 	std::string author;
 	std::string title;
 	bool loops;
 };
 
-void musicsoundst::prepare_sounds(const std::filesystem::path &src)
+void musicsoundst::prepare_sounds(const string &src_dir)
 {
+	svector<char *> processfilename;
+	long f;
 	textlinesst lines;
+	char str[400];
 
-	auto src_dir=filest(src);
+	{
+	string chk=src_dir;
+	chk+="sound/music_file_*";
+#ifdef WIN32
+	chk+=".*";
+#endif
+	find_files_by_pattern_with_exception(chk.c_str(),processfilename,"text");
 
-	auto dir=src_dir.any_location_unchecked()/"sound";
-
-	if (!std::filesystem::exists(dir)) return;
-	
-	std::error_code ec;
-
-	for (auto dir_entry : std::filesystem::recursive_directory_iterator(dir,ec))
+	string chktype="MUSIC_FILE";
+	for (f=0; f<processfilename.size(); f++)
 		{
-		if (dir_entry.path().extension() != ".txt") continue;
-		auto filename=dir_entry.path().filename().string();
-		if (filename.starts_with("music_file_")) 
+		strcpy(str,src_dir.c_str());
+		strcat(str,"sound/");
+		strcat(str,processfilename[f]);
+		lines.load_raw_to_lines(str);
+
+		std::vector<sound_file_infost> files;
+
+		errorlog_prefix="*** Error(s) found in the file \"";
+		errorlog_prefix+=str;
+		errorlog_prefix+='\"';
+
+		for (int t=1; t<lines.text.str.size(); t++)
 			{
-			lines.load_raw_to_lines(dir_entry.path());
+			string &curstr=lines.text.str[t]->dat;
 
-			std::vector<sound_file_infost> files;
-
-			errorlog_prefix="*** Error(s) found in the file \"";
-			errorlog_prefix+=dir_entry.path().string();
-			errorlog_prefix+='\"';
-
-			for (int t=1; t<lines.text.str.size(); t++)
+			for (int pos=0; pos<curstr.length(); pos++)
 				{
-				string &curstr=lines.text.str[t]->dat;
-
-				for (int pos=0; pos<curstr.length(); pos++)
+				if (curstr[pos]=='[')
 					{
-					if (curstr[pos]=='[')
+					string token;
+					if (!grab_token_string(token,curstr,pos))continue;
+					if (token=="MUSIC_FILE")
 						{
-						string token;
 						if (!grab_token_string(token,curstr,pos))continue;
-						if (token=="MUSIC_FILE")
+						files.emplace_back();
+						files.back().token=token;
+						}
+					if (!files.empty())
+						{
+						if (token=="FILE")
 							{
 							if (!grab_token_string(token,curstr,pos))continue;
-							files.emplace_back();
-							files.back().token=token;
+							files.back().filename=src_dir + "sound/"+token;
 							}
-						if (!files.empty())
+						if (token=="LOOPS")
 							{
-							if (token=="FILE")
-								{
-								if (!grab_token_string(token,curstr,pos))continue;
-								files.back().filename=filest(src_dir.path/"sound"/token);
-								}
-							if (token=="LOOPS")
-								{
-								files.back().loops=true;
-								}
-							if (token=="AUTHOR")
-								{
-								if (!grab_token_string(token,curstr,pos))continue;
-								files.back().author=token;
-								}
-							if (token=="TITLE")
-								{
-								if (!grab_token_string(token,curstr,pos))continue;
-								files.back().title=token;
-								}
+							files.back().loops=true;
+							}
+						if (token=="AUTHOR")
+							{
+							if (!grab_token_string(token,curstr,pos))continue;
+							files.back().author=token;
+							}
+						if (token=="TITLE")
+							{
+							if (!grab_token_string(token,curstr,pos))continue;
+							files.back().title=token;
 							}
 						}
 					}
 				}
-			errorlog_prefix.clear();
-			for (auto &mus:files)
-				{
-				set_custom_song(mus.token,mus.filename,mus.title,mus.author,mus.loops);
-				}
 			}
-		else if (filename.starts_with("sound_file_"))
+		errorlog_prefix.clear();
+		for (auto &mus:files)
 			{
-			lines.load_raw_to_lines(dir_entry.path());
-
-			std::vector<sound_file_infost> files;
-
-			errorlog_prefix="*** Error(s) found in the file \"";
-			errorlog_prefix+=dir_entry.path().string();
-			errorlog_prefix+='\"';
-
-			for (int t=1; t<lines.text.str.size(); t++)
-				{
-				string &curstr=lines.text.str[t]->dat;
-
-				for (int pos=0; pos<curstr.length(); pos++)
-					{
-					if (curstr[pos]=='[')
-						{
-						string token;
-						if (!grab_token_string(token,curstr,pos))continue;
-						if (token=="SOUND_FILE")
-							{
-							if (!grab_token_string(token,curstr,pos))continue;
-							files.emplace_back();
-							files.back().token=token;
-							files.back().loops=false;
-							}
-						if (!files.empty())
-							{
-							if (token=="FILE")
-								{
-								if (!grab_token_string(token,curstr,pos))continue;
-								files.back().filename=src_dir.path/"sound"/token;
-								}
-							}
-						}
-					}
-				}
-			errorlog_prefix.clear();
-			for (auto &snd:files)
-				{
-				set_custom_sound(snd.token,snd.filename);
-				}
+			set_custom_song(mus.token,mus.filename,mus.title, mus.author, mus.loops);
 			}
+		delete[] processfilename[f];
 		}
+	processfilename.clear();
+	}
+	{
+	string chk=src_dir;
+	chk+="sound/sound_file_*";
+#ifdef WIN32
+	chk+=".*";
+#endif
+	find_files_by_pattern_with_exception(chk.c_str(),processfilename,"text");
+
+	string chktype="SOUND_FILE";
+	for (f=0; f<processfilename.size(); f++)
+		{
+		strcpy(str,src_dir.c_str());
+		strcat(str,"sound/");
+		strcat(str,processfilename[f]);
+		lines.load_raw_to_lines(str);
+
+		std::vector<sound_file_infost> files;
+
+		errorlog_prefix="*** Error(s) found in the file \"";
+		errorlog_prefix+=str;
+		errorlog_prefix+='\"';
+
+		for (int t=1; t<lines.text.str.size(); t++)
+			{
+			string &curstr=lines.text.str[t]->dat;
+
+			for (int pos=0; pos<curstr.length(); pos++)
+				{
+				if (curstr[pos]=='[')
+					{
+					string token;
+					if (!grab_token_string(token,curstr,pos))continue;
+					if (token=="SOUND_FILE")
+						{
+						if (!grab_token_string(token,curstr,pos))continue;
+						files.emplace_back();
+						files.back().token=token;
+						files.back().loops=false;
+						}
+					if (!files.empty())
+						{
+						if (token=="FILE")
+							{
+							if (!grab_token_string(token,curstr,pos))continue;
+							files.back().filename=src_dir+"sound/"+token;
+							}
+						}
+					}
+				}
+			}
+		errorlog_prefix.clear();
+		for (auto &snd:files)
+			{
+			set_custom_sound(snd.token,snd.filename);
+			}
+		delete[] processfilename[f];
+		}
+	processfilename.clear();
+	}
 
 }
 #ifdef CUSTOM_SOUND_PLUGINS
@@ -874,7 +874,7 @@ bool musicsound_info::set_song(const string& filename, int slot, bool loops)
 			errorlog_string("Could not load file "+filename+": End of current chunk reached while trying to read data.");
 			return false;
 		case FMOD_ERR_FILE_NOTFOUND:
-			//errorlog_string("Could not load file "+filename+": file not found. ");
+			errorlog_string("Could not load file "+filename+": file not found. ");
 			return false;
 		case FMOD_ERR_FORMAT:
 			errorlog_string("Could not load file "+filename+": unsupported file or audio format.");
@@ -912,7 +912,7 @@ bool musicsound_info::set_sound(const string& filename, int slot)
 			errorlog_string("Could not load file "+filename+": End of current chunk reached while trying to read data.");
 			return false;
 		case FMOD_ERR_FILE_NOTFOUND:
-			//errorlog_string("Could not load file "+filename+": file not found. ");
+			errorlog_string("Could not load file "+filename+": file not found. ");
 			return false;
 		case FMOD_ERR_FORMAT:
 			errorlog_string("Could not load file "+filename+": unsupported file or audio format.");

@@ -98,141 +98,7 @@ extern int32_t cinematic_start_scrollx;
 extern int32_t cinematic_start_scrolly;
 #endif
 
-const unordered_bimap<string,Sphere> SPHERESTRINGS={
-	{"AGRICULTURE",SPHERE_AGRICULTURE},
-	{"ANIMALS",SPHERE_ANIMALS},
-	{"ART",SPHERE_ART},
-	{"BALANCE",SPHERE_BALANCE},
-	{"BEAUTY",SPHERE_BEAUTY},
-	{"BIRTH",SPHERE_BIRTH},
-	{"BLIGHT",SPHERE_BLIGHT},
-	{"BOUNDARIES",SPHERE_BOUNDARIES},
-	{"CAVERNS",SPHERE_CAVERNS},
-	{"CHAOS",SPHERE_CHAOS},
-	{"CHARITY",SPHERE_CHARITY},
-	{"CHILDREN",SPHERE_CHILDREN},
-	{"COASTS",SPHERE_COASTS},
-	{"CONSOLATION",SPHERE_CONSOLATION},
-	{"COURAGE",SPHERE_COURAGE},
-	{"CRAFTS",SPHERE_CRAFTS},
-	{"CREATION",SPHERE_CREATION},
-	{"DANCE",SPHERE_DANCE},
-	{"DARKNESS",SPHERE_DARKNESS},
-	{"DAWN",SPHERE_DAWN},
-	{"DAY",SPHERE_DAY},
-	{"DEATH",SPHERE_DEATH},
-	{"DEFORMITY",SPHERE_DEFORMITY},
-	{"DEPRAVITY",SPHERE_DEPRAVITY},
-	{"DISCIPLINE",SPHERE_DISCIPLINE},
-	{"DISEASE",SPHERE_DISEASE},
-	{"DREAMS",SPHERE_DREAMS},
-	{"DUSK",SPHERE_DUSK},
-	{"DUTY",SPHERE_DUTY},
-	{"EARTH",SPHERE_EARTH},
-	{"FAMILY",SPHERE_FAMILY},
-	{"FAME",SPHERE_FAME},
-	{"FATE",SPHERE_FATE},
-	{"FERTILITY",SPHERE_FERTILITY},
-	{"FESTIVALS",SPHERE_FESTIVALS},
-	{"FIRE",SPHERE_FIRE},
-	{"FISH",SPHERE_FISH},
-	{"FISHING",SPHERE_FISHING},
-	{"FOOD",SPHERE_FOOD},
-	{"FORGIVENESS",SPHERE_FORGIVENESS},
-	{"FORTRESSES",SPHERE_FORTRESSES},
-	{"FREEDOM",SPHERE_FREEDOM},
-	{"GAMBLING",SPHERE_GAMBLING},
-	{"GAMES",SPHERE_GAMES},
-	{"GENEROSITY",SPHERE_GENEROSITY},
-	{"HAPPINESS",SPHERE_HAPPINESS},
-	{"HEALING",SPHERE_HEALING},
-	{"HOSPITALITY",SPHERE_HOSPITALITY},
-	{"HUNTING",SPHERE_HUNTING},
-	{"INSPIRATION",SPHERE_INSPIRATION},
-	{"JEALOUSY",SPHERE_JEALOUSY},
-	{"JEWELS",SPHERE_JEWELS},
-	{"JUSTICE",SPHERE_JUSTICE},
-	{"LABOR",SPHERE_LABOR},
-	{"LAKES",SPHERE_LAKES},
-	{"LAWS",SPHERE_LAWS},
-	{"LIES",SPHERE_LIES},
-	{"LIGHT",SPHERE_LIGHT},
-	{"LIGHTNING",SPHERE_LIGHTNING},
-	{"LONGEVITY",SPHERE_LONGEVITY},
-	{"LOVE",SPHERE_LOVE},
-	{"LOYALTY",SPHERE_LOYALTY},
-	{"LUCK",SPHERE_LUCK},
-	{"LUST",SPHERE_LUST},
-	{"MARRIAGE",SPHERE_MARRIAGE},
-	{"MERCY",SPHERE_MERCY},
-	{"METALS",SPHERE_METALS},
-	{"MINERALS",SPHERE_MINERALS},
-	{"MISERY",SPHERE_MISERY},
-	{"MIST",SPHERE_MIST},
-	{"MOON",SPHERE_MOON},
-	{"MOUNTAINS",SPHERE_MOUNTAINS},
-	{"MUCK",SPHERE_MUCK},
-	{"MURDER",SPHERE_MURDER},
-	{"MUSIC",SPHERE_MUSIC},
-	{"NATURE",SPHERE_NATURE},
-	{"NIGHT",SPHERE_NIGHT},
-	{"NIGHTMARES",SPHERE_NIGHTMARES},
-	{"OATHS",SPHERE_OATHS},
-	{"OCEANS",SPHERE_OCEANS},
-	{"ORDER",SPHERE_ORDER},
-	{"PAINTING",SPHERE_PAINTING},
-	{"PEACE",SPHERE_PEACE},
-	{"PERSUASION",SPHERE_PERSUASION},
-	{"PLANTS",SPHERE_PLANTS},
-	{"POETRY",SPHERE_POETRY},
-	{"PREGNANCY",SPHERE_PREGNANCY},
-	{"RAIN",SPHERE_RAIN},
-	{"RAINBOWS",SPHERE_RAINBOWS},
-	{"REBIRTH",SPHERE_REBIRTH},
-	{"REVELRY",SPHERE_REVELRY},
-	{"REVENGE",SPHERE_REVENGE},
-	{"RIVERS",SPHERE_RIVERS},
-	{"RULERSHIP",SPHERE_RULERSHIP},
-	{"RUMORS",SPHERE_RUMORS},
-	{"SACRIFICE",SPHERE_SACRIFICE},
-	{"SALT",SPHERE_SALT},
-	{"SCHOLARSHIP",SPHERE_SCHOLARSHIP},
-	{"SEASONS",SPHERE_SEASONS},
-	{"SILENCE",SPHERE_SILENCE},
-	{"SKY",SPHERE_SKY},
-	{"SONG",SPHERE_SONG},
-	{"SPEECH",SPHERE_SPEECH},
-	{"STARS",SPHERE_STARS},
-	{"STORMS",SPHERE_STORMS},
-	{"STRENGTH",SPHERE_STRENGTH},
-	{"SUICIDE",SPHERE_SUICIDE},
-	{"SUN",SPHERE_SUN},
-	{"THEFT",SPHERE_THEFT},
-	{"THRALLDOM",SPHERE_THRALLDOM},
-	{"THUNDER",SPHERE_THUNDER},
-	{"TORTURE",SPHERE_TORTURE},
-	{"TRADE",SPHERE_TRADE},
-	{"TRAVELERS",SPHERE_TRAVELERS},
-	{"TREACHERY",SPHERE_TREACHERY},
-	{"TREES",SPHERE_TREES},
-	{"TRICKERY",SPHERE_TRICKERY},
-	{"TRUTH",SPHERE_TRUTH},
-	{"TWILIGHT",SPHERE_TWILIGHT},
-	{"VALOR",SPHERE_VALOR},
-	{"VICTORY",SPHERE_VICTORY},
-	{"VOLCANOS",SPHERE_VOLCANOS},
-	{"VOLCANOES",SPHERE_VOLCANOS}, // This is allowed, SPHERESTRINGS.maybe_get(SPHERE_VOLCANOS).value() ought to return "VOLCANOS" this way
-	{"WAR",SPHERE_WAR},
-	{"WATER",SPHERE_WATER},
-	{"WEALTH",SPHERE_WEALTH},
-	{"WEATHER",SPHERE_WEATHER},
-	{"WIND",SPHERE_WIND},
-	{"WISDOM",SPHERE_WISDOM},
-	{"WRITING",SPHERE_WRITING},
-	{"YOUTH",SPHERE_YOUTH},
-	};
-
-void process_object_lines(textlinesst &lines,const string &chktype,const std::filesystem::path &graphics_dir);
+void process_object_lines(textlinesst &lines,const string &chktype,const string &graphics_dir);
 
 // Add, then increment to the (possible) PBO alignment requirement
 static void align(size_t &sz, off_t inc) {
@@ -823,75 +689,91 @@ void graphicst::color_square(long x,long y,unsigned char f,unsigned char b,unsig
 		}
 }
 
-void graphicst::prepare_graphics(const std::filesystem::path &src_dir)
+void graphicst::prepare_graphics(const string &src_dir)
 {
 	//GET READY TO LOAD
+	svector<char *> processfilename;
+	long f;
 	textlinesst setuplines;
+	char str[400];
 
 	//LOAD THE OBJECT FILES UP INTO MEMORY
 		//MUST INSURE THAT THEY ARE LOADED IN THE PROPER ORDER, IN CASE THEY REFER TO EACH OTHER
-	{
+	{string chk=src_dir;
+	chk+="graphics/tile_page_*";
+#ifdef WIN32
+	chk+=".*";
+#endif
+	find_files_by_pattern_with_exception(chk.c_str(),processfilename,"text");
 
-	auto dir=filest(src_dir).any_location_unchecked()/"graphics";
-	if (!std::filesystem::exists(dir)) return;
-	std::vector<std::filesystem::path> tile_page_files;
-	std::vector<std::filesystem::path> graphics_files;
-	std::vector<std::filesystem::path> palette_files;
-	for (auto &dir_entry : std::filesystem::recursive_directory_iterator(dir))
-		{
-		auto path=dir_entry.path();
-		if (!(dir_entry.is_regular_file() && path.extension()==".txt")) continue;
-		auto filename=path.filename().string();
-		if (filename.starts_with("tile_page_"))
-			{
-			tile_page_files.push_back(path);
-			}
-		if (filename.starts_with("graphics_"))
-			{
-			graphics_files.push_back(path);
-			}
-		if (filename.starts_with("palette_"))
-			{
-			palette_files.push_back(path);
-			}
-		}
 	string chktype="TILE_PAGE";
-	for (auto &tile_page_file : tile_page_files)
+	for(f=0;f<processfilename.size();f++)
 		{
-		auto str=tile_page_file.string();
-		setuplines.load_raw_to_lines(str.c_str());
+		strcpy(str,src_dir.c_str());
+		strcat(str,"graphics/");
+		strcat(str,processfilename[f]);
+		setuplines.load_raw_to_lines(str);
 
 		errorlog_prefix="*** Error(s) found in the file \"";
 		errorlog_prefix+=str;
 		errorlog_prefix+='\"';
 		process_object_lines(setuplines,chktype,src_dir);
 		errorlog_prefix.clear();
+
+		delete[] processfilename[f];
 		}
-	chktype="GRAPHICS";
-	for (auto &graphics_file : graphics_files)
+	processfilename.clear();}
+
+	{string chk=src_dir;
+	chk+="graphics/graphics_*";
+#ifdef WIN32
+	chk+=".*";
+#endif
+	find_files_by_pattern_with_exception(chk.c_str(),processfilename,"text");
+
+	string chktype="GRAPHICS";
+	for(f=0;f<processfilename.size();f++)
 		{
-		auto str=graphics_file.string();
-		setuplines.load_raw_to_lines(str.c_str());
+		strcpy(str,src_dir.c_str());
+		strcat(str,"graphics/");
+		strcat(str,processfilename[f]);
+		setuplines.load_raw_to_lines(str);
 
 		errorlog_prefix="*** Error(s) found in the file \"";
 		errorlog_prefix+=str;
 		errorlog_prefix+='\"';
 		process_object_lines(setuplines,chktype,src_dir);
 		errorlog_prefix.clear();
+
+		delete[] processfilename[f];
 		}
-	chktype="PALETTE";
-	for (auto &palette_file : palette_files)
+	processfilename.clear();}
+
+	{string chk=src_dir;
+	chk+="graphics/palette_*";
+#ifdef WIN32
+	chk+=".*";
+#endif
+	find_files_by_pattern_with_exception(chk.c_str(),processfilename,"text");
+
+	string chktype="PALETTE";
+	for(f=0;f<processfilename.size();f++)
 		{
-		auto str=palette_file.string();
-		setuplines.load_raw_to_lines(str.c_str());
+		strcpy(str,src_dir.c_str());
+		strcat(str,"graphics/");
+		strcat(str,processfilename[f]);
+		setuplines.load_raw_to_lines(str);
 
 		errorlog_prefix="*** Error(s) found in the file \"";
 		errorlog_prefix+=str;
 		errorlog_prefix+='\"';
 		process_object_lines(setuplines,chktype,src_dir);
 		errorlog_prefix.clear();
+
+
+		delete[] processfilename[f];
 		}
-	}
+	processfilename.clear();}
 
 	//reset_textures called later, as there are still universe-specific textures to derive
 }
@@ -1246,7 +1128,7 @@ void render_things()
     gps.changecolor(0,3,0);
     //static gps_locator fps_locator(init.display.grid_y-1, 40);
     //fps_locator(fps.size());
-	gps.locate(init.display.grid_y-gps.frame_display_dy, gps.frame_display_sx);
+	gps.locate(init.display.grid_y-1, 40);
     gps.addst(fps);
   }
 
@@ -5221,17 +5103,6 @@ void graphicst::zero_and_clear_all_texpos()
 	palette_stair_down_texpos=0;
 	smooth_floor_texpos=0;
 	workshop_floor_texpos=0;
-	
-	memset(texpos_scaffold_floor_wood,0,sizeof(int32_t)*4);
-	texpos_scaffold_stair_updown_wood=0;
-	texpos_scaffold_stair_up_wood=0;
-	texpos_scaffold_stair_down_wood=0;
-	texpos_scaffold_underside_wood=0;
-	memset(texpos_scaffold_floor_stone,0,sizeof(int32_t)*4);
-	texpos_scaffold_stair_updown_stone=0;
-	texpos_scaffold_stair_up_stone=0;
-	texpos_scaffold_stair_down_stone=0;
-	texpos_scaffold_underside_stone=0;
 
 	texpos_fortification=0;
 	texpos_fortification_open_nswe=0;
@@ -5333,7 +5204,6 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_building_icon_door=0;
 	texpos_building_icon_hatch=0;
 	texpos_building_icon_wall=0;
-	texpos_building_icon_reinforced_wall=0;
 	texpos_building_icon_floor=0;
 	texpos_building_icon_ramp=0;
 	texpos_building_icon_stairs=0;
@@ -5374,10 +5244,9 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_building_icon_armor_stand=0;
 	texpos_building_icon_ballista=0;
 	texpos_building_icon_catapult=0;
-	texpos_building_icon_bolt_thrower=0;
 	texpos_building_icon_wagon=0;
 	{int32_t c;
-	for(c=0;c<38;++c)texpos_planned_construction[c]=0;}
+	for(c=0;c<37;++c)texpos_planned_construction[c]=0;}
 	texpos_zone_inactive_n_s_w_e=0;
 	texpos_zone_inactive_n_w=0;
 	texpos_zone_inactive_n_e=0;
@@ -5582,11 +5451,6 @@ void graphicst::zero_and_clear_all_texpos()
 	memset(texpos_wagon_goods_s,0,sizeof(int32_t)*3*4*4);
 	memset(texpos_wagon_goods_w,0,sizeof(int32_t)*4*3*4);
 	memset(texpos_wagon_goods_e,0,sizeof(int32_t)*4*3*4);
-
-	memset(texpos_ram_wood,0,sizeof(int32_t)*4*3);
-	memset(texpos_ram_banded,0,sizeof(int32_t)*4*3);
-	memset(texpos_ram_bands,0,sizeof(int32_t)*4*3);
-	memset(texpos_ram_head,0,sizeof(int32_t)*RAM_HEADNUM*4);
 
 	memset(texpos_border_top_left,0,sizeof(int32_t)*4*3);
 	memset(texpos_border_top_right,0,sizeof(int32_t)*4*3);
@@ -7460,26 +7324,6 @@ void graphicst::zero_and_clear_all_texpos()
 	rock_blocks_wall_ne_texpos=0;
 	rock_blocks_wall_sw_texpos=0;
 	rock_blocks_wall_se_texpos=0;
-
-	reinforced_metal_wall_nswe_texpos=0;
-	reinforced_metal_wall_swe_texpos=0;
-	reinforced_metal_wall_nwe_texpos=0;
-	reinforced_metal_wall_nse_texpos=0;
-	reinforced_metal_wall_nsw_texpos=0;
-	reinforced_metal_wall_n_w_texpos=0;
-	reinforced_metal_wall_n_e_texpos=0;
-	reinforced_metal_wall_s_w_texpos=0;
-	reinforced_metal_wall_s_e_texpos=0;
-	reinforced_metal_wall_n_s_texpos=0;
-	reinforced_metal_wall_w_e_texpos=0;
-	reinforced_metal_wall_n_texpos=0;
-	reinforced_metal_wall_s_texpos=0;
-	reinforced_metal_wall_w_texpos=0;
-	reinforced_metal_wall_e_texpos=0;
-	reinforced_metal_wall_nw_texpos=0;
-	reinforced_metal_wall_ne_texpos=0;
-	reinforced_metal_wall_sw_texpos=0;
-	reinforced_metal_wall_se_texpos=0;
 
 	wooden_wall_nswe_texpos=0;
 	wooden_wall_swe_texpos=0;
@@ -9783,14 +9627,6 @@ void graphicst::zero_and_clear_all_texpos()
 				texpos_combat_animation_sparks[i][s][s2]=0;
 				}}}}
 
-	{int32_t s,s2;
-	for(s=0;s<COMBAT_ANIMATION_RAM_DIRECTIONNUM;++s)
-		{
-		for(s2=0;s2<COMBAT_ANIMATION_RAM_FRAME_COUNT;++s2)
-			{
-			texpos_combat_animation_ram[s][s2]=0;
-			}}}
-
 	{int32_t i,s,s2;
 	for(i=0;i<GRAPHICS_TRACKING_SYMBOL_WEIGHTNUM;++i)
 		{
@@ -10010,48 +9846,24 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_item_door_metal_open=0;
 	texpos_item_door_glass=0;
 	texpos_item_door_glass_open=0;
-	{int32_t d;
-	for(d=0;d<3;++d)
-		{
-		texpos_item_door_stone_open_damaged[d]=0;
-		texpos_item_door_wooden_open_damaged[d]=0;
-		texpos_item_door_metal_open_damaged[d]=0;
-		texpos_item_door_glass_open_damaged[d]=0;
-		}}
 		for(s=0;s<7;++s)
 			{
 			texpos_item_door_wood_closed[s]=0;
 			texpos_item_door_stone_closed[s]=0;
 			texpos_item_door_metal_closed[s]=0;
 			texpos_item_door_glass_closed[s]=0;
-			{int32_t d;
-			for(d=0;d<3;++d)
-				{
-				texpos_item_door_wood_closed_damaged[s][d]=0;
-				texpos_item_door_stone_closed_damaged[s][d]=0;
-				texpos_item_door_metal_closed_damaged[s][d]=0;
-				texpos_item_door_glass_closed_damaged[s][d]=0;
-				}}
 			}
-		for(s=0;s<4;++s)
-			{
-			texpos_item_door_variant[s]=0;
-			{int32_t d;
-			for(d=0;d<3;++d)
-				{
-				texpos_item_door_variant_damaged[s][d]=0;
-				}}
-			}
+		for(s=0;s<4;++s)texpos_item_door_variant[s]=0;
 		texpos_item_door_spikes=0;
 		texpos_item_door_rings=0;
 		texpos_item_door_studs=0;
 		texpos_item_door_engraving=0;
+		for(s=0;s<3;++s)texpos_item_door_damage[s]=0;
 		texpos_item_door_bands=0;
 		texpos_item_door_blood=0;
 		texpos_item_door_vomit=0;
 		texpos_item_door_water=0;
 		texpos_item_door_mud=0;
-		texpos_item_door_forbidden=0;
 	texpos_item_chain_metal=0;
 	texpos_item_chain_rope=0;
 	texpos_item_flask_metal=0;
@@ -10060,9 +9872,6 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_item_goblet_metal=0;
 	texpos_item_goblet_stone=0;
 	texpos_item_goblet_wood=0;
-	texpos_item_goblet_metal_encrusted=0;
-	texpos_item_goblet_stone_encrusted=0;
-	texpos_item_goblet_wood_encrusted=0;
 	texpos_item_instrument_keyboard_building=0;
 	texpos_item_instrument_stringed_building=0;
 	texpos_item_instrument_wind_building=0;
@@ -10265,16 +10074,9 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_item_cloth=0;
 	texpos_item_sheet=0;
 	texpos_item_tanned_skin=0;
-		texpos_item_tanned_skin_bicolor=0;
-		texpos_item_tanned_skin_stripes=0;
-		texpos_item_tanned_skin_spots=0;
-		texpos_item_tanned_skin_mottled=0;
 	texpos_item_totem=0;
-	texpos_item_totem_encrusted=0;
 	texpos_item_book_wood=0;
 	texpos_item_book_metal=0;
-	texpos_item_book_stone=0;
-	texpos_item_book_glass=0;
 	texpos_item_liquid=0;
 	texpos_item_powder=0;
 	texpos_item_mechanisms=0;
@@ -10282,7 +10084,6 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_item_trap_component=0;
 	texpos_item_catapult_parts=0;
 	texpos_item_ballista_parts=0;
-	texpos_item_bolt_thrower_parts=0;
 	texpos_item_anvil=0;
 	texpos_item_ammo=0;
 	texpos_item_ballista_arrowhead=0;
@@ -10307,20 +10108,6 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_item_ring_wood=0;
 	texpos_item_bracelet_wood=0;
 	texpos_item_earring_wood=0;
-	texpos_item_figurine_metal_encrusted=0;
-	texpos_item_amulet_metal_encrusted=0;
-	texpos_item_scepter_metal_encrusted=0;
-	texpos_item_crown_metal_encrusted=0;
-	texpos_item_ring_metal_encrusted=0;
-	texpos_item_bracelet_metal_encrusted=0;
-	texpos_item_earring_metal_encrusted=0;
-	texpos_item_figurine_wood_encrusted=0;
-	texpos_item_amulet_wood_encrusted=0;
-	texpos_item_scepter_wood_encrusted=0;
-	texpos_item_crown_wood_encrusted=0;
-	texpos_item_ring_wood_encrusted=0;
-	texpos_item_bracelet_wood_encrusted=0;
-	texpos_item_earring_wood_encrusted=0;
 
 	texpos_item_bed=0;
 		for(s=0;s<7;++s)
@@ -10429,15 +10216,7 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_item_bodypart_brain=0;
 	texpos_item_bodypart_skull_1=0;
 	texpos_item_bodypart_skull_2=0;
-	{int32_t s;
-	for(s=0;s<TEXTURE_BODYPART_SKIN_SURFACENUM;++s)
-		{
-		texpos_item_bodypart_skin[s]=0;
-		texpos_item_bodypart_skin_bicolor[s]=0;
-		texpos_item_bodypart_skin_stripes[s]=0;
-		texpos_item_bodypart_skin_spots[s]=0;
-		texpos_item_bodypart_skin_mottled[s]=0;
-		}}
+	texpos_item_bodypart_skin=0;
 	texpos_item_bodypart_meat=0;
 	texpos_item_bodypart_horn=0;
 	texpos_item_bodypart_hoof=0;
@@ -10653,60 +10432,10 @@ void graphicst::zero_and_clear_all_texpos()
 	memset(texpos_ballista_s,0,sizeof(int32_t)*3*3);
 	memset(texpos_ballista_w,0,sizeof(int32_t)*3*3);
 	memset(texpos_ballista_e,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_nw,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_ne,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_sw,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_se,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_n_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_s_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_w_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_e_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_nw_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_ne_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_sw_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_se_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_ballista_const,0,sizeof(int32_t)*4*3*3);
 	memset(texpos_catapult_n,0,sizeof(int32_t)*3*3);
 	memset(texpos_catapult_s,0,sizeof(int32_t)*3*3);
 	memset(texpos_catapult_w,0,sizeof(int32_t)*3*3);
 	memset(texpos_catapult_e,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_nw,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_ne,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_sw,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_se,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_n_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_s_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_w_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_e_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_nw_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_ne_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_sw_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_se_firing,0,sizeof(int32_t)*3*3);
-	memset(texpos_catapult_const,0,sizeof(int32_t)*4*3*3);
-	texpos_bolt_thrower_ready_n=0;
-	texpos_bolt_thrower_ready_ne=0;
-	texpos_bolt_thrower_ready_e=0;
-	texpos_bolt_thrower_ready_se=0;
-	texpos_bolt_thrower_ready_s=0;
-	texpos_bolt_thrower_ready_sw=0;
-	texpos_bolt_thrower_ready_w=0;
-	texpos_bolt_thrower_ready_nw=0;
-	texpos_bolt_thrower_firing_n=0;
-	texpos_bolt_thrower_firing_ne=0;
-	texpos_bolt_thrower_firing_e=0;
-	texpos_bolt_thrower_firing_se=0;
-	texpos_bolt_thrower_firing_s=0;
-	texpos_bolt_thrower_firing_sw=0;
-	texpos_bolt_thrower_firing_w=0;
-	texpos_bolt_thrower_firing_nw=0;
-	memset(texpos_bolt_thrower_ammo_n,0,sizeof(int32_t)*5);
-	memset(texpos_bolt_thrower_ammo_ne,0,sizeof(int32_t)*5);
-	memset(texpos_bolt_thrower_ammo_e,0,sizeof(int32_t)*5);
-	memset(texpos_bolt_thrower_ammo_se,0,sizeof(int32_t)*5);
-	memset(texpos_bolt_thrower_ammo_s,0,sizeof(int32_t)*5);
-	memset(texpos_bolt_thrower_ammo_sw,0,sizeof(int32_t)*5);
-	memset(texpos_bolt_thrower_ammo_w,0,sizeof(int32_t)*5);
-	memset(texpos_bolt_thrower_ammo_nw,0,sizeof(int32_t)*5);
 
 	int32_t fl;
 	for(fl=0;fl<4;++fl)
@@ -10776,1277 +10505,3 @@ void graphicst::get_play_area_tile_size(int32_t &limx,int32_t &limy)
 			}
 		}
 }
-
-// This should probably end up being moved to raws.
-// Eventually. Hopefully.
-#ifdef SJDFISDJFIJDF
-const unordered_bimap<string,PCGLayering> PCG_LAYERINGSTRINGS={
-	{"BEAST_AMORPHOUS",PCG_LAYERING_BEAST_AMORPHOUS},
-	{"BEAST_AMORPHOUS_SHELL_BACK",PCG_LAYERING_BEAST_AMORPHOUS_SHELL_BACK},
-
-	{"BEAST_SNAKE",PCG_LAYERING_BEAST_SNAKE},
-	{"BEAST_SNAKE_MANDIBLES_BACK",PCG_LAYERING_BEAST_SNAKE_MANDIBLES_BACK},
-	{"BEAST_SNAKE_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SNAKE_MANDIBLES_FRONT},
-	{"BEAST_SNAKE_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SNAKE_WINGS_LACY_BACK},
-	{"BEAST_SNAKE_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SNAKE_WINGS_LACY_FRONT},
-	{"BEAST_SNAKE_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SNAKE_WINGS_FEATHERED_BACK},
-	{"BEAST_SNAKE_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SNAKE_WINGS_FEATHERED_FRONT},
-	{"BEAST_SNAKE_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SNAKE_WINGS_BAT_BACK},
-	{"BEAST_SNAKE_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SNAKE_WINGS_BAT_FRONT},
-	{"BEAST_SNAKE_EYE_ONE",PCG_LAYERING_BEAST_SNAKE_EYE_ONE},
-	{"BEAST_SNAKE_EYE_TWO",PCG_LAYERING_BEAST_SNAKE_EYE_TWO},
-	{"BEAST_SNAKE_EYE_THREE",PCG_LAYERING_BEAST_SNAKE_EYE_THREE},
-	{"BEAST_SNAKE_SHELL_BACK",PCG_LAYERING_BEAST_SNAKE_SHELL_BACK},
-	{"BEAST_SNAKE_TRUNK",PCG_LAYERING_BEAST_SNAKE_TRUNK},
-	{"BEAST_SNAKE_ANTENNAE",PCG_LAYERING_BEAST_SNAKE_ANTENNAE},
-
-	{"BEAST_WORM_LONG",PCG_LAYERING_BEAST_WORM_LONG},
-	{"BEAST_WORM_LONG_MANDIBLES_BACK",PCG_LAYERING_BEAST_WORM_LONG_MANDIBLES_BACK},
-	{"BEAST_WORM_LONG_MANDIBLES_FRONT",PCG_LAYERING_BEAST_WORM_LONG_MANDIBLES_FRONT},
-	{"BEAST_WORM_LONG_WINGS_LACY_BACK",PCG_LAYERING_BEAST_WORM_LONG_WINGS_LACY_BACK},
-	{"BEAST_WORM_LONG_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_WORM_LONG_WINGS_LACY_FRONT},
-	{"BEAST_WORM_LONG_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_WORM_LONG_WINGS_FEATHERED_BACK},
-	{"BEAST_WORM_LONG_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_WORM_LONG_WINGS_FEATHERED_FRONT},
-	{"BEAST_WORM_LONG_WINGS_BAT_BACK",PCG_LAYERING_BEAST_WORM_LONG_WINGS_BAT_BACK},
-	{"BEAST_WORM_LONG_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_WORM_LONG_WINGS_BAT_FRONT},
-	{"BEAST_WORM_LONG_EYE_ONE",PCG_LAYERING_BEAST_WORM_LONG_EYE_ONE},
-	{"BEAST_WORM_LONG_EYE_TWO",PCG_LAYERING_BEAST_WORM_LONG_EYE_TWO},
-	{"BEAST_WORM_LONG_EYE_THREE",PCG_LAYERING_BEAST_WORM_LONG_EYE_THREE},
-	{"BEAST_WORM_LONG_SHELL_BACK",PCG_LAYERING_BEAST_WORM_LONG_SHELL_BACK},
-	{"BEAST_WORM_LONG_TRUNK",PCG_LAYERING_BEAST_WORM_LONG_TRUNK},
-	{"BEAST_WORM_LONG_ANTENNAE",PCG_LAYERING_BEAST_WORM_LONG_ANTENNAE},
-
-	{"BEAST_WORM_SHORT",PCG_LAYERING_BEAST_WORM_SHORT},
-	{"BEAST_WORM_SHORT_MANDIBLES_BACK",PCG_LAYERING_BEAST_WORM_SHORT_MANDIBLES_BACK},
-	{"BEAST_WORM_SHORT_MANDIBLES_FRONT",PCG_LAYERING_BEAST_WORM_SHORT_MANDIBLES_FRONT},
-	{"BEAST_WORM_SHORT_WINGS_LACY_BACK",PCG_LAYERING_BEAST_WORM_SHORT_WINGS_LACY_BACK},
-	{"BEAST_WORM_SHORT_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_WORM_SHORT_WINGS_LACY_FRONT},
-	{"BEAST_WORM_SHORT_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_WORM_SHORT_WINGS_FEATHERED_BACK},
-	{"BEAST_WORM_SHORT_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_WORM_SHORT_WINGS_FEATHERED_FRONT},
-	{"BEAST_WORM_SHORT_WINGS_BAT_BACK",PCG_LAYERING_BEAST_WORM_SHORT_WINGS_BAT_BACK},
-	{"BEAST_WORM_SHORT_EYE_ONE",PCG_LAYERING_BEAST_WORM_SHORT_EYE_ONE},
-	{"BEAST_WORM_SHORT_EYE_TWO",PCG_LAYERING_BEAST_WORM_SHORT_EYE_TWO},
-	{"BEAST_WORM_SHORT_EYE_THREE",PCG_LAYERING_BEAST_WORM_SHORT_EYE_THREE},
-	{"BEAST_WORM_SHORT_SHELL_BACK",PCG_LAYERING_BEAST_WORM_SHORT_SHELL_BACK},
-	{"BEAST_WORM_SHORT_TRUNK",PCG_LAYERING_BEAST_WORM_SHORT_TRUNK},
-	{"BEAST_WORM_SHORT_ANTENNAE",PCG_LAYERING_BEAST_WORM_SHORT_ANTENNAE},
-
-	{"BEAST_INSECT",PCG_LAYERING_BEAST_INSECT},
-	{"BEAST_INSECT_MANDIBLES_BACK",PCG_LAYERING_BEAST_INSECT_MANDIBLES_BACK},
-	{"BEAST_INSECT_MANDIBLES_FRONT",PCG_LAYERING_BEAST_INSECT_MANDIBLES_FRONT},
-	{"BEAST_INSECT_WINGS_LACY_BACK",PCG_LAYERING_BEAST_INSECT_WINGS_LACY_BACK},
-	{"BEAST_INSECT_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_INSECT_WINGS_FEATHERED_FRONT},
-	{"BEAST_INSECT_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_INSECT_WINGS_BAT_FRONT},
-	{"BEAST_INSECT_EYE_ONE",PCG_LAYERING_BEAST_INSECT_EYE_ONE},
-	{"BEAST_INSECT_EYE_TWO",PCG_LAYERING_BEAST_INSECT_EYE_TWO},
-	{"BEAST_INSECT_EYE_THREE",PCG_LAYERING_BEAST_INSECT_EYE_THREE},
-	{"BEAST_INSECT_PROBOSCIS",PCG_LAYERING_BEAST_INSECT_PROBOSCIS},
-	{"BEAST_INSECT_SHELL_BACK",PCG_LAYERING_BEAST_INSECT_SHELL_BACK},
-	{"BEAST_INSECT_TRUNK",PCG_LAYERING_BEAST_INSECT_TRUNK},
-	{"BEAST_INSECT_ANTENNAE",PCG_LAYERING_BEAST_INSECT_ANTENNAE},
-
-	{"BEAST_SPIDER",PCG_LAYERING_BEAST_SPIDER},
-	{"BEAST_SPIDER_MANDIBLES_BACK",PCG_LAYERING_BEAST_SPIDER_MANDIBLES_BACK},
-	{"BEAST_SPIDER_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SPIDER_MANDIBLES_FRONT},
-	{"BEAST_SPIDER_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SPIDER_WINGS_LACY_FRONT},
-	{"BEAST_SPIDER_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SPIDER_WINGS_FEATHERED_FRONT},
-	{"BEAST_SPIDER_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SPIDER_WINGS_BAT_FRONT},
-	{"BEAST_SPIDER_EYE_ONE",PCG_LAYERING_BEAST_SPIDER_EYE_ONE},
-	{"BEAST_SPIDER_EYE_TWO",PCG_LAYERING_BEAST_SPIDER_EYE_TWO},
-	{"BEAST_SPIDER_EYE_THREE",PCG_LAYERING_BEAST_SPIDER_EYE_THREE},
-	{"BEAST_SPIDER_SHELL_FRONT",PCG_LAYERING_BEAST_SPIDER_SHELL_FRONT},
-	{"BEAST_SPIDER_TRUNK",PCG_LAYERING_BEAST_SPIDER_TRUNK},
-	{"BEAST_SPIDER_ANTENNAE",PCG_LAYERING_BEAST_SPIDER_ANTENNAE},
-
-	{"BEAST_SCORPION",PCG_LAYERING_BEAST_SCORPION},
-	{"BEAST_SCORPION_MANDIBLES_BACK",PCG_LAYERING_BEAST_SCORPION_MANDIBLES_BACK},
-	{"BEAST_SCORPION_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SCORPION_MANDIBLES_FRONT},
-	{"BEAST_SCORPION_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SCORPION_WINGS_LACY_BACK},
-	{"BEAST_SCORPION_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SCORPION_WINGS_LACY_FRONT},
-	{"BEAST_SCORPION_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SCORPION_WINGS_FEATHERED_BACK},
-	{"BEAST_SCORPION_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SCORPION_WINGS_FEATHERED_FRONT},
-	{"BEAST_SCORPION_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SCORPION_WINGS_BAT_BACK},
-	{"BEAST_SCORPION_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SCORPION_WINGS_BAT_FRONT},
-	{"BEAST_SCORPION_EYE_ONE",PCG_LAYERING_BEAST_SCORPION_EYE_ONE},
-	{"BEAST_SCORPION_EYE_TWO",PCG_LAYERING_BEAST_SCORPION_EYE_TWO},
-	{"BEAST_SCORPION_EYE_THREE",PCG_LAYERING_BEAST_SCORPION_EYE_THREE},
-	{"BEAST_SCORPION_TAIL_ONE",PCG_LAYERING_BEAST_SCORPION_TAIL_ONE},
-	{"BEAST_SCORPION_TAIL_TWO",PCG_LAYERING_BEAST_SCORPION_TAIL_TWO},
-	{"BEAST_SCORPION_TAIL_THREE",PCG_LAYERING_BEAST_SCORPION_TAIL_THREE},
-	{"BEAST_SCORPION_SHELL_FRONT",PCG_LAYERING_BEAST_SCORPION_SHELL_FRONT},
-	{"BEAST_SCORPION_TRUNK",PCG_LAYERING_BEAST_SCORPION_TRUNK},
-	{"BEAST_SCORPION_ANTENNAE",PCG_LAYERING_BEAST_SCORPION_ANTENNAE},
-
-	{"BEAST_BIPEDAL_DINOSAUR",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR},
-	{"BEAST_BIPEDAL_DINOSAUR_MANDIBLES_BACK",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_MANDIBLES_BACK},
-	{"BEAST_BIPEDAL_DINOSAUR_MANDIBLES_FRONT",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_MANDIBLES_FRONT},
-	{"BEAST_BIPEDAL_DINOSAUR_WINGS_LACY_BACK",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_WINGS_LACY_BACK},
-	{"BEAST_BIPEDAL_DINOSAUR_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_WINGS_LACY_FRONT},
-	{"BEAST_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK},
-	{"BEAST_BIPEDAL_DINOSAUR_WINGS_BAT_BACK",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_WINGS_BAT_BACK},
-	{"BEAST_BIPEDAL_DINOSAUR_EYE_ONE",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_EYE_ONE},
-	{"BEAST_BIPEDAL_DINOSAUR_EYE_TWO",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_EYE_TWO},
-	{"BEAST_BIPEDAL_DINOSAUR_EYE_THREE",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_EYE_THREE},
-	{"BEAST_BIPEDAL_DINOSAUR_TAIL_ONE",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_TAIL_ONE},
-	{"BEAST_BIPEDAL_DINOSAUR_TAIL_TWO",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_TAIL_TWO},
-	{"BEAST_BIPEDAL_DINOSAUR_TAIL_THREE",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_TAIL_THREE},
-	{"BEAST_BIPEDAL_DINOSAUR_SHELL_BACK",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_SHELL_BACK},
-	{"BEAST_BIPEDAL_DINOSAUR_TRUNK",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_TRUNK},
-	{"BEAST_BIPEDAL_DINOSAUR_ANTENNAE",PCG_LAYERING_BEAST_BIPEDAL_DINOSAUR_ANTENNAE},
-
-	{"BEAST_HUMANOID",PCG_LAYERING_BEAST_HUMANOID},
-	{"BEAST_HUMANOID_MANDIBLES_BACK",PCG_LAYERING_BEAST_HUMANOID_MANDIBLES_BACK},
-	{"BEAST_HUMANOID_MANDIBLES_FRONT",PCG_LAYERING_BEAST_HUMANOID_MANDIBLES_FRONT},
-	{"BEAST_HUMANOID_WINGS_LACY_BACK",PCG_LAYERING_BEAST_HUMANOID_WINGS_LACY_BACK},
-	{"BEAST_HUMANOID_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_HUMANOID_WINGS_LACY_FRONT},
-	{"BEAST_HUMANOID_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_HUMANOID_WINGS_FEATHERED_BACK},
-	{"BEAST_HUMANOID_WINGS_BAT_BACK",PCG_LAYERING_BEAST_HUMANOID_WINGS_BAT_BACK},
-	{"BEAST_HUMANOID_EYE_ONE",PCG_LAYERING_BEAST_HUMANOID_EYE_ONE},
-	{"BEAST_HUMANOID_EYE_TWO",PCG_LAYERING_BEAST_HUMANOID_EYE_TWO},
-	{"BEAST_HUMANOID_EYE_THREE",PCG_LAYERING_BEAST_HUMANOID_EYE_THREE},
-	{"BEAST_HUMANOID_TAIL_ONE",PCG_LAYERING_BEAST_HUMANOID_TAIL_ONE},
-	{"BEAST_HUMANOID_TAIL_TWO",PCG_LAYERING_BEAST_HUMANOID_TAIL_TWO},
-	{"BEAST_HUMANOID_TAIL_THREE",PCG_LAYERING_BEAST_HUMANOID_TAIL_THREE},
-	{"BEAST_HUMANOID_SHELL_BACK",PCG_LAYERING_BEAST_HUMANOID_SHELL_BACK},
-	{"BEAST_HUMANOID_TRUNK",PCG_LAYERING_BEAST_HUMANOID_TRUNK},
-	{"BEAST_HUMANOID_ANTENNAE",PCG_LAYERING_BEAST_HUMANOID_ANTENNAE},
-
-	{"BEAST_FRONT_GRASP",PCG_LAYERING_BEAST_FRONT_GRASP},
-	{"BEAST_FRONT_GRASP_HEX",PCG_LAYERING_BEAST_FRONT_GRASP_HEX},
-	{"BEAST_FRONT_GRASP_OCT",PCG_LAYERING_BEAST_FRONT_GRASP_OCT},
-	{"BEAST_FRONT_GRASP_MANDIBLES_BACK",PCG_LAYERING_BEAST_FRONT_GRASP_MANDIBLES_BACK},
-	{"BEAST_FRONT_GRASP_MANDIBLES_FRONT",PCG_LAYERING_BEAST_FRONT_GRASP_MANDIBLES_FRONT},
-	{"BEAST_FRONT_GRASP_WINGS_LACY_BACK",PCG_LAYERING_BEAST_FRONT_GRASP_WINGS_LACY_BACK},
-	{"BEAST_FRONT_GRASP_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_FRONT_GRASP_WINGS_LACY_FRONT},
-	{"BEAST_FRONT_GRASP_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_FRONT_GRASP_WINGS_FEATHERED_BACK},
-	{"BEAST_FRONT_GRASP_WINGS_BAT_BACK",PCG_LAYERING_BEAST_FRONT_GRASP_WINGS_BAT_BACK},
-	{"BEAST_FRONT_GRASP_EYE_ONE",PCG_LAYERING_BEAST_FRONT_GRASP_EYE_ONE},
-	{"BEAST_FRONT_GRASP_EYE_TWO",PCG_LAYERING_BEAST_FRONT_GRASP_EYE_TWO},
-	{"BEAST_FRONT_GRASP_EYE_THREE",PCG_LAYERING_BEAST_FRONT_GRASP_EYE_THREE},
-	{"BEAST_FRONT_GRASP_TAIL_ONE",PCG_LAYERING_BEAST_FRONT_GRASP_TAIL_ONE},
-	{"BEAST_FRONT_GRASP_TAIL_TWO",PCG_LAYERING_BEAST_FRONT_GRASP_TAIL_TWO},
-	{"BEAST_FRONT_GRASP_TAIL_THREE",PCG_LAYERING_BEAST_FRONT_GRASP_TAIL_THREE},
-	{"BEAST_FRONT_GRASP_SHELL_BACK",PCG_LAYERING_BEAST_FRONT_GRASP_SHELL_BACK},
-	{"BEAST_FRONT_GRASP_TRUNK",PCG_LAYERING_BEAST_FRONT_GRASP_TRUNK},
-	{"BEAST_FRONT_GRASP_ANTENNAE",PCG_LAYERING_BEAST_FRONT_GRASP_ANTENNAE},
-
-	{"BEAST_QUADRUPED_BULKY",PCG_LAYERING_BEAST_QUADRUPED_BULKY},
-	{"BEAST_QUADRUPED_BULKY_HEX",PCG_LAYERING_BEAST_QUADRUPED_BULKY_HEX},
-	{"BEAST_QUADRUPED_BULKY_OCT",PCG_LAYERING_BEAST_QUADRUPED_BULKY_OCT},
-	{"BEAST_QUADRUPED_BULKY_MANDIBLES_BACK",PCG_LAYERING_BEAST_QUADRUPED_BULKY_MANDIBLES_BACK},
-	{"BEAST_QUADRUPED_BULKY_MANDIBLES_FRONT",PCG_LAYERING_BEAST_QUADRUPED_BULKY_MANDIBLES_FRONT},
-	{"BEAST_QUADRUPED_BULKY_WINGS_LACY_BACK",PCG_LAYERING_BEAST_QUADRUPED_BULKY_WINGS_LACY_BACK},
-	{"BEAST_QUADRUPED_BULKY_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_QUADRUPED_BULKY_WINGS_LACY_FRONT},
-	{"BEAST_QUADRUPED_BULKY_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_QUADRUPED_BULKY_WINGS_FEATHERED_BACK},
-	{"BEAST_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT},
-	{"BEAST_QUADRUPED_BULKY_WINGS_BAT_BACK",PCG_LAYERING_BEAST_QUADRUPED_BULKY_WINGS_BAT_BACK},
-	{"BEAST_QUADRUPED_BULKY_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_QUADRUPED_BULKY_WINGS_BAT_FRONT},
-	{"BEAST_QUADRUPED_BULKY_EYE_ONE",PCG_LAYERING_BEAST_QUADRUPED_BULKY_EYE_ONE},
-	{"BEAST_QUADRUPED_BULKY_EYE_TWO",PCG_LAYERING_BEAST_QUADRUPED_BULKY_EYE_TWO},
-	{"BEAST_QUADRUPED_BULKY_EYE_THREE",PCG_LAYERING_BEAST_QUADRUPED_BULKY_EYE_THREE},
-	{"BEAST_QUADRUPED_BULKY_TAIL_ONE",PCG_LAYERING_BEAST_QUADRUPED_BULKY_TAIL_ONE},
-	{"BEAST_QUADRUPED_BULKY_TAIL_TWO",PCG_LAYERING_BEAST_QUADRUPED_BULKY_TAIL_TWO},
-	{"BEAST_QUADRUPED_BULKY_TAIL_THREE",PCG_LAYERING_BEAST_QUADRUPED_BULKY_TAIL_THREE},
-	{"BEAST_QUADRUPED_BULKY_SHELL_FRONT",PCG_LAYERING_BEAST_QUADRUPED_BULKY_SHELL_FRONT},
-	{"BEAST_QUADRUPED_BULKY_TRUNK",PCG_LAYERING_BEAST_QUADRUPED_BULKY_TRUNK},
-	{"BEAST_QUADRUPED_BULKY_ANTENNAE",PCG_LAYERING_BEAST_QUADRUPED_BULKY_ANTENNAE},
-
-	{"BEAST_QUADRUPED_SLINKY",PCG_LAYERING_BEAST_QUADRUPED_SLINKY},
-	{"BEAST_QUADRUPED_SLINKY_HEX",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_HEX},
-	{"BEAST_QUADRUPED_SLINKY_OCT",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_OCT},
-	{"BEAST_QUADRUPED_SLINKY_MANDIBLES_BACK",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_MANDIBLES_BACK},
-	{"BEAST_QUADRUPED_SLINKY_MANDIBLES_FRONT",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_MANDIBLES_FRONT},
-	{"BEAST_QUADRUPED_SLINKY_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_WINGS_LACY_FRONT},
-	{"BEAST_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK},
-	{"BEAST_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT},
-	{"BEAST_QUADRUPED_SLINKY_WINGS_BAT_BACK",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_WINGS_BAT_BACK},
-	{"BEAST_QUADRUPED_SLINKY_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_WINGS_BAT_FRONT},
-	{"BEAST_QUADRUPED_SLINKY_EYE_ONE",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_EYE_ONE},
-	{"BEAST_QUADRUPED_SLINKY_EYE_TWO",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_EYE_TWO},
-	{"BEAST_QUADRUPED_SLINKY_EYE_THREE",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_EYE_THREE},
-	{"BEAST_QUADRUPED_SLINKY_TAIL_ONE",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_TAIL_ONE},
-	{"BEAST_QUADRUPED_SLINKY_TAIL_TWO",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_TAIL_TWO},
-	{"BEAST_QUADRUPED_SLINKY_TAIL_THREE",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_TAIL_THREE},
-	{"BEAST_QUADRUPED_SLINKY_SHELL_FRONT",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_SHELL_FRONT},
-	{"BEAST_QUADRUPED_SLINKY_TRUNK",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_TRUNK},
-	{"BEAST_QUADRUPED_SLINKY_ANTENNAE",PCG_LAYERING_BEAST_QUADRUPED_SLINKY_ANTENNAE},
-
-	{"BEAST_WALRUS",PCG_LAYERING_BEAST_WALRUS},
-	{"BEAST_WALRUS_MANDIBLES_BACK",PCG_LAYERING_BEAST_WALRUS_MANDIBLES_BACK},
-	{"BEAST_WALRUS_WINGS_LACY_BACK",PCG_LAYERING_BEAST_WALRUS_WINGS_LACY_BACK},
-	{"BEAST_WALRUS_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_WALRUS_WINGS_LACY_FRONT},
-	{"BEAST_WALRUS_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_WALRUS_WINGS_FEATHERED_BACK},
-	{"BEAST_WALRUS_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_WALRUS_WINGS_FEATHERED_FRONT},
-	{"BEAST_WALRUS_WINGS_BAT_BACK",PCG_LAYERING_BEAST_WALRUS_WINGS_BAT_BACK},
-	{"BEAST_WALRUS_EYE_ONE",PCG_LAYERING_BEAST_WALRUS_EYE_ONE},
-	{"BEAST_WALRUS_EYE_TWO",PCG_LAYERING_BEAST_WALRUS_EYE_TWO},
-	{"BEAST_WALRUS_EYE_THREE",PCG_LAYERING_BEAST_WALRUS_EYE_THREE},
-	{"BEAST_WALRUS_TAIL_ONE",PCG_LAYERING_BEAST_WALRUS_TAIL_ONE},
-	{"BEAST_WALRUS_TAIL_TWO",PCG_LAYERING_BEAST_WALRUS_TAIL_TWO},
-	{"BEAST_WALRUS_TAIL_THREE",PCG_LAYERING_BEAST_WALRUS_TAIL_THREE},
-	{"BEAST_WALRUS_SHELL_BACK",PCG_LAYERING_BEAST_WALRUS_SHELL_BACK},
-	{"BEAST_WALRUS_TRUNK",PCG_LAYERING_BEAST_WALRUS_TRUNK},
-	{"BEAST_WALRUS_ANTENNAE",PCG_LAYERING_BEAST_WALRUS_ANTENNAE},
-
-	{"BEAST_SMALL_AMORPHOUS",PCG_LAYERING_BEAST_SMALL_AMORPHOUS},
-	{"BEAST_SMALL_AMORPHOUS_SHELL",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_SHELL},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_LACY_BACK},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_BAT_BACK},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_BAT_FRONT},
-
-	{"BEAST_SMALL_SNAKE",PCG_LAYERING_BEAST_SMALL_SNAKE},
-	{"BEAST_SMALL_SNAKE_SHELL",PCG_LAYERING_BEAST_SMALL_SNAKE_SHELL},
-	{"BEAST_SMALL_SNAKE_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_LACY_BACK},
-	{"BEAST_SMALL_SNAKE_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_SNAKE_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_BAT_BACK},
-	{"BEAST_SMALL_SNAKE_QUILLS",PCG_LAYERING_BEAST_SMALL_SNAKE_QUILLS},
-	{"BEAST_SMALL_SNAKE_PLATES",PCG_LAYERING_BEAST_SMALL_SNAKE_PLATES},
-	{"BEAST_SMALL_SNAKE_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_SNAKE_EXTERNAL_RIBS},
-	{"BEAST_SMALL_SNAKE_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_SNAKE_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_SNAKE_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_SNAKE_HORN",PCG_LAYERING_BEAST_SMALL_SNAKE_HORN},
-	{"BEAST_SMALL_SNAKE_HORNS1",PCG_LAYERING_BEAST_SMALL_SNAKE_HORNS1},
-	{"BEAST_SMALL_SNAKE_HORNS2",PCG_LAYERING_BEAST_SMALL_SNAKE_HORNS2},
-	{"BEAST_SMALL_SNAKE_ANTENNAE",PCG_LAYERING_BEAST_SMALL_SNAKE_ANTENNAE},
-	{"BEAST_SMALL_SNAKE_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_SNAKE_MANDIBLES_BACK},
-	{"BEAST_SMALL_SNAKE_BEAK",PCG_LAYERING_BEAST_SMALL_SNAKE_BEAK},
-	{"BEAST_SMALL_SNAKE_TRUNK",PCG_LAYERING_BEAST_SMALL_SNAKE_TRUNK},
-	{"BEAST_SMALL_SNAKE_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_SNAKE_MANDIBLES_FRONT},
-	{"BEAST_SMALL_SNAKE_EYE_ONE",PCG_LAYERING_BEAST_SMALL_SNAKE_EYE_ONE},
-	{"BEAST_SMALL_SNAKE_EYE_TWO",PCG_LAYERING_BEAST_SMALL_SNAKE_EYE_TWO},
-	{"BEAST_SMALL_SNAKE_EYE_THREE",PCG_LAYERING_BEAST_SMALL_SNAKE_EYE_THREE},
-
-	{"BEAST_SMALL_WORM_LONG",PCG_LAYERING_BEAST_SMALL_WORM_LONG},
-	{"BEAST_SMALL_WORM_LONG_SHELL",PCG_LAYERING_BEAST_SMALL_WORM_LONG_SHELL},
-	{"BEAST_SMALL_WORM_LONG_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_LACY_BACK},
-	{"BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_WORM_LONG_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_BAT_BACK},
-	{"BEAST_SMALL_WORM_LONG_QUILLS",PCG_LAYERING_BEAST_SMALL_WORM_LONG_QUILLS},
-	{"BEAST_SMALL_WORM_LONG_PLATES",PCG_LAYERING_BEAST_SMALL_WORM_LONG_PLATES},
-	{"BEAST_SMALL_WORM_LONG_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_WORM_LONG_EXTERNAL_RIBS},
-	{"BEAST_SMALL_WORM_LONG_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_WORM_LONG_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_WORM_LONG_HORN",PCG_LAYERING_BEAST_SMALL_WORM_LONG_HORN},
-	{"BEAST_SMALL_WORM_LONG_HORNS1",PCG_LAYERING_BEAST_SMALL_WORM_LONG_HORNS1},
-	{"BEAST_SMALL_WORM_LONG_HORNS2",PCG_LAYERING_BEAST_SMALL_WORM_LONG_HORNS2},
-	{"BEAST_SMALL_WORM_LONG_ANTENNAE",PCG_LAYERING_BEAST_SMALL_WORM_LONG_ANTENNAE},
-	{"BEAST_SMALL_WORM_LONG_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_WORM_LONG_MANDIBLES_BACK},
-	{"BEAST_SMALL_WORM_LONG_TRUNK",PCG_LAYERING_BEAST_SMALL_WORM_LONG_TRUNK},
-	{"BEAST_SMALL_WORM_LONG_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_WORM_LONG_MANDIBLES_FRONT},
-	{"BEAST_SMALL_WORM_LONG_EYE_ONE",PCG_LAYERING_BEAST_SMALL_WORM_LONG_EYE_ONE},
-	{"BEAST_SMALL_WORM_LONG_EYE_TWO",PCG_LAYERING_BEAST_SMALL_WORM_LONG_EYE_TWO},
-	{"BEAST_SMALL_WORM_LONG_EYE_THREE",PCG_LAYERING_BEAST_SMALL_WORM_LONG_EYE_THREE},
-
-	{"BEAST_SMALL_WORM_SHORT",PCG_LAYERING_BEAST_SMALL_WORM_SHORT},
-	{"BEAST_SMALL_WORM_SHORT_SHELL",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_SHELL},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_LACY_BACK},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_BAT_BACK},
-	{"BEAST_SMALL_WORM_SHORT_QUILLS",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_QUILLS},
-	{"BEAST_SMALL_WORM_SHORT_PLATES",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_PLATES},
-	{"BEAST_SMALL_WORM_SHORT_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_EXTERNAL_RIBS},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_WORM_SHORT_HORN",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_HORN},
-	{"BEAST_SMALL_WORM_SHORT_HORNS1",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_HORNS1},
-	{"BEAST_SMALL_WORM_SHORT_HORNS2",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_HORNS2},
-	{"BEAST_SMALL_WORM_SHORT_ANTENNAE",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_ANTENNAE},
-	{"BEAST_SMALL_WORM_SHORT_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_MANDIBLES_BACK},
-	{"BEAST_SMALL_WORM_SHORT_TRUNK",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_TRUNK},
-	{"BEAST_SMALL_WORM_SHORT_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_MANDIBLES_FRONT},
-	{"BEAST_SMALL_WORM_SHORT_EYE_ONE",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_EYE_ONE},
-	{"BEAST_SMALL_WORM_SHORT_EYE_TWO",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_EYE_TWO},
-	{"BEAST_SMALL_WORM_SHORT_EYE_THREE",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_EYE_THREE},
-
-	{"BEAST_SMALL_INSECT",PCG_LAYERING_BEAST_SMALL_INSECT},
-	{"BEAST_SMALL_INSECT_SHELL",PCG_LAYERING_BEAST_SMALL_INSECT_SHELL},
-	{"BEAST_SMALL_INSECT_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_LACY_BACK},
-	{"BEAST_SMALL_INSECT_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_INSECT_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_BAT_BACK},
-	{"BEAST_SMALL_INSECT_STINGER",PCG_LAYERING_BEAST_SMALL_INSECT_STINGER},
-	{"BEAST_SMALL_INSECT_QUILLS",PCG_LAYERING_BEAST_SMALL_INSECT_QUILLS},
-	{"BEAST_SMALL_INSECT_PLATES",PCG_LAYERING_BEAST_SMALL_INSECT_PLATES},
-	{"BEAST_SMALL_INSECT_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_INSECT_EXTERNAL_RIBS},
-	{"BEAST_SMALL_INSECT_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_INSECT_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_INSECT_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_INSECT_PROBOSCIS",PCG_LAYERING_BEAST_SMALL_INSECT_PROBOSCIS},
-	{"BEAST_SMALL_INSECT_HORN",PCG_LAYERING_BEAST_SMALL_INSECT_HORN},
-	{"BEAST_SMALL_INSECT_HORNS1",PCG_LAYERING_BEAST_SMALL_INSECT_HORNS1},
-	{"BEAST_SMALL_INSECT_HORNS2",PCG_LAYERING_BEAST_SMALL_INSECT_HORNS2},
-	{"BEAST_SMALL_INSECT_ANTENNAE",PCG_LAYERING_BEAST_SMALL_INSECT_ANTENNAE},
-	{"BEAST_SMALL_INSECT_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_INSECT_MANDIBLES_BACK},
-	{"BEAST_SMALL_INSECT_TRUNK",PCG_LAYERING_BEAST_SMALL_INSECT_TRUNK},
-	{"BEAST_SMALL_INSECT_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_INSECT_MANDIBLES_FRONT},
-	{"BEAST_SMALL_INSECT_EYE_ONE",PCG_LAYERING_BEAST_SMALL_INSECT_EYE_ONE},
-	{"BEAST_SMALL_INSECT_EYE_TWO",PCG_LAYERING_BEAST_SMALL_INSECT_EYE_TWO},
-	{"BEAST_SMALL_INSECT_EYE_THREE",PCG_LAYERING_BEAST_SMALL_INSECT_EYE_THREE},
-
-	{"BEAST_SMALL_SPIDER",PCG_LAYERING_BEAST_SMALL_SPIDER},
-	{"BEAST_SMALL_SPIDER_SHELL",PCG_LAYERING_BEAST_SMALL_SPIDER_SHELL},
-	{"BEAST_SMALL_SPIDER_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_LACY_BACK},
-	{"BEAST_SMALL_SPIDER_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_SPIDER_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_BAT_BACK},
-	{"BEAST_SMALL_SPIDER_QUILLS",PCG_LAYERING_BEAST_SMALL_SPIDER_QUILLS},
-	{"BEAST_SMALL_SPIDER_PLATES",PCG_LAYERING_BEAST_SMALL_SPIDER_PLATES},
-	{"BEAST_SMALL_SPIDER_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_SPIDER_EXTERNAL_RIBS},
-	{"BEAST_SMALL_SPIDER_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_SPIDER_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_SPIDER_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_SPIDER_HORN",PCG_LAYERING_BEAST_SMALL_SPIDER_HORN},
-	{"BEAST_SMALL_SPIDER_HORNS1",PCG_LAYERING_BEAST_SMALL_SPIDER_HORNS1},
-	{"BEAST_SMALL_SPIDER_HORNS2",PCG_LAYERING_BEAST_SMALL_SPIDER_HORNS2},
-	{"BEAST_SMALL_SPIDER_ANTENNAE",PCG_LAYERING_BEAST_SMALL_SPIDER_ANTENNAE},
-	{"BEAST_SMALL_SPIDER_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_SPIDER_MANDIBLES_BACK},
-	{"BEAST_SMALL_SPIDER_TRUNK",PCG_LAYERING_BEAST_SMALL_SPIDER_TRUNK},
-	{"BEAST_SMALL_SPIDER_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_SPIDER_MANDIBLES_FRONT},
-	{"BEAST_SMALL_SPIDER_EYE_ONE",PCG_LAYERING_BEAST_SMALL_SPIDER_EYE_ONE},
-	{"BEAST_SMALL_SPIDER_EYE_TWO",PCG_LAYERING_BEAST_SMALL_SPIDER_EYE_TWO},
-	{"BEAST_SMALL_SPIDER_EYE_THREE",PCG_LAYERING_BEAST_SMALL_SPIDER_EYE_THREE},
-
-	{"BEAST_SMALL_SCORPION",PCG_LAYERING_BEAST_SMALL_SCORPION},
-	{"BEAST_SMALL_SCORPION_SHELL",PCG_LAYERING_BEAST_SMALL_SCORPION_SHELL},
-	{"BEAST_SMALL_SCORPION_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_LACY_BACK},
-	{"BEAST_SMALL_SCORPION_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_SCORPION_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_BAT_BACK},
-	{"BEAST_SMALL_SCORPION_CRUSTACEAN_TAIL",PCG_LAYERING_BEAST_SMALL_SCORPION_CRUSTACEAN_TAIL},
-	{"BEAST_SMALL_SCORPION_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_SCORPION_TAIL_ONE},
-	{"BEAST_SMALL_SCORPION_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_SCORPION_TAIL_TWO},
-	{"BEAST_SMALL_SCORPION_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_SCORPION_TAIL_THREE},
-	{"BEAST_SMALL_SCORPION_QUILLS",PCG_LAYERING_BEAST_SMALL_SCORPION_QUILLS},
-	{"BEAST_SMALL_SCORPION_PLATES",PCG_LAYERING_BEAST_SMALL_SCORPION_PLATES},
-	{"BEAST_SMALL_SCORPION_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_SCORPION_EXTERNAL_RIBS},
-	{"BEAST_SMALL_SCORPION_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_SCORPION_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_SCORPION_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_SCORPION_HORN",PCG_LAYERING_BEAST_SMALL_SCORPION_HORN},
-	{"BEAST_SMALL_SCORPION_HORNS1",PCG_LAYERING_BEAST_SMALL_SCORPION_HORNS1},
-	{"BEAST_SMALL_SCORPION_HORNS2",PCG_LAYERING_BEAST_SMALL_SCORPION_HORNS2},
-	{"BEAST_SMALL_SCORPION_ANTENNAE",PCG_LAYERING_BEAST_SMALL_SCORPION_ANTENNAE},
-	{"BEAST_SMALL_SCORPION_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_SCORPION_MANDIBLES_BACK},
-	{"BEAST_SMALL_SCORPION_TRUNK",PCG_LAYERING_BEAST_SMALL_SCORPION_TRUNK},
-	{"BEAST_SMALL_SCORPION_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_SCORPION_MANDIBLES_FRONT},
-	{"BEAST_SMALL_SCORPION_EYE_ONE",PCG_LAYERING_BEAST_SMALL_SCORPION_EYE_ONE},
-	{"BEAST_SMALL_SCORPION_EYE_TWO",PCG_LAYERING_BEAST_SMALL_SCORPION_EYE_TWO},
-	{"BEAST_SMALL_SCORPION_EYE_THREE",PCG_LAYERING_BEAST_SMALL_SCORPION_EYE_THREE},
-
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_SHELL",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_SHELL},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_LACY_BACK},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_BAT_BACK},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_TAIL_ONE},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_TAIL_TWO},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_TAIL_THREE},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_QUILLS",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_QUILLS},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_PLATES",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_PLATES},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_EXTERNAL_RIBS},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_ARMS",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_ARMS},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_HORN",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_HORN},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_HORNS1",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_HORNS1},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_HORNS2",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_HORNS2},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_ANTENNAE",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_ANTENNAE},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_MANDIBLES_BACK},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_BEAK",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_BEAK},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_TRUNK",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_TRUNK},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_MANDIBLES_FRONT},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_EYE_ONE",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_EYE_ONE},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_EYE_TWO",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_EYE_TWO},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_EYE_THREE",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_EYE_THREE},
-
-	{"BEAST_SMALL_HUMANOID",PCG_LAYERING_BEAST_SMALL_HUMANOID},
-	{"BEAST_SMALL_HUMANOID_SHELL",PCG_LAYERING_BEAST_SMALL_HUMANOID_SHELL},
-	{"BEAST_SMALL_HUMANOID_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_LACY_BACK},
-	{"BEAST_SMALL_HUMANOID_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_HUMANOID_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_BAT_BACK},
-	{"BEAST_SMALL_HUMANOID_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_HUMANOID_TAIL_ONE},
-	{"BEAST_SMALL_HUMANOID_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_HUMANOID_TAIL_TWO},
-	{"BEAST_SMALL_HUMANOID_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_HUMANOID_TAIL_THREE},
-	{"BEAST_SMALL_HUMANOID_QUILLS",PCG_LAYERING_BEAST_SMALL_HUMANOID_QUILLS},
-	{"BEAST_SMALL_HUMANOID_PLATES",PCG_LAYERING_BEAST_SMALL_HUMANOID_PLATES},
-	{"BEAST_SMALL_HUMANOID_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_HUMANOID_EXTERNAL_RIBS},
-	{"BEAST_SMALL_HUMANOID_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_HUMANOID_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_HUMANOID_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_HUMANOID_ARMS",PCG_LAYERING_BEAST_SMALL_HUMANOID_ARMS},
-	{"BEAST_SMALL_HUMANOID_HORN",PCG_LAYERING_BEAST_SMALL_HUMANOID_HORN},
-	{"BEAST_SMALL_HUMANOID_HORNS1",PCG_LAYERING_BEAST_SMALL_HUMANOID_HORNS1},
-	{"BEAST_SMALL_HUMANOID_HORNS2",PCG_LAYERING_BEAST_SMALL_HUMANOID_HORNS2},
-	{"BEAST_SMALL_HUMANOID_ANTENNAE",PCG_LAYERING_BEAST_SMALL_HUMANOID_ANTENNAE},
-	{"BEAST_SMALL_HUMANOID_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_HUMANOID_MANDIBLES_BACK},
-	{"BEAST_SMALL_HUMANOID_BEAK",PCG_LAYERING_BEAST_SMALL_HUMANOID_BEAK},
-	{"BEAST_SMALL_HUMANOID_TRUNK",PCG_LAYERING_BEAST_SMALL_HUMANOID_TRUNK},
-	{"BEAST_SMALL_HUMANOID_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_HUMANOID_MANDIBLES_FRONT},
-	{"BEAST_SMALL_HUMANOID_EYE_ONE",PCG_LAYERING_BEAST_SMALL_HUMANOID_EYE_ONE},
-	{"BEAST_SMALL_HUMANOID_EYE_TWO",PCG_LAYERING_BEAST_SMALL_HUMANOID_EYE_TWO},
-	{"BEAST_SMALL_HUMANOID_EYE_THREE",PCG_LAYERING_BEAST_SMALL_HUMANOID_EYE_THREE},
-
-	{"BEAST_SMALL_FRONT_GRASP",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP},
-	{"BEAST_SMALL_FRONT_GRASP_SHELL",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_SHELL},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_LACY_BACK},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_BAT_BACK},
-	{"BEAST_SMALL_FRONT_GRASP_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_TAIL_ONE},
-	{"BEAST_SMALL_FRONT_GRASP_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_TAIL_TWO},
-	{"BEAST_SMALL_FRONT_GRASP_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_TAIL_THREE},
-	{"BEAST_SMALL_FRONT_GRASP_QUILLS",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_QUILLS},
-	{"BEAST_SMALL_FRONT_GRASP_PLATES",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_PLATES},
-	{"BEAST_SMALL_FRONT_GRASP_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_EXTERNAL_RIBS},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_FRONT_GRASP_EXTRA_LEGS1",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_EXTRA_LEGS1},
-	{"BEAST_SMALL_FRONT_GRASP_EXTRA_LEGS2",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_EXTRA_LEGS2},
-	{"BEAST_SMALL_FRONT_GRASP_HORN",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_HORN},
-	{"BEAST_SMALL_FRONT_GRASP_HORNS1",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_HORNS1},
-	{"BEAST_SMALL_FRONT_GRASP_HORNS2",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_HORNS2},
-	{"BEAST_SMALL_FRONT_GRASP_ANTENNAE",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_ANTENNAE},
-	{"BEAST_SMALL_FRONT_GRASP_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_MANDIBLES_BACK},
-	{"BEAST_SMALL_FRONT_GRASP_TRUNK",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_TRUNK},
-	{"BEAST_SMALL_FRONT_GRASP_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_MANDIBLES_FRONT},
-	{"BEAST_SMALL_FRONT_GRASP_EYE_ONE",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_EYE_ONE},
-	{"BEAST_SMALL_FRONT_GRASP_EYE_TWO",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_EYE_TWO},
-	{"BEAST_SMALL_FRONT_GRASP_EYE_THREE",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_EYE_THREE},
-
-	{"BEAST_SMALL_QUADRUPED_BULKY",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY},
-	{"BEAST_SMALL_QUADRUPED_BULKY_SHELL",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_SHELL},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_LACY_BACK},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_BAT_BACK},
-	{"BEAST_SMALL_QUADRUPED_BULKY_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_TAIL_ONE},
-	{"BEAST_SMALL_QUADRUPED_BULKY_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_TAIL_TWO},
-	{"BEAST_SMALL_QUADRUPED_BULKY_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_TAIL_THREE},
-	{"BEAST_SMALL_QUADRUPED_BULKY_QUILLS",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_QUILLS},
-	{"BEAST_SMALL_QUADRUPED_BULKY_PLATES",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_PLATES},
-	{"BEAST_SMALL_QUADRUPED_BULKY_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_EXTERNAL_RIBS},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_QUADRUPED_BULKY_EXTRA_LEGS1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_EXTRA_LEGS1},
-	{"BEAST_SMALL_QUADRUPED_BULKY_EXTRA_LEGS2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_EXTRA_LEGS2},
-	{"BEAST_SMALL_QUADRUPED_BULKY_HORN",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_HORN},
-	{"BEAST_SMALL_QUADRUPED_BULKY_HORNS1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_HORNS1},
-	{"BEAST_SMALL_QUADRUPED_BULKY_HORNS2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_HORNS2},
-	{"BEAST_SMALL_QUADRUPED_BULKY_ANTENNAE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_ANTENNAE},
-	{"BEAST_SMALL_QUADRUPED_BULKY_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_MANDIBLES_BACK},
-	{"BEAST_SMALL_QUADRUPED_BULKY_TRUNK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_TRUNK},
-	{"BEAST_SMALL_QUADRUPED_BULKY_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_MANDIBLES_FRONT},
-	{"BEAST_SMALL_QUADRUPED_BULKY_EYE_ONE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_EYE_ONE},
-	{"BEAST_SMALL_QUADRUPED_BULKY_EYE_TWO",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_EYE_TWO},
-	{"BEAST_SMALL_QUADRUPED_BULKY_EYE_THREE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_EYE_THREE},
-
-	{"BEAST_SMALL_QUADRUPED_SLINKY",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_SHELL",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_SHELL},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_LACY_BACK},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_BAT_BACK},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_TAIL_ONE},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_TAIL_TWO},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_TAIL_THREE},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_QUILLS",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_QUILLS},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_PLATES",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_PLATES},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_EXTERNAL_RIBS},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_EXTRA_LEGS1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_EXTRA_LEGS1},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_EXTRA_LEGS2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_EXTRA_LEGS2},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_HORN",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_HORN},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_HORNS1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_HORNS1},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_HORNS2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_HORNS2},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_ANTENNAE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_ANTENNAE},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_MANDIBLES_BACK},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_TRUNK",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_TRUNK},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_MANDIBLES_FRONT},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_EYE_ONE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_EYE_ONE},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_EYE_TWO",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_EYE_TWO},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_EYE_THREE",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_EYE_THREE},
-
-	{"BEAST_SMALL_WALRUS",PCG_LAYERING_BEAST_SMALL_WALRUS},
-	{"BEAST_SMALL_WALRUS_SHELL",PCG_LAYERING_BEAST_SMALL_WALRUS_SHELL},
-	{"BEAST_SMALL_WALRUS_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_LACY_BACK},
-	{"BEAST_SMALL_WALRUS_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_WALRUS_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_BAT_BACK},
-	{"BEAST_SMALL_WALRUS_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_WALRUS_TAIL_ONE},
-	{"BEAST_SMALL_WALRUS_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_WALRUS_TAIL_TWO},
-	{"BEAST_SMALL_WALRUS_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_WALRUS_TAIL_THREE},
-	{"BEAST_SMALL_WALRUS_QUILLS",PCG_LAYERING_BEAST_SMALL_WALRUS_QUILLS},
-	{"BEAST_SMALL_WALRUS_PLATES",PCG_LAYERING_BEAST_SMALL_WALRUS_PLATES},
-	{"BEAST_SMALL_WALRUS_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_WALRUS_EXTERNAL_RIBS},
-	{"BEAST_SMALL_WALRUS_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_WALRUS_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_WALRUS_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_WALRUS_HORN",PCG_LAYERING_BEAST_SMALL_WALRUS_HORN},
-	{"BEAST_SMALL_WALRUS_HORNS1",PCG_LAYERING_BEAST_SMALL_WALRUS_HORNS1},
-	{"BEAST_SMALL_WALRUS_HORNS2",PCG_LAYERING_BEAST_SMALL_WALRUS_HORNS2},
-	{"BEAST_SMALL_WALRUS_ANTENNAE",PCG_LAYERING_BEAST_SMALL_WALRUS_ANTENNAE},
-	{"BEAST_SMALL_WALRUS_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_WALRUS_MANDIBLES_BACK},
-	{"BEAST_SMALL_WALRUS_TRUNK",PCG_LAYERING_BEAST_SMALL_WALRUS_TRUNK},
-	{"BEAST_SMALL_WALRUS_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_WALRUS_MANDIBLES_FRONT},
-	{"BEAST_SMALL_WALRUS_EYE_ONE",PCG_LAYERING_BEAST_SMALL_WALRUS_EYE_ONE},
-	{"BEAST_SMALL_WALRUS_EYE_TWO",PCG_LAYERING_BEAST_SMALL_WALRUS_EYE_TWO},
-	{"BEAST_SMALL_WALRUS_EYE_THREE",PCG_LAYERING_BEAST_SMALL_WALRUS_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_AMORPHOUS",PCG_LAYERING_BEAST_SMALL_ORGANIC_AMORPHOUS},
-	{"BEAST_SMALL_ORGANIC_AMORPHOUS_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_AMORPHOUS_SHELL},
-	{"BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_AMORPHOUS_WINGS_BAT_FRONT},
-
-	{"BEAST_SMALL_ORGANIC_SNAKE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE},
-	{"BEAST_SMALL_ORGANIC_SNAKE_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_SHELL},
-	{"BEAST_SMALL_ORGANIC_SNAKE_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_SNAKE_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_SNAKE_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_SNAKE_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_QUILLS},
-	{"BEAST_SMALL_ORGANIC_SNAKE_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_PLATES},
-	{"BEAST_SMALL_ORGANIC_SNAKE_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_SNAKE_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_SNAKE_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_SNAKE_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_SNAKE_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_HORN},
-	{"BEAST_SMALL_ORGANIC_SNAKE_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_HORNS1},
-	{"BEAST_SMALL_ORGANIC_SNAKE_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_HORNS2},
-	{"BEAST_SMALL_ORGANIC_SNAKE_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_SNAKE_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_SNAKE_BEAK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_BEAK},
-	{"BEAST_SMALL_ORGANIC_SNAKE_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_TRUNK},
-	{"BEAST_SMALL_ORGANIC_SNAKE_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_SNAKE_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_SNAKE_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_SNAKE_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SNAKE_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_WORM_LONG",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_SHELL},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_QUILLS},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_PLATES},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_HORN},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_HORNS1},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_HORNS2},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_TRUNK},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_WORM_LONG_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_LONG_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_SHELL},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_QUILLS},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_PLATES},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_HORN},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_HORNS1},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_HORNS2},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_TRUNK},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_WORM_SHORT_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WORM_SHORT_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_INSECT",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT},
-	{"BEAST_SMALL_ORGANIC_INSECT_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_SHELL},
-	{"BEAST_SMALL_ORGANIC_INSECT_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_INSECT_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_INSECT_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_INSECT_STINGER",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_STINGER},
-	{"BEAST_SMALL_ORGANIC_INSECT_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_QUILLS},
-	{"BEAST_SMALL_ORGANIC_INSECT_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_PLATES},
-	{"BEAST_SMALL_ORGANIC_INSECT_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_INSECT_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_INSECT_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_INSECT_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_INSECT_PROBOSCIS",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_PROBOSCIS},
-	{"BEAST_SMALL_ORGANIC_INSECT_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_HORN},
-	{"BEAST_SMALL_ORGANIC_INSECT_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_HORNS1},
-	{"BEAST_SMALL_ORGANIC_INSECT_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_HORNS2},
-	{"BEAST_SMALL_ORGANIC_INSECT_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_INSECT_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_INSECT_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_TRUNK},
-	{"BEAST_SMALL_ORGANIC_INSECT_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_INSECT_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_INSECT_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_INSECT_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_INSECT_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_SPIDER",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER},
-	{"BEAST_SMALL_ORGANIC_SPIDER_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_SHELL},
-	{"BEAST_SMALL_ORGANIC_SPIDER_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_SPIDER_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_SPIDER_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_SPIDER_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_QUILLS},
-	{"BEAST_SMALL_ORGANIC_SPIDER_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_PLATES},
-	{"BEAST_SMALL_ORGANIC_SPIDER_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_SPIDER_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_SPIDER_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_SPIDER_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_SPIDER_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_HORN},
-	{"BEAST_SMALL_ORGANIC_SPIDER_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_HORNS1},
-	{"BEAST_SMALL_ORGANIC_SPIDER_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_HORNS2},
-	{"BEAST_SMALL_ORGANIC_SPIDER_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_SPIDER_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_SPIDER_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_TRUNK},
-	{"BEAST_SMALL_ORGANIC_SPIDER_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_SPIDER_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_SPIDER_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_SPIDER_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SPIDER_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_SCORPION",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION},
-	{"BEAST_SMALL_ORGANIC_SCORPION_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_SHELL},
-	{"BEAST_SMALL_ORGANIC_SCORPION_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_SCORPION_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_SCORPION_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_SCORPION_CRUSTACEAN_TAIL",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_CRUSTACEAN_TAIL},
-	{"BEAST_SMALL_ORGANIC_SCORPION_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_TAIL_ONE},
-	{"BEAST_SMALL_ORGANIC_SCORPION_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_TAIL_TWO},
-	{"BEAST_SMALL_ORGANIC_SCORPION_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_TAIL_THREE},
-	{"BEAST_SMALL_ORGANIC_SCORPION_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_QUILLS},
-	{"BEAST_SMALL_ORGANIC_SCORPION_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_PLATES},
-	{"BEAST_SMALL_ORGANIC_SCORPION_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_SCORPION_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_SCORPION_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_SCORPION_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_SCORPION_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_HORN},
-	{"BEAST_SMALL_ORGANIC_SCORPION_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_HORNS1},
-	{"BEAST_SMALL_ORGANIC_SCORPION_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_HORNS2},
-	{"BEAST_SMALL_ORGANIC_SCORPION_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_SCORPION_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_SCORPION_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_TRUNK},
-	{"BEAST_SMALL_ORGANIC_SCORPION_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_SCORPION_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_SCORPION_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_SCORPION_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_SCORPION_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_SHELL},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_TAIL_ONE},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_TAIL_TWO},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_TAIL_THREE},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_QUILLS},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_PLATES},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_ARMS",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_ARMS},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_HORN},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_HORNS1},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_HORNS2},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_BEAK",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_BEAK},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_TRUNK},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_BIPEDAL_DINOSAUR_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_HUMANOID",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_SHELL},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_TAIL_ONE},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_TAIL_TWO},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_TAIL_THREE},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_QUILLS},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_PLATES},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_ARMS",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_ARMS},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_HORN},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_HORNS1},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_HORNS2},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_BEAK",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_BEAK},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_TRUNK},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_HUMANOID_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_HUMANOID_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_SHELL},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_TAIL_ONE},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_TAIL_TWO},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_TAIL_THREE},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_QUILLS},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_PLATES},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_EXTRA_LEGS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_EXTRA_LEGS1},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_EXTRA_LEGS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_EXTRA_LEGS2},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_HORN},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_HORNS1},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_HORNS2},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_TRUNK},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_FRONT_GRASP_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_FRONT_GRASP_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_SHELL},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_TAIL_ONE},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_TAIL_TWO},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_TAIL_THREE},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_QUILLS},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_PLATES},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EXTRA_LEGS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EXTRA_LEGS1},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EXTRA_LEGS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EXTRA_LEGS2},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_HORN},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_HORNS1},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_HORNS2},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_TRUNK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_BULKY_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_SHELL},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_TAIL_ONE},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_TAIL_TWO},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_TAIL_THREE},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_QUILLS},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_PLATES},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EXTRA_LEGS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EXTRA_LEGS1},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EXTRA_LEGS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EXTRA_LEGS2},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_HORN},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_HORNS1},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_HORNS2},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_TRUNK},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_QUADRUPED_SLINKY_EYE_THREE},
-
-	{"BEAST_SMALL_ORGANIC_WALRUS",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS},
-	{"BEAST_SMALL_ORGANIC_WALRUS_SHELL",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_SHELL},
-	{"BEAST_SMALL_ORGANIC_WALRUS_WINGS_LACY_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_WINGS_LACY_BACK},
-	{"BEAST_SMALL_ORGANIC_WALRUS_WINGS_FEATHERED_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_WINGS_FEATHERED_BACK},
-	{"BEAST_SMALL_ORGANIC_WALRUS_WINGS_BAT_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_WINGS_BAT_BACK},
-	{"BEAST_SMALL_ORGANIC_WALRUS_TAIL_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_TAIL_ONE},
-	{"BEAST_SMALL_ORGANIC_WALRUS_TAIL_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_TAIL_TWO},
-	{"BEAST_SMALL_ORGANIC_WALRUS_TAIL_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_TAIL_THREE},
-	{"BEAST_SMALL_ORGANIC_WALRUS_QUILLS",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_QUILLS},
-	{"BEAST_SMALL_ORGANIC_WALRUS_PLATES",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_PLATES},
-	{"BEAST_SMALL_ORGANIC_WALRUS_EXTERNAL_RIBS",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_EXTERNAL_RIBS},
-	{"BEAST_SMALL_ORGANIC_WALRUS_WINGS_LACY_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_WINGS_LACY_FRONT},
-	{"BEAST_SMALL_ORGANIC_WALRUS_WINGS_FEATHERED_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_WINGS_FEATHERED_FRONT},
-	{"BEAST_SMALL_ORGANIC_WALRUS_WINGS_BAT_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_WINGS_BAT_FRONT},
-	{"BEAST_SMALL_ORGANIC_WALRUS_HORN",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_HORN},
-	{"BEAST_SMALL_ORGANIC_WALRUS_HORNS1",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_HORNS1},
-	{"BEAST_SMALL_ORGANIC_WALRUS_HORNS2",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_HORNS2},
-	{"BEAST_SMALL_ORGANIC_WALRUS_ANTENNAE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_ANTENNAE},
-	{"BEAST_SMALL_ORGANIC_WALRUS_MANDIBLES_BACK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_MANDIBLES_BACK},
-	{"BEAST_SMALL_ORGANIC_WALRUS_TRUNK",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_TRUNK},
-	{"BEAST_SMALL_ORGANIC_WALRUS_MANDIBLES_FRONT",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_MANDIBLES_FRONT},
-	{"BEAST_SMALL_ORGANIC_WALRUS_EYE_ONE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_EYE_ONE},
-	{"BEAST_SMALL_ORGANIC_WALRUS_EYE_TWO",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_EYE_TWO},
-	{"BEAST_SMALL_ORGANIC_WALRUS_EYE_THREE",PCG_LAYERING_BEAST_SMALL_ORGANIC_WALRUS_EYE_THREE},
-	
-	{"BEAST_SMALL_AMORPHOUS_DECORATION_1",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_DECORATION_1},
-	{"BEAST_SMALL_AMORPHOUS_DECORATION_2",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_DECORATION_2},
-	{"BEAST_SMALL_AMORPHOUS_DECORATION_3",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_DECORATION_3},
-	{"BEAST_SMALL_AMORPHOUS_DECORATION_4",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_DECORATION_4},
-	{"BEAST_SMALL_AMORPHOUS_DECORATION_5",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_DECORATION_5},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_AMORPHOUS_WINGS_FEATHERED_BACK_DECORATION_3},
-
-	{"BEAST_SMALL_SNAKE_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SNAKE_DECORATION_1},
-	{"BEAST_SMALL_SNAKE_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SNAKE_DECORATION_2},
-	{"BEAST_SMALL_SNAKE_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SNAKE_DECORATION_3},
-	{"BEAST_SMALL_SNAKE_DECORATION_4",PCG_LAYERING_BEAST_SMALL_SNAKE_DECORATION_4},
-	{"BEAST_SMALL_SNAKE_DECORATION_5",PCG_LAYERING_BEAST_SMALL_SNAKE_DECORATION_5},
-	{"BEAST_SMALL_SNAKE_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_SNAKE_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_SNAKE_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_SNAKE_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_SNAKE_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_SNAKE_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SNAKE_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_WORM_LONG_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WORM_LONG_DECORATION_1},
-	{"BEAST_SMALL_WORM_LONG_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WORM_LONG_DECORATION_2},
-	{"BEAST_SMALL_WORM_LONG_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WORM_LONG_DECORATION_3},
-	{"BEAST_SMALL_WORM_LONG_DECORATION_4",PCG_LAYERING_BEAST_SMALL_WORM_LONG_DECORATION_4},
-	{"BEAST_SMALL_WORM_LONG_DECORATION_5",PCG_LAYERING_BEAST_SMALL_WORM_LONG_DECORATION_5},
-	{"BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WORM_LONG_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_WORM_SHORT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_DECORATION_1},
-	{"BEAST_SMALL_WORM_SHORT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_DECORATION_2},
-	{"BEAST_SMALL_WORM_SHORT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_DECORATION_3},
-	{"BEAST_SMALL_WORM_SHORT_DECORATION_4",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_DECORATION_4},
-	{"BEAST_SMALL_WORM_SHORT_DECORATION_5",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_DECORATION_5},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WORM_SHORT_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_INSECT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_INSECT_DECORATION_1},
-	{"BEAST_SMALL_INSECT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_INSECT_DECORATION_2},
-	{"BEAST_SMALL_INSECT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_INSECT_DECORATION_3},
-	{"BEAST_SMALL_INSECT_DECORATION_4",PCG_LAYERING_BEAST_SMALL_INSECT_DECORATION_4},
-	{"BEAST_SMALL_INSECT_DECORATION_5",PCG_LAYERING_BEAST_SMALL_INSECT_DECORATION_5},
-	{"BEAST_SMALL_INSECT_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_INSECT_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_INSECT_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_INSECT_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_INSECT_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_INSECT_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_INSECT_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_SPIDER_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SPIDER_DECORATION_1},
-	{"BEAST_SMALL_SPIDER_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SPIDER_DECORATION_2},
-	{"BEAST_SMALL_SPIDER_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SPIDER_DECORATION_3},
-	{"BEAST_SMALL_SPIDER_DECORATION_4",PCG_LAYERING_BEAST_SMALL_SPIDER_DECORATION_4},
-	{"BEAST_SMALL_SPIDER_DECORATION_5",PCG_LAYERING_BEAST_SMALL_SPIDER_DECORATION_5},
-	{"BEAST_SMALL_SPIDER_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_SPIDER_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_SPIDER_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_SPIDER_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_SPIDER_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_SPIDER_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SPIDER_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_SCORPION_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SCORPION_DECORATION_1},
-	{"BEAST_SMALL_SCORPION_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SCORPION_DECORATION_2},
-	{"BEAST_SMALL_SCORPION_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SCORPION_DECORATION_3},
-	{"BEAST_SMALL_SCORPION_DECORATION_4",PCG_LAYERING_BEAST_SMALL_SCORPION_DECORATION_4},
-	{"BEAST_SMALL_SCORPION_DECORATION_5",PCG_LAYERING_BEAST_SMALL_SCORPION_DECORATION_5},
-	{"BEAST_SMALL_SCORPION_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_SCORPION_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_SCORPION_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_SCORPION_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_SCORPION_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_SCORPION_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_SCORPION_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_1",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_1},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_2",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_2},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_3",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_3},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_4",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_4},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_5",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_DECORATION_5},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_BIPEDAL_DINOSAUR_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_HUMANOID_DECORATION_1",PCG_LAYERING_BEAST_SMALL_HUMANOID_DECORATION_1},
-	{"BEAST_SMALL_HUMANOID_DECORATION_2",PCG_LAYERING_BEAST_SMALL_HUMANOID_DECORATION_2},
-	{"BEAST_SMALL_HUMANOID_DECORATION_3",PCG_LAYERING_BEAST_SMALL_HUMANOID_DECORATION_3},
-	{"BEAST_SMALL_HUMANOID_DECORATION_4",PCG_LAYERING_BEAST_SMALL_HUMANOID_DECORATION_4},
-	{"BEAST_SMALL_HUMANOID_DECORATION_5",PCG_LAYERING_BEAST_SMALL_HUMANOID_DECORATION_5},
-	{"BEAST_SMALL_HUMANOID_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_HUMANOID_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_HUMANOID_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_HUMANOID_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_HUMANOID_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_HUMANOID_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_HUMANOID_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_FRONT_GRASP_DECORATION_1",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_DECORATION_1},
-	{"BEAST_SMALL_FRONT_GRASP_DECORATION_2",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_DECORATION_2},
-	{"BEAST_SMALL_FRONT_GRASP_QUAD_DECORATION_1",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_QUAD_DECORATION_1},
-	{"BEAST_SMALL_FRONT_GRASP_HEX_DECORATION_1",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_HEX_DECORATION_1},
-	{"BEAST_SMALL_FRONT_GRASP_OCT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_OCT_DECORATION_1},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_FRONT_GRASP_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_QUADRUPED_BULKY_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_BULKY_DECORATION_2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_DECORATION_2},
-	{"BEAST_SMALL_QUADRUPED_BULKY_QUAD_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_QUAD_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_BULKY_HEX_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_HEX_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_BULKY_OCT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_OCT_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_QUADRUPED_BULKY_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_QUADRUPED_SLINKY_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_DECORATION_2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_DECORATION_2},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_QUAD_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_QUAD_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_HEX_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_HEX_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_OCT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_OCT_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_QUADRUPED_SLINKY_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	{"BEAST_SMALL_WALRUS_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WALRUS_DECORATION_1},
-	{"BEAST_SMALL_WALRUS_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WALRUS_DECORATION_2},
-	{"BEAST_SMALL_WALRUS_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WALRUS_DECORATION_3},
-	{"BEAST_SMALL_WALRUS_DECORATION_4",PCG_LAYERING_BEAST_SMALL_WALRUS_DECORATION_4},
-	{"BEAST_SMALL_WALRUS_DECORATION_5",PCG_LAYERING_BEAST_SMALL_WALRUS_DECORATION_5},
-	{"BEAST_SMALL_WALRUS_WINGS_FEATHERED_BACK_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_FEATHERED_BACK_DECORATION_1},
-	{"BEAST_SMALL_WALRUS_WINGS_FEATHERED_BACK_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_FEATHERED_BACK_DECORATION_2},
-	{"BEAST_SMALL_WALRUS_WINGS_FEATHERED_BACK_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_FEATHERED_BACK_DECORATION_3},
-	{"BEAST_SMALL_WALRUS_WINGS_FEATHERED_FRONT_DECORATION_1",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_FEATHERED_FRONT_DECORATION_1},
-	{"BEAST_SMALL_WALRUS_WINGS_FEATHERED_FRONT_DECORATION_2",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_FEATHERED_FRONT_DECORATION_2},
-	{"BEAST_SMALL_WALRUS_WINGS_FEATHERED_FRONT_DECORATION_3",PCG_LAYERING_BEAST_SMALL_WALRUS_WINGS_FEATHERED_FRONT_DECORATION_3},
-
-	/*
-	{"NIGHT_TROLL_BODY_EYELESS",PCG_LAYERING_NIGHT_TROLL_BODY_EYELESS},
-	{"NIGHT_TROLL_BODY_ONE_EYE",PCG_LAYERING_NIGHT_TROLL_BODY_ONE_EYE},
-	{"NIGHT_TROLL_BODY_TWO_EYES",PCG_LAYERING_NIGHT_TROLL_BODY_TWO_EYES},
-	{"NIGHT_TROLL_BODY_THREE_EYES",PCG_LAYERING_NIGHT_TROLL_BODY_THREE_EYES},
-	{"NIGHT_TROLL_BODY_HAIRY",PCG_LAYERING_NIGHT_TROLL_BODY_HAIRY},
-	{"NIGHT_TROLL_BODY_SCALY",PCG_LAYERING_NIGHT_TROLL_BODY_SCALY},
-	{"NIGHT_TROLL_BODY_SKINLESS",PCG_LAYERING_NIGHT_TROLL_BODY_SKINLESS},
-	{"NIGHT_TROLL_BODY_FEATHERED",PCG_LAYERING_NIGHT_TROLL_BODY_FEATHERED},
-	{"NIGHT_TROLL_TAIL_THIN_1",PCG_LAYERING_NIGHT_TROLL_TAIL_THIN_1},
-	{"NIGHT_TROLL_TAIL_THIN_2",PCG_LAYERING_NIGHT_TROLL_TAIL_THIN_2},
-	{"NIGHT_TROLL_TAIL_THIN_3",PCG_LAYERING_NIGHT_TROLL_TAIL_THIN_3},
-	{"NIGHT_TROLL_TAIL_THICK_1",PCG_LAYERING_NIGHT_TROLL_TAIL_THICK_1},
-	{"NIGHT_TROLL_TAIL_THICK_2",PCG_LAYERING_NIGHT_TROLL_TAIL_THICK_2},
-	{"NIGHT_TROLL_TAIL_THICK_3",PCG_LAYERING_NIGHT_TROLL_TAIL_THICK_3},
-	{"NIGHT_TROLL_WINGS_FEATHERED",PCG_LAYERING_NIGHT_TROLL_WINGS_FEATHERED},
-	{"NIGHT_TROLL_WINGS_SKIN",PCG_LAYERING_NIGHT_TROLL_WINGS_SKIN},
-	{"NIGHT_TROLL_HORN_SHORT_1",PCG_LAYERING_NIGHT_TROLL_HORN_SHORT_1},
-	{"NIGHT_TROLL_HORN_SHORT_2",PCG_LAYERING_NIGHT_TROLL_HORN_SHORT_2},
-	{"NIGHT_TROLL_HORN_SHORT_3",PCG_LAYERING_NIGHT_TROLL_HORN_SHORT_3},
-	{"NIGHT_TROLL_HORN_SHORT_4",PCG_LAYERING_NIGHT_TROLL_HORN_SHORT_4},
-	{"NIGHT_TROLL_HORN_SPIRAL_1",PCG_LAYERING_NIGHT_TROLL_HORN_SPIRAL_1},
-	{"NIGHT_TROLL_HORN_SPIRAL_2",PCG_LAYERING_NIGHT_TROLL_HORN_SPIRAL_2},
-	{"NIGHT_TROLL_HORN_SPIRAL_3",PCG_LAYERING_NIGHT_TROLL_HORN_SPIRAL_3},
-	{"NIGHT_TROLL_HORN_SPIRAL_4",PCG_LAYERING_NIGHT_TROLL_HORN_SPIRAL_4},
-	{"NIGHT_TROLL_HORN_LONG_1",PCG_LAYERING_NIGHT_TROLL_HORN_LONG_1},
-	{"NIGHT_TROLL_HORN_LONG_2",PCG_LAYERING_NIGHT_TROLL_HORN_LONG_2},
-	{"NIGHT_TROLL_HORN_LONG_3",PCG_LAYERING_NIGHT_TROLL_HORN_LONG_3},
-	{"NIGHT_TROLL_HORN_LONG_4",PCG_LAYERING_NIGHT_TROLL_HORN_LONG_4},
-	{"NIGHT_TROLL_HORN_CURVED_1",PCG_LAYERING_NIGHT_TROLL_HORN_CURVED_1},
-	{"NIGHT_TROLL_HORN_CURVED_2",PCG_LAYERING_NIGHT_TROLL_HORN_CURVED_2},
-	{"NIGHT_TROLL_HORN_CURVED_3",PCG_LAYERING_NIGHT_TROLL_HORN_CURVED_3},
-	{"NIGHT_TROLL_HORN_CURVED_4",PCG_LAYERING_NIGHT_TROLL_HORN_CURVED_4},
-	{"NIGHT_TROLL_TRUNK_LONG",PCG_LAYERING_NIGHT_TROLL_TRUNK_LONG},
-	{"NIGHT_TROLL_TRUNK_SHORT",PCG_LAYERING_NIGHT_TROLL_TRUNK_SHORT},
-	*/
-
-	{"WEREBEAST_ANTEATER",PCG_LAYERING_WEREBEAST_ANTEATER},
-	{"WEREBEAST_ANTELOPE",PCG_LAYERING_WEREBEAST_ANTELOPE},
-	{"WEREBEAST_APE",PCG_LAYERING_WEREBEAST_APE},
-	{"WEREBEAST_ARMADILLO",PCG_LAYERING_WEREBEAST_ARMADILLO},
-	{"WEREBEAST_BADGER",PCG_LAYERING_WEREBEAST_BADGER},
-	{"WEREBEAST_BEAR",PCG_LAYERING_WEREBEAST_BEAR},
-	{"WEREBEAST_BEAVER",PCG_LAYERING_WEREBEAST_BEAVER},
-	{"WEREBEAST_BISON",PCG_LAYERING_WEREBEAST_BISON},
-	{"WEREBEAST_BUFFALO",PCG_LAYERING_WEREBEAST_BUFFALO},
-	{"WEREBEAST_BULL",PCG_LAYERING_WEREBEAST_BULL},
-	{"WEREBEAST_CAPYBARA",PCG_LAYERING_WEREBEAST_CAPYBARA},
-	{"WEREBEAST_CAMEL",PCG_LAYERING_WEREBEAST_CAMEL},
-	{"WEREBEAST_CAT",PCG_LAYERING_WEREBEAST_CAT},
-	{"WEREBEAST_CAVY",PCG_LAYERING_WEREBEAST_CAVY},
-	{"WEREBEAST_CHAMELEON",PCG_LAYERING_WEREBEAST_CHAMELEON},
-	{"WEREBEAST_CHINCHILLA",PCG_LAYERING_WEREBEAST_CHINCHILLA},
-	{"WEREBEAST_CIVET",PCG_LAYERING_WEREBEAST_CIVET},
-	{"WEREBEAST_COATI",PCG_LAYERING_WEREBEAST_COATI},
-	{"WEREBEAST_COYOTE",PCG_LAYERING_WEREBEAST_COYOTE},
-	{"WEREBEAST_DEER",PCG_LAYERING_WEREBEAST_DEER},
-	{"WEREBEAST_DONKEY",PCG_LAYERING_WEREBEAST_DONKEY},
-	{"WEREBEAST_ELEPHANT",PCG_LAYERING_WEREBEAST_ELEPHANT},
-	{"WEREBEAST_ELK",PCG_LAYERING_WEREBEAST_ELK},
-	{"WEREBEAST_FOX",PCG_LAYERING_WEREBEAST_FOX},
-	{"WEREBEAST_GECKO",PCG_LAYERING_WEREBEAST_GECKO},
-	{"WEREBEAST_GILA_MONSTER",PCG_LAYERING_WEREBEAST_GILA_MONSTER},
-	{"WEREBEAST_GIRAFFE",PCG_LAYERING_WEREBEAST_GIRAFFE},
-	{"WEREBEAST_GOAT",PCG_LAYERING_WEREBEAST_GOAT},
-	{"WEREBEAST_GOPHER",PCG_LAYERING_WEREBEAST_GOPHER},
-	{"WEREBEAST_HARE",PCG_LAYERING_WEREBEAST_HARE},
-	{"WEREBEAST_HEDGEHOG",PCG_LAYERING_WEREBEAST_HEDGEHOG},
-	{"WEREBEAST_HORSE",PCG_LAYERING_WEREBEAST_HORSE},
-	{"WEREBEAST_HYENA",PCG_LAYERING_WEREBEAST_HYENA},
-	{"WEREBEAST_IGUANA",PCG_LAYERING_WEREBEAST_IGUANA},
-	{"WEREBEAST_JACKAL",PCG_LAYERING_WEREBEAST_JACKAL},
-	{"WEREBEAST_KANGAROO",PCG_LAYERING_WEREBEAST_KANGAROO},
-	{"WEREBEAST_KOALA",PCG_LAYERING_WEREBEAST_KOALA},
-	{"WEREBEAST_LEMUR",PCG_LAYERING_WEREBEAST_LEMUR},
-	{"WEREBEAST_LIZARD",PCG_LAYERING_WEREBEAST_LIZARD},
-	{"WEREBEAST_LLAMA",PCG_LAYERING_WEREBEAST_LLAMA},
-	{"WEREBEAST_LORIS",PCG_LAYERING_WEREBEAST_LORIS},
-	{"WEREBEAST_MAMMOTH",PCG_LAYERING_WEREBEAST_MAMMOTH},
-	{"WEREBEAST_MARMOT",PCG_LAYERING_WEREBEAST_MARMOT},
-	{"WEREBEAST_MOLE",PCG_LAYERING_WEREBEAST_MOLE},
-	{"WEREBEAST_MONGOOSE",PCG_LAYERING_WEREBEAST_MONGOOSE},
-	{"WEREBEAST_MONITOR_LIZARD",PCG_LAYERING_WEREBEAST_MONITOR_LIZARD},
-	{"WEREBEAST_MOOSE",PCG_LAYERING_WEREBEAST_MOOSE},
-	{"WEREBEAST_MONKEY",PCG_LAYERING_WEREBEAST_MONKEY},
-	{"WEREBEAST_MOUSE",PCG_LAYERING_WEREBEAST_MOUSE},
-	{"WEREBEAST_OPOSSUM",PCG_LAYERING_WEREBEAST_OPOSSUM},
-	{"WEREBEAST_PANDA",PCG_LAYERING_WEREBEAST_PANDA},
-	{"WEREBEAST_PANGOLIN",PCG_LAYERING_WEREBEAST_PANGOLIN},
-	{"WEREBEAST_PANTHER",PCG_LAYERING_WEREBEAST_PANTHER},
-	{"WEREBEAST_PIG",PCG_LAYERING_WEREBEAST_PIG},
-	{"WEREBEAST_PORCUPINE",PCG_LAYERING_WEREBEAST_PORCUPINE},
-	{"WEREBEAST_RABBIT",PCG_LAYERING_WEREBEAST_RABBIT},
-	{"WEREBEAST_RACCOON",PCG_LAYERING_WEREBEAST_RACCOON},
-	{"WEREBEAST_RAT",PCG_LAYERING_WEREBEAST_RAT},
-	{"WEREBEAST_RHINOCEROS",PCG_LAYERING_WEREBEAST_RHINOCEROS},
-	{"WEREBEAST_SHEEP",PCG_LAYERING_WEREBEAST_SHEEP},
-	{"WEREBEAST_SHREW",PCG_LAYERING_WEREBEAST_SHREW},
-	{"WEREBEAST_SKINK",PCG_LAYERING_WEREBEAST_SKINK},
-	{"WEREBEAST_SKUNK",PCG_LAYERING_WEREBEAST_SKUNK},
-	{"WEREBEAST_SLOTH",PCG_LAYERING_WEREBEAST_SLOTH},
-	{"WEREBEAST_SQUIRREL",PCG_LAYERING_WEREBEAST_SQUIRREL},
-	{"WEREBEAST_TAPIR",PCG_LAYERING_WEREBEAST_TAPIR},
-	{"WEREBEAST_TORTOISE",PCG_LAYERING_WEREBEAST_TORTOISE},
-	{"WEREBEAST_WARTHOG",PCG_LAYERING_WEREBEAST_WARTHOG},
-	{"WEREBEAST_WEASEL",PCG_LAYERING_WEREBEAST_WEASEL},
-	{"WEREBEAST_WOLF",PCG_LAYERING_WEREBEAST_WOLF},
-	{"WEREBEAST_WOMBAT",PCG_LAYERING_WEREBEAST_WOMBAT},
-	{"WEREBEAST_ZEBRA",PCG_LAYERING_WEREBEAST_ZEBRA},
-
-	{"EXPERIMENT_HUMANOID_SHADOW",PCG_LAYERING_EXPERIMENT_HUMANOID_SHADOW},
-	{"EXPERIMENT_HUMANOID_HEAD_SKIN",PCG_LAYERING_EXPERIMENT_HUMANOID_HEAD_SKIN},
-	{"EXPERIMENT_HUMANOID_HEAD_SCALES",PCG_LAYERING_EXPERIMENT_HUMANOID_HEAD_SCALES},
-	{"EXPERIMENT_HUMANOID_HEAD_FEATHERS",PCG_LAYERING_EXPERIMENT_HUMANOID_HEAD_FEATHERS},
-	{"EXPERIMENT_HUMANOID_HEAD_FUR",PCG_LAYERING_EXPERIMENT_HUMANOID_HEAD_FUR},
-	{"EXPERIMENT_HUMANOID_MOUTH",PCG_LAYERING_EXPERIMENT_HUMANOID_MOUTH},
-	{"EXPERIMENT_HUMANOID_MANDIBLES",PCG_LAYERING_EXPERIMENT_HUMANOID_MANDIBLES},
-	{"EXPERIMENT_HUMANOID_TRUNK",PCG_LAYERING_EXPERIMENT_HUMANOID_TRUNK},
-	{"EXPERIMENT_HUMANOID_ANTENNAE",PCG_LAYERING_EXPERIMENT_HUMANOID_ANTENNAE},
-	{"EXPERIMENT_HUMANOID_EYE_ONE",PCG_LAYERING_EXPERIMENT_HUMANOID_EYE_ONE},
-	{"EXPERIMENT_HUMANOID_EYE_TWO",PCG_LAYERING_EXPERIMENT_HUMANOID_EYE_TWO},
-	{"EXPERIMENT_HUMANOID_EYE_THREE",PCG_LAYERING_EXPERIMENT_HUMANOID_EYE_THREE},
-	{"EXPERIMENT_HUMANOID_TORSO_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_TORSO_SKINLESS},
-	{"EXPERIMENT_HUMANOID_TORSO_SKIN",PCG_LAYERING_EXPERIMENT_HUMANOID_TORSO_SKIN},
-	{"EXPERIMENT_HUMANOID_TORSO_SCALES",PCG_LAYERING_EXPERIMENT_HUMANOID_TORSO_SCALES},
-	{"EXPERIMENT_HUMANOID_TORSO_FEATHERS",PCG_LAYERING_EXPERIMENT_HUMANOID_TORSO_FEATHERS},
-	{"EXPERIMENT_HUMANOID_TORSO_FUR",PCG_LAYERING_EXPERIMENT_HUMANOID_TORSO_FUR},
-	{"EXPERIMENT_HUMANOID_EXTERNAL_RIBS",PCG_LAYERING_EXPERIMENT_HUMANOID_EXTERNAL_RIBS},
-	{"EXPERIMENT_HUMANOID_FOOT_LEFT",PCG_LAYERING_EXPERIMENT_HUMANOID_FOOT_LEFT},
-	{"EXPERIMENT_HUMANOID_FOOT_RIGHT",PCG_LAYERING_EXPERIMENT_HUMANOID_FOOT_RIGHT},
-	{"EXPERIMENT_HUMANOID_HAND_LEFT",PCG_LAYERING_EXPERIMENT_HUMANOID_HAND_LEFT},
-	{"EXPERIMENT_HUMANOID_HAND_RIGHT",PCG_LAYERING_EXPERIMENT_HUMANOID_HAND_RIGHT},
-	{"EXPERIMENT_HUMANOID_LEG_LEFT",PCG_LAYERING_EXPERIMENT_HUMANOID_LEG_LEFT},
-	{"EXPERIMENT_HUMANOID_LEG_RIGHT",PCG_LAYERING_EXPERIMENT_HUMANOID_LEG_RIGHT},
-	{"EXPERIMENT_HUMANOID_ARM_LEFT",PCG_LAYERING_EXPERIMENT_HUMANOID_ARM_LEFT},
-	{"EXPERIMENT_HUMANOID_ARM_RIGHT",PCG_LAYERING_EXPERIMENT_HUMANOID_ARM_RIGHT},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_1",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_1},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_CURVING_1",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_CURVING_1},
-	{"EXPERIMENT_HUMANOID_HORN_SHORT_1",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_SHORT_1},
-	{"EXPERIMENT_HUMANOID_HORN_STUBBY_1",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_STUBBY_1},
-	{"EXPERIMENT_HUMANOID_HORN_BROAD_1",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_BROAD_1},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_1",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_1},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_2",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_2},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_CURVING_2",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_CURVING_2},
-	{"EXPERIMENT_HUMANOID_HORN_SHORT_2",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_SHORT_2},
-	{"EXPERIMENT_HUMANOID_HORN_STUBBY_2",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_STUBBY_2},
-	{"EXPERIMENT_HUMANOID_HORN_BROAD_2",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_BROAD_2},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_2",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_2},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_3",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_3},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_CURVING_3",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_CURVING_3},
-	{"EXPERIMENT_HUMANOID_HORN_SHORT_3",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_SHORT_3},
-	{"EXPERIMENT_HUMANOID_HORN_STUBBY_3",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_STUBBY_3},
-	{"EXPERIMENT_HUMANOID_HORN_BROAD_3",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_BROAD_3},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_3",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_3},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_4",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_4},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_CURVING_4",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_CURVING_4},
-	{"EXPERIMENT_HUMANOID_HORN_SHORT_4",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_SHORT_4},
-	{"EXPERIMENT_HUMANOID_HORN_STUBBY_4",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_STUBBY_4},
-	{"EXPERIMENT_HUMANOID_HORN_BROAD_4",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_BROAD_4},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_4",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_4},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_5",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_SPIRAL_5},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_CURVING_5",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_CURVING_5},
-	{"EXPERIMENT_HUMANOID_HORN_SHORT_5",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_SHORT_5},
-	{"EXPERIMENT_HUMANOID_HORN_STUBBY_5",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_STUBBY_5},
-	{"EXPERIMENT_HUMANOID_HORN_BROAD_5",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_BROAD_5},
-	{"EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_5",PCG_LAYERING_EXPERIMENT_HUMANOID_HORN_LONG_STRAIGHT_5},
-	{"EXPERIMENT_HUMANOID_WINGS_LACY",PCG_LAYERING_EXPERIMENT_HUMANOID_WINGS_LACY},
-	{"EXPERIMENT_HUMANOID_WINGS_FEATHERED",PCG_LAYERING_EXPERIMENT_HUMANOID_WINGS_FEATHERED},
-	{"EXPERIMENT_HUMANOID_WINGS_BAT",PCG_LAYERING_EXPERIMENT_HUMANOID_WINGS_BAT},
-
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TORSO_FUR",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TORSO_FUR},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TORSO_FEATHERS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TORSO_FEATHERS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TORSO_SCALES",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TORSO_SCALES},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TORSO_SKIN",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TORSO_SKIN},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TORSO_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TORSO_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_EXTERNAL_RIBS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_EXTERNAL_RIBS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_FUR",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_FUR},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_FEATHERS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_FEATHERS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_SCALES",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_SCALES},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_SKIN",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_SKIN},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_LEFT_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_FUR",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_FUR},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_FEATHERS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_FEATHERS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_SCALES",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_SCALES},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_SKIN",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_SKIN},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ARM_RIGHT_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_FUR",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_FUR},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_FEATHERS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_FEATHERS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_SCALES",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_SCALES},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_SKIN",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_SKIN},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_MOUTH",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_MOUTH},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_MOUTH_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_MOUTH_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_MANDIBLES",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_MANDIBLES},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_MANDIBLES_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_MANDIBLES_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_ONE",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_ONE},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_ONE_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_ONE_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_TWO",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_TWO},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_TWO_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_TWO_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_THREE",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_THREE},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_THREE_SKINLESS",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HEAD_EYE_THREE_SKINLESS},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_LONG",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_LONG},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_SHORT",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_SHORT},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_FAT",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_FAT},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_TWISTING",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_TWISTING},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_CURLING",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_CURLING},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_KNOBBY",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_TRUNK_KNOBBY},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_LONG",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_LONG},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_FAN",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_FAN},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_SPINDLY",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_SPINDLY},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_SQUAT",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_SQUAT},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_BRANCHING",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_BRANCHING},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_KNOBBING",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_LEFT_KNOBBING},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_LONG",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_LONG},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_FAN",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_FAN},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_SPINDLY",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_SPINDLY},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_SQUAT",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_SQUAT},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_BRANCHING",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_BRANCHING},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_KNOBBING",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_ANTENNA_RIGHT_KNOBBING},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_WING_LEFT_LACY",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_WING_LEFT_LACY},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_WING_LEFT_FEATHERED",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_WING_LEFT_FEATHERED},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_WING_LEFT_BAT",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_WING_LEFT_BAT},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_WING_RIGHT_LACY",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_WING_RIGHT_LACY},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_WING_RIGHT_FEATHERED",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_WING_RIGHT_FEATHERED},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_WING_RIGHT_BAT",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_WING_RIGHT_BAT},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_1",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_1},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_1",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_1},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_1",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_1},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_1",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_1},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_1",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_1},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_1",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_1},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_2",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_2},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_2",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_2},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_2",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_2},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_2",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_2},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_2",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_2},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_2",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_2},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_3",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_3},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_3",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_3},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_3",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_3},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_3",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_3},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_3",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_3},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_3",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_3},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_4",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_4},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_4",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_4},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_4",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_4},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_4",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_4},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_4",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_4},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_4",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_4},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_5",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_SPIRAL_5},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_5",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_CURVING_5},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_5",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_SHORT_5},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_5",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_STUBBY_5},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_5",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_BROAD_5},
-	{"EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_5",PCG_LAYERING_EXPERIMENT_HUMANOID_PORTRAIT_HORN_LONG_STRAIGHT_5},
-	};
-
-	const unordered_bimap<string,PCGLayeringModifier> PCG_LAYERING_MODIFIERSTRINGS={
-	{"HORN_COUNT_1",PCG_LAYERING_MODIFIER_HORN_COUNT_1},
-	{"HORN_COUNT_2",PCG_LAYERING_MODIFIER_HORN_COUNT_2},
-	{"HORN_COUNT_3",PCG_LAYERING_MODIFIER_HORN_COUNT_3},
-	{"HORN_COUNT_4",PCG_LAYERING_MODIFIER_HORN_COUNT_4},
-
-	{"HORN_LONG_SPIRAL",PCG_LAYERING_MODIFIER_HORN_LONG_SPIRAL},
-	{"HORN_LONG_CURVING",PCG_LAYERING_MODIFIER_HORN_LONG_CURVING},
-	{"HORN_SHORT",PCG_LAYERING_MODIFIER_HORN_SHORT},
-	{"HORN_STUBBY",PCG_LAYERING_MODIFIER_HORN_STUBBY},
-	{"HORN_BROAD",PCG_LAYERING_MODIFIER_HORN_BROAD},
-	{"HORN_LONG_STRAIGHT",PCG_LAYERING_MODIFIER_HORN_LONG_STRAIGHT},
-
-	{"ANTENNA_LONG",PCG_LAYERING_MODIFIER_ANTENNA_LONG},
-	{"ANTENNA_FAN",PCG_LAYERING_MODIFIER_ANTENNA_FAN},
-	{"ANTENNA_SPINDLY",PCG_LAYERING_MODIFIER_ANTENNA_SPINDLY},
-	{"ANTENNA_SQUAT",PCG_LAYERING_MODIFIER_ANTENNA_SQUAT},
-	{"ANTENNA_BRANCHING",PCG_LAYERING_MODIFIER_ANTENNA_BRANCHING},
-	{"ANTENNA_KNOBBING",PCG_LAYERING_MODIFIER_ANTENNA_KNOBBING},
-
-	{"TRUNK_LONG",PCG_LAYERING_MODIFIER_TRUNK_LONG},
-	{"TRUNK_SHORT",PCG_LAYERING_MODIFIER_TRUNK_SHORT},
-	{"TRUNK_FAT",PCG_LAYERING_MODIFIER_TRUNK_FAT},
-	{"TRUNK_TWISTING",PCG_LAYERING_MODIFIER_TRUNK_TWISTING},
-	{"TRUNK_CURLING",PCG_LAYERING_MODIFIER_TRUNK_CURLING},
-	{"TRUNK_KNOBBY",PCG_LAYERING_MODIFIER_TRUNK_KNOBBY},
-
-	{"SURFACE_FUR",PCG_LAYERING_MODIFIER_SURFACE_FUR},
-	{"SURFACE_FEATHERS",PCG_LAYERING_MODIFIER_SURFACE_FEATHERS},
-	{"SURFACE_SCALES",PCG_LAYERING_MODIFIER_SURFACE_SCALES},
-	{"SURFACE_SKIN",PCG_LAYERING_MODIFIER_SURFACE_SKIN},
-	{"SURFACE_SKINLESS",PCG_LAYERING_MODIFIER_SURFACE_SKINLESS},
-
-	{"EXTERNAL_RIBS",PCG_LAYERING_MODIFIER_EXTERNAL_RIBS},
-};
-#endif

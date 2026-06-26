@@ -307,9 +307,9 @@ void enabler_inputst::clear_keybindings()
     keymap.clear();
 }
 
-bool enabler_inputst::load_keybindings(const filest &file) {
-  cout << "Loading bindings from " << file.path.string() << endl;
-  ifstream s=file.to_ifstream();
+bool enabler_inputst::load_keybindings(const string &file) {
+  cout << "Loading bindings from " << file << endl;
+  ifstream s(file.c_str());
   if (!s.good()) return false;
 
   list<string> lines;
@@ -461,17 +461,12 @@ bool enabler_inputst::load_keybindings(const filest &file) {
 void enabler_inputst::save_keybindings(const string &file) {
   cout << "Saving bindings to " << file << endl;
   string temporary = file + ".partial";
-  ofstream s=filest(temporary).to_ofstream(); 
+  ofstream s(temporary.c_str()); 
   multimap<InterfaceKey,EventMatch> map;
   InterfaceKey last_key = INTERFACEKEY_NONE;
 
   if (!s.good()) {
     string t = "Failed to open " + temporary + " for writing";
-    if (!init.media.flag.has_flag(INIT_MEDIA_FLAG_PORTABLE_MODE))
-        {
-        t+="; switching to portable mode to compensate";
-        init.media.flag.add_flag(INIT_MEDIA_FLAG_PORTABLE_MODE);
-        }
     MessageBox(NULL, t.c_str(), 0, 0);
     s.close();
     return;
@@ -510,11 +505,12 @@ void enabler_inputst::save_keybindings(const string &file) {
       
   }
   s.close();
-  replace_file(filest(temporary), filest(file));
+  replace_file(temporary, file);
 }
 
 void enabler_inputst::save_keybindings() {
-  save_keybindings("prefs/interface.txt");
+    string file="prefs/interface.txt";
+  save_keybindings(file);
 }
 
 void enabler_inputst::add_input(SDL_Event &e, Uint32 now) {
@@ -856,12 +852,7 @@ set<InterfaceKey> enabler_inputst::key_translation(EventMatch &match) {
   pair<multimap<EventMatch,InterfaceKey>::iterator,multimap<EventMatch,InterfaceKey>::iterator> its;
   if (match.type == type_mwheel) {
       int orig_y = match.y;
-      match.y=0;
-      if (orig_y > 0) {
-          match.y = 1;
-      } else if (orig_y < 0) {
-          match.y = -1;
-      }
+      match.y = orig_y < 0 ? -1 : 1;
       for (its = keymap.equal_range(match); its.first != its.second; ++its.first)
           bindings.insert((its.first)->second);
       match.y = orig_y;
@@ -1057,17 +1048,14 @@ void enabler_inputst::save_macro_to_file(const string &file, const string &name,
 
 list<string> enabler_inputst::list_macros() {
   // First, check for unloaded macros
-  for (auto &dir : filest("prefs/macros").both_locations())
-      {
-      std::error_code ec;
-      for (auto &dir_entry : std::filesystem::recursive_directory_iterator(dir,ec))
-          {
-          if (dir_entry.path().extension()==".mak")
-              {
-              load_macro_from_file(dir_entry.path().string());
-              }
-          }
-      }
+  svector<char*> files;
+  find_files_by_pattern("prefs/macros/*.mak", files);
+  for (int i = 0; i < files.size(); i++) {
+    string file(files[i]);
+    delete[] files[i];
+    file = "prefs/macros/" + file;
+    load_macro_from_file(file);
+  }
   // Then return all in-memory macros
   list<string> ret;
   for (map<string,macro>::iterator it = macros.begin(); it != macros.end(); ++it)
@@ -1084,17 +1072,17 @@ void enabler_inputst::load_macro(string name) {
 
 void enabler_inputst::save_macro(string name) {
   macros[name] = active_macro;
-  auto macros_dir=filest("prefs/macros").canon_location();
-  std::filesystem::create_directories(macros_dir);
-  save_macro_to_file((macros_dir/(filter_filename(name,'_')+".mak")).string(),name,active_macro);
+  CreateDirectory("prefs",NULL);
+  CreateDirectory("prefs/macros",NULL);
+  save_macro_to_file("prefs/macros/" + filter_filename(name, '_') + ".mak", name, active_macro);
 }
 
 void enabler_inputst::delete_macro(string name) {
   map<string,macro>::iterator it = macros.find(name);
   if (it != macros.end()) macros.erase(it);
   // TODO: Store the filename it was loaded from instead
-  // How long has that TODO been there?
-  remove_file(std::filesystem::path("prefs/macros")/(filter_filename(name,'_')+".mak"));
+  string filename = "prefs/macros/" + filter_filename(name, '_') + ".mak";
+  remove(filename.c_str());
 }
 
 
