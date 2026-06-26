@@ -373,6 +373,14 @@ void initst::begin() {
 						{
 						media.title_music_str=token2;
 						}
+					if (token=="DISPLAY_ALL_ERRORLOGS")
+						{
+						if (token2=="YES")
+							{
+							media.flag.add_flag(INIT_MEDIA_FLAG_DISPLAY_ALL_ERRORLOGS);
+							}
+						else media.flag.remove_flag(INIT_MEDIA_FLAG_DISPLAY_ALL_ERRORLOGS);
+						}
 					}
 				}
 			}

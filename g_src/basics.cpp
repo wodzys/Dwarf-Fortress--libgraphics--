@@ -110,6 +110,10 @@ void errorlog_string(const string &str)
 		fseed<<str.c_str()<<std::endl;
 		}
 	fseed.close();
+	if (init.media.flag.has_flag(INIT_MEDIA_FLAG_DISPLAY_ALL_ERRORLOGS))
+		{
+		warning_modal_ok(str);
+		}
 }
 #endif
 
@@ -145,6 +149,11 @@ void errorlog_string(const char *ptr)
 		fseed<<ptr<<std::endl;
 		}
 	fseed.close();
+	if (init.media.flag.has_flag(INIT_MEDIA_FLAG_DISPLAY_ALL_ERRORLOGS))
+		{
+		warning_modal_ok(ptr);
+		}
+
 }
 
 int32_t convert_string_to_long(const string &str)
@@ -648,7 +657,23 @@ void abbreviate_string(string &str, int32_t len)
 
 void separate_string(const string &str,std::vector<string> &separated,int32_t len)
 	{
+	const char *linebreak_chars="-_ ";
+	constexpr char forced_linebreak_char=10; // \n
 	separated.clear();
+	{
+	size_t prev_found=0;
+	size_t found=str.find(forced_linebreak_char);
+	while (found!=string::npos)
+		{
+		string sub=str.substr(prev_found,found-prev_found);
+		if (!sub.empty())
+			{
+			separated.push_back(sub);
+			}
+		prev_found=found+1;
+		found=str.find(forced_linebreak_char,prev_found);
+		}
+	}
 	if (str.size()>len && len>0)
 		{
 		for (int i=0; i<str.size();)
@@ -663,7 +688,7 @@ void separate_string(const string &str,std::vector<string> &separated,int32_t le
 			i+=(int)sub.length();
 			}
 		}
-	else
+	else if (separated.empty() && !str.empty())
 		{
 		separated.push_back(str);
 		}

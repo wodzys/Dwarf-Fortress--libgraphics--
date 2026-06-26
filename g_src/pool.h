@@ -207,7 +207,10 @@ void garbage_collect_no_lock(object_pool<T,N> &pool,std::vector<T *> &glob,std::
 	std::unordered_set<size_t> still_extant;
 	for (auto &obj:glob)
 		{
-		still_extant.insert(obj->get_pool_id());
+		if (obj)
+			{
+			still_extant.insert(obj->get_pool_id());
+			}
 		}
 	for (auto i=0; i<pool.capacity(); i++)
 		{

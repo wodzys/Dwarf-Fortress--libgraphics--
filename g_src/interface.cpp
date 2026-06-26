@@ -53,13 +53,31 @@ void dwarf_remove_screen();
 void drawborder(const char *str,char style,const char *colorstr);
 
 
-inline void CHECK_ERR(int err, const char* msg)
-{
-	if (err != Z_OK)
+inline void CHECK_ERR(int err,const char *msg) {
+	switch (err)
 		{
-		warning_modal_ok("One of the compressed files on disk has errors in it.  Restore from backup if you are able.",[]() {exit(1); });
+		case Z_OK:
+			return;
+		case Z_STREAM_END:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Z_STREAM_END");
+		case Z_NEED_DICT:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Z_NEED_DICT");
+		case Z_ERRNO:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Z_ERRNO");
+		case Z_STREAM_ERROR:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Z_STREAM_ERROR");
+		case Z_DATA_ERROR:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Z_DATA_ERROR");
+		case Z_MEM_ERROR:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Z_MEM_ERROR");
+		case Z_BUF_ERROR:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Z_BUF_ERROR");
+		case Z_VERSION_ERROR:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Z_VERSION_ERROR");
+		default:
+			throw std::runtime_error(string("Error loading file: ") + msg + " Unknown error code " + std::to_string(err));
 		}
-}
+	}
 
 using std::fstream;
 using std::ios;
@@ -1003,7 +1021,6 @@ char interfacest::loop() {
         handlemovie(0);
       }
 #endif
-    
     removescreen(currentscreen);
     
 	currentscreen = grab_lastscreen();

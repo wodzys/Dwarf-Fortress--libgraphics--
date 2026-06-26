@@ -4,6 +4,12 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.13:
+
+	init_default.txt gets the option to display all logged errors.
+
+******************************************************
+
 Auxiliary file changes for 53.12:
 
 	Interface graphics: the squad interface uses a little garbage can for disband now.

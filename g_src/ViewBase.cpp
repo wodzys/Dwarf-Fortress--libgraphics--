@@ -908,13 +908,17 @@ std::shared_ptr<container> warning_modal_ok(const std::string_view text,std::fun
 		}
 	auto modal=gview.grab_lastscreen()->widgets.add_or_get_widget<container>("Warning Modal");
 	modal->set_active(true);
+	modal->min_h=20;
+	modal->min_w=60;
 	auto nineslice=modal->add_or_get_widget<widgets::nineslice>("Warning Modal Background",&init.texpos_border_nw);
 	nineslice->set_layout_preset(LayoutPreset::FULL);
-	auto text_widget=modal->add_or_get_widget<widgets::text_multiline>("Warning Text");
+	auto scroll_rows=modal->add_or_get_widget<widgets::scroll_rows>("Warning Text Scroll");
+	scroll_rows->set_layout_preset(LayoutPreset::FULL);
+	scroll_rows->set_offsets(1,-4,1,-3);
+	auto text_widget=scroll_rows->add_widget<widgets::text_multiline>();
 	text_widget->set_text(string(text));
+	text_widget->set_layout_preset(LayoutPreset::WIDE_TOP);
 	text_widget->set_color(7,0,1);
-	text_widget->set_layout_preset(LayoutPreset::FULL);
-	text_widget->set_offsets(1,-4,1,-1);
 	modal->set_layout_preset(LayoutPreset::CENTER);
 	modal->set_anchors(0.3f,0.7f,0.3f,0.7f);
 	modal->set_global_positioning(true);
@@ -932,13 +936,12 @@ std::shared_ptr<container> warning_modal_ok(const std::string_view text,std::fun
 	}
 	button->activation_hotkeys={INTERFACEKEY_MENU_CONFIRM,INTERFACEKEY_SELECT,INTERFACEKEY_LEAVESCREEN};
 	button->set_custom_activated([cb](widget *w) {
-		gview.grab_lastscreen()->widgets.add_or_get_widget<widgets::container>("Warning Modal")->set_active(false);
+		auto warning_modal=gview.grab_lastscreen()->widgets.add_or_get_widget<widgets::container>("Warning Modal");
+		warning_modal->set_active(false);
+		warning_modal->add_or_get_widget<widgets::scroll_rows>("Warning Text Scroll")->clear();
 		if (cb) cb();
 		return true;
 		});
-	text_widget->arrange();
-	modal->min_h=text_widget->height()+5;
-	modal->min_w=text_widget->width()+2;
 	modal->arrange();
 	return modal;
 	}
@@ -1701,6 +1704,11 @@ void container::remove_child(void *w)
 	{
 	std::erase_if(children,[&](auto &s_w) { return s_w.get()==w; });
 	std::erase_if(children_by_name,[&](auto &pair) { return pair.second.get()==w; });
+	}
+
+void container::copy_children(container &other){
+	other.children=children;
+	other.children_by_name=children_by_name;
 	}
 
 void widget_stack::deferred_replace(std::shared_ptr<widget> w) {

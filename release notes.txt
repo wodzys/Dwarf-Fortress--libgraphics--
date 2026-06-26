@@ -36,6 +36,34 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.13 (May 13, 2026):
+
+This patch gives messengers more tasks, like the ability to make peace and improve or open trade relations.  You can assign messengers in the same menu where you assign other positions like the manager and broker, and you can give them missions from the world screen (button on the lower right.)  There are also some optimizations and other fixes.
+
+Diplomacy
+	(*) Your appointed messengers can now do a variety of diplomatic missions from the world screen.  Make peace, declare war, make contact, and improve trade.  You can also seek alliances if you have the monarch in your fortress.
+	(*) Increased the priority of messenger actions.
+	(*) It's possible to open trade with humans and elves before their usual time if you send a messenger.  You can also open trade with multiple civilizations of the same type.
+	(*) If traders don't make decent profits and you do not engage in negotiations, trade will taper off.
+	(*) Added confirmation to mission interface.
+	(*) Changed some colors on mission interface.
+	(*) Added a dialog line for dwarven traders from other civilizations.
+	(*) Fixed issue where turning enemies off lead to early caravans (requires resetting difficulty to apply).
+
+General updates
+	(*) Optimization: zombies don't consider their surrounding until disturbed.
+	(*) Optimization: throttled creatures trying to repeatedly failing path.
+	(*) Added announcements for residents and creatures that have begun throttling pathing.
+	(*) Can view activity details again from the residents list.
+	(*) Stopped scroll bar from disappearing when closing bins near the bottom of the trade list.
+	(*) Increased the maximum number of announcements that can be saved.
+	(*) Prioritized the removal of sparring announcements from the announcement list.
+	(*) Tries to repair corrupted musical instruments upon load.
+	(*) Did some exception handing for map saving and loading.
+	(*) Added the ability to display all logged errors on screen (useful for debugging mods etc).
+
+******************************************************
+
 Release notes for 53.12 (April 15, 2026):
 
 Here's a quality of life patch that addresses various issues.  You can see your active petitions now and it's harder to disband squads accidentally.  Clothing wears down more slowly.  Selecting items inside bins during trade works more intuitively.  You can see the products and required items for jobs in workshops.  Soldiers wear boots properly.  See the full list below.

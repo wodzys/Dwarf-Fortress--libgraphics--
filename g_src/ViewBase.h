@@ -393,6 +393,10 @@ namespace widgets {
             {
             str=s;
             }
+        void add_line(std::string_view line) {
+            str+='\n';
+			str+=line;
+            }
         text_multiline() : text() {}
         text_multiline(const string &s) : text(s) {}
         text_multiline(string &&s) : text(s) {}
@@ -547,6 +551,7 @@ namespace widgets {
         bool has_widget_name(std::string &&n) {
             return children_by_name.contains(n);
             }
+        void copy_children(widgets::container &c);
         int visible_children();
         int active_children();
         virtual void feed(std::set<InterfaceKey>& events);
