@@ -874,7 +874,7 @@ bool musicsound_info::set_song(const string& filename, int slot, bool loops)
 			errorlog_string("Could not load file "+filename+": End of current chunk reached while trying to read data.");
 			return false;
 		case FMOD_ERR_FILE_NOTFOUND:
-			errorlog_string("Could not load file "+filename+": file not found. ");
+			//errorlog_string("Could not load file "+filename+": file not found. ");
 			return false;
 		case FMOD_ERR_FORMAT:
 			errorlog_string("Could not load file "+filename+": unsupported file or audio format.");
@@ -912,7 +912,7 @@ bool musicsound_info::set_sound(const string& filename, int slot)
 			errorlog_string("Could not load file "+filename+": End of current chunk reached while trying to read data.");
 			return false;
 		case FMOD_ERR_FILE_NOTFOUND:
-			errorlog_string("Could not load file "+filename+": file not found. ");
+			//errorlog_string("Could not load file "+filename+": file not found. ");
 			return false;
 		case FMOD_ERR_FORMAT:
 			errorlog_string("Could not load file "+filename+": unsupported file or audio format.");

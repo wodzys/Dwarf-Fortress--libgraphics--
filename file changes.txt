@@ -4,6 +4,22 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 51.11:
+
+	creature_graphics
+		Leather/metal caps are distinguished in portraits.
+
+	item_graphics
+		Artifact and special material weapon item tiles.
+
+	init
+		Can set title song and credits (this unified some Premium/Classic behavior).
+
+	d_init
+		Scroll speeds.
+
+******************************************************
+
 Auxiliary file changes for 51.10:
 
 	Nothing this time.

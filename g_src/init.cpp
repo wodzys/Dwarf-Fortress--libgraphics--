@@ -76,6 +76,7 @@ init_displayst::init_displayst()
 	flag.set_size_on_flag_num(INIT_DISPLAY_FLAGNUM);
 		flag.add_flag(INIT_DISPLAY_FLAG_USE_GRAPHICS);
 		flag.add_flag(INIT_DISPLAY_FLAG_INTERFACE_SCALING_TO_DESIRED_HEIGHT_WIDTH);
+		flag.add_flag(INIT_DISPLAY_FLAG_LOAD_TITLE_GRAPHICS);
 
 	interface_scaling_desired_width=170;
 	interface_scaling_desired_height=64;
@@ -355,6 +356,18 @@ void initst::begin()
 							display.flag.remove_flag(INIT_DISPLAY_FLAG_USE_GRAPHICS);
 							}
 						else display.flag.add_flag(INIT_DISPLAY_FLAG_USE_GRAPHICS);
+						}
+					if(token=="TITLE_SHOW_GRAPHICS_LOGOS")
+						{
+						if(token2=="YES")
+							{
+							display.flag.add_flag(INIT_DISPLAY_FLAG_LOAD_TITLE_GRAPHICS);
+							}
+						else display.flag.remove_flag(INIT_DISPLAY_FLAG_LOAD_TITLE_GRAPHICS);
+						}
+					if(token=="TITLE_MUSIC")
+						{
+						media.title_music_str=token2;
 						}
 					}
 				}
@@ -677,19 +690,20 @@ void initst::begin()
 		font.small_font_dispy=12;
 #endif
 
-#ifndef CLASSIC_VERSION
-	gps.tex[TEXTURE_MOUSE]=enabler.textures.load("data/art/mouse.png", true);
-	gps.tex[TEXTURE_PUBLISHER]=enabler.textures.load("data/art/pixel_kf.png", true);
-	gps.tex[TEXTURE_PUBLISHER_SMALL]=enabler.textures.load("data/art/pixel_kf_small.png", true);
-	gps.tex[TEXTURE_PUBLISHER_TINY]=enabler.textures.load("data/art/pixel_kf_tiny.png", true);
-	gps.tex[TEXTURE_TITLE]=enabler.textures.load("data/art/df_logo.png", true);
-	gps.tex[TEXTURE_TITLE_BACKGROUND]=enabler.textures.load("data/art/title_background.png", true);
-	gps.tex[TEXTURE_TITLE_ADV]=enabler.textures.load("data/art/title_adv.png", true);
-	gps.tex[TEXTURE_DEVELOPER]=enabler.textures.load("data/art/bay12.png", true);
-	gps.tex[TEXTURE_DEVELOPER_SMALL]=enabler.textures.load("data/art/bay12_small.png", true);
-	gps.tex[TEXTURE_DEVELOPER_TINY]=enabler.textures.load("data/art/bay12_tiny.png", true);
-	gps.tex[TEXTURE_SOUND_SYSTEM]=enabler.textures.load("data/art/fmod.png", true);
-#endif
+	if(init.display.flag.has_flag(INIT_DISPLAY_FLAG_LOAD_TITLE_GRAPHICS))
+		{
+		gps.tex[TEXTURE_MOUSE]=enabler.textures.load("data/art/mouse.png", true);
+		gps.tex[TEXTURE_PUBLISHER]=enabler.textures.load("data/art/pixel_kf.png", true);
+		gps.tex[TEXTURE_PUBLISHER_SMALL]=enabler.textures.load("data/art/pixel_kf_small.png", true);
+		gps.tex[TEXTURE_PUBLISHER_TINY]=enabler.textures.load("data/art/pixel_kf_tiny.png", true);
+		gps.tex[TEXTURE_TITLE]=enabler.textures.load("data/art/df_logo.png", true);
+		gps.tex[TEXTURE_TITLE_BACKGROUND]=enabler.textures.load("data/art/title_background.png", true);
+		gps.tex[TEXTURE_TITLE_ADV]=enabler.textures.load("data/art/title_adv.png", true);
+		gps.tex[TEXTURE_DEVELOPER]=enabler.textures.load("data/art/bay12.png", true);
+		gps.tex[TEXTURE_DEVELOPER_SMALL]=enabler.textures.load("data/art/bay12_small.png", true);
+		gps.tex[TEXTURE_DEVELOPER_TINY]=enabler.textures.load("data/art/bay12_tiny.png", true);
+		gps.tex[TEXTURE_SOUND_SYSTEM]=enabler.textures.load("data/art/fmod.png", true);
+		}
 
 	gps.last_display_background=TEXTURE_TITLE_BACKGROUND;
 

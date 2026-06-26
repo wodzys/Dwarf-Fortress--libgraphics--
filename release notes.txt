@@ -37,6 +37,29 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 51.11 (April 21, 2025):
+
+Fortress mode
+	(*) People that leave the map no longer lose their room ownership associations
+	(*) Stopped immigrants from losing their religions and some other affiliations
+	(*) Added settings to customize keyboard scroll amounts
+	(*) Turned off underground humanoid invasions until they are fixed
+	(*) Add grazer text to creatures in unit selectors
+	(*) Setting somebody to a work detail now properly disables others not in the detail
+	(*) Removed ramp spaces above non-ramp constructions if the constructions are placed on ramps
+
+New graphics
+	(*) Differentiated metal caps from wood/bone/leather/shell/woven caps in portraits
+	(*) Images for weapon items that are artifacts / special materials
+
+General updates
+	(*) Stopped certain interaction of ice and constructions from creating void tiles
+	(*) Made cave-ins happen more reliably with constructions vs frozen liquids
+	(*) Stopped frozen squares revealed under removed constructions from lingering
+	(*) Shrubs covered with frozen water no longer lose their species when they unthaw
+
+******************************************************
+
 Release notes for 51.10 (April 3, 2025):
 
 (*) Fixed up some issues with the pathing overflow changes.
