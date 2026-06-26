@@ -36,6 +36,14 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.15 (June 25, 2026):
+
+This patch adds a hundred animals that went extinct in the real world.  Each of these animals also gets an animal person.  You'll need to create a new world to see them.  There are five options for the frequency of the extinct animals.  You can have them in untamed wilds, small isolated areas, every wilderness, or even domesticated by most civilizations.  You can also keep them extinct.
+
+This release also brings a graphical update to existing animal people.  You can now see their held equipment and some of their bodywear.  This should work in your old saves without a new world.
+
+******************************************************
+
 Release notes for 53.14 (May 20, 2026):
 
 This small patch fixes a crash to do with the changes to announcements from last time.

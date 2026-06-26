@@ -4,6 +4,25 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.15:
+
+	new extinct animals and people
+	animal people give graphics for held equipment and some bodywear
+	graphics now support layer set templates so multiple creatures can use the same template
+	layer sets support offsets for layers
+	some new stripe descriptors
+	various new body parts
+	sloth pups child name added
+	ANIMAL_PERSON creature class added to all non-evil/vague animal people
+
+******************************************************
+
+Auxiliary file changes for 53.14:
+
+	Nothing this time.
+
+******************************************************
+
 Auxiliary file changes for 53.13:
 
 	init_default.txt gets the option to display all logged errors.
