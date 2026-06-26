@@ -4,6 +4,12 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 52.04:
+
+	Meandering removed from animal people.
+
+******************************************************
+
 Auxiliary file changes for 52.03:
 
 	plants and reactions and entities have new dyes and jobs for them.

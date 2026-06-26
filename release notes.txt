@@ -36,6 +36,26 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 52.04 (August 28, 2025):
+
+Here's a release to fix issues with armies/squads traveling, and some others.
+
+General updates
+	(*) Fixed issue with squads/armies breaking into groups and not rejoining.
+	(*) Mod upload doesn't clobber info.txt.
+	(*) Fixes a crash when choosing clothing sizes in workshop.
+	(*) Fixed out-of-bounds error in army processing.
+	(*) Fixed out-of-bounds error in transformed units.
+	(*) Fixed armies deleting items improperly.
+	(*) Fixes a potential crash in wrestling.
+	(*) Fixed issue with plant processing job specifiers being ignored.
+	(*) Mill job plant can be specified.
+	(*) Makes the "placing lakes and minerals" stage of worldgen significantly faster.
+	(*) Moods using bars try to use metal now.
+	(*) Animal people no longer inherit meandering from their base creature.
+
+******************************************************
+
 Release notes for 52.03 (August 7, 2025):
 
 Here is a release to continue to stabilize the lua update.  There are several regular fixes as well, listed below in the patch notes.
