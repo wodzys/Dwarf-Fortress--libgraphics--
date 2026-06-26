@@ -37,6 +37,31 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 51.09 (April 2, 2025):
+
+Another routine patch for the game.
+
+Fortress mode
+	(*) Stopped dwarves from using forbidden and uncompleted coffins for burial
+	(*) Stopped greyed out "everybody does this" for mining/hunting/chopping labors from being pressable
+	(*) Stopped Mining, Woodcutting, Hunting from being able to be assigned to the same dwarf
+	(*) Stopped reclaimed/unretired forts with magma features from having magma overflows
+	(*) Stopped unretired forts from being marked as capitals
+	(*) Reordering manager work orders no longer causes display issues in workshop view sheet
+	(*) Can now set pressure plates to include zero depth for water/magma
+	(*) Made squad scrollbar responsive to clicks
+	(*) Fixed custom difficulty settings for irritation in the embark screen
+	(*) Random improvements are no longer applied instantly to fort-made crafts
+	(*) Fixed typo on squad equipment assignment screen
+
+Adventure mode
+	(*) Made adventure mode respect manual disabling of sound in init file
+
+General updates
+	(*) Fixed pathing overflow errors in very large and/or twisty forts
+
+******************************************************
+
 Release notes for 51.08 (March 13, 2025):
 
 Fixed an input problem related to popups in adventure mode travel.

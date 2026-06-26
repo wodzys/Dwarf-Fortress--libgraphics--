@@ -4,6 +4,12 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 51.09:
+
+	Pressure plate 0 depth numbers in interface bits and for classic.
+
+******************************************************
+
 Auxiliary file changes for 51.08:
 
 	Nothing this time.
