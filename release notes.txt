@@ -36,6 +36,27 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 52.05 (October 1, 2025):
+
+General updates
+	(*) Fixed crash caused by interrogating certain suspects under certain circumstances in world generation.
+	(*) Fixed crash in legends caused by missing works of art.
+	(*) Fixed potential out of bounds crash setting appearance contributions from parents in world generation.
+	(*) Fixed pathing issues caused by building construction on certain maps.
+	(*) Fixed some other issues related to map block allocation and path connectivity.
+	(*) Made training marksdwarves use the last bolt in a stack.
+	(*) Allowed work orders to specific plants for milling jobs.
+	(*) Stopped dyed items from triggering inappropriate export prohibitions.
+	(*) Specifying wood in certain work quotas will now actually use the specified wood.
+	(*) Stopped meandering behavior for animals that are trained for war or hunting.
+	(*) Again allowed impaled weapons to be dropped by the wielder, leaving the item behind.
+	(*) Fixed a problem causing minerals to not show up in some mods.
+	(*) Fixed issues with blinding and necrosis item powers in scripts.
+	(*) Increased world generation stability.
+	(*) Fixed problem with material initialization causing unpredictable problems.
+
+******************************************************
+
 Release notes for 52.04 (August 28, 2025):
 
 Here's a release to fix issues with armies/squads traveling, and some others.

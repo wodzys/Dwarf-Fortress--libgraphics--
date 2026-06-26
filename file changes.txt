@@ -4,6 +4,13 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 52.05:
+
+	Fixed wereiguana/jackal images again.
+	item lua script updated with fixes for blind/necrosis.
+
+******************************************************
+
 Auxiliary file changes for 52.04:
 
 	Meandering removed from animal people.
