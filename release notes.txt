@@ -37,6 +37,13 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 51.10 (April 3, 2025):
+
+(*) Fixed up some issues with the pathing overflow changes.
+(*) Readded the only-selected-do-this / everybody-does-this toggle when the first or last dwarf is added/removed from a work detail.
+
+******************************************************
+
 Release notes for 51.09 (April 2, 2025):
 
 Another routine patch for the game.
