@@ -4,6 +4,28 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 52.01:
+
+	lua scripts:
+
+	data/init/generators.lua
+		Basic script to establish random object generators.
+
+	data/init/globals.lua
+		Several useful helper functions.  Sphere-related data.
+
+	data/vanilla/vanilla_procedural/scripts/init.lua
+		Gets the generators below ready and defines some data.
+
+	data/vanilla/vanilla_procedural/scripts/generators
+		All of the specific scripts for generating raw objects during world generation.
+	
+
+	interface
+		Brought back the <> keys for Z changes using shift+, and shift+.  Not yet clear why Greater and Less no longer work.
+
+******************************************************
+
 Auxiliary file changes for 51.13:
 
 	Nothing this time.

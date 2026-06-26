@@ -168,7 +168,8 @@ long textures::add_texture(SDL_Surface *surface) {
 void textures::load_multi_pdim(const string &filename, long *tex_pos, long dimx,
 			       long dimy, bool convert_magenta,
 			       long *disp_x, long *disp_y) {
-  SDL_Surface *raw = IMG_Load(filename.c_str());
+  
+  SDL_Surface *raw = IMG_Loadfile(filest(filename));
   if (!raw) {
     MessageBox(NULL, ("Not found: " + filename).c_str(), "Tileset not found", MB_OK);
     exit(1);
@@ -203,7 +204,7 @@ void textures::load_multi_pdim(const string &filename, long *tex_pos, long dimx,
 void textures::load_multi_pdim(const string &filename, svector<long> &tex_pos, long dimx,
 			       long dimy, bool convert_magenta,
 			       long *disp_x, long *disp_y) {
-  SDL_Surface *raw = IMG_Load(filename.c_str());
+  SDL_Surface *raw=IMG_Loadfile(filest(filename));
   if (!raw) {
     MessageBox(NULL, ("Not found: " + filename).c_str(), "Tileset not found", MB_OK);
     exit(1);
@@ -239,7 +240,7 @@ void textures::load_multi_pdim(const string &filename, svector<long> &tex_pos, l
 
 void textures::refresh_multi_pdim(const string &filename, svector<long> &tex_pos, long dimx,
 			       long dimy, bool convert_magenta) {
-  SDL_Surface *raw = IMG_Load(filename.c_str());
+  SDL_Surface *raw=IMG_Loadfile(filest(filename));
   if (!raw) {
     MessageBox(NULL, ("Not found: " + filename).c_str(), "Tileset not found", MB_OK);
     exit(1);
@@ -272,7 +273,7 @@ void textures::refresh_multi_pdim(const string &filename, svector<long> &tex_pos
 }
 
 cached_texturest textures::load(const string &filename, bool convert_magenta) {
-  SDL_Surface *raw = IMG_Load(filename.c_str());
+  SDL_Surface *raw=IMG_Loadfile(filest(filename));
   if (!raw) {
     MessageBox(NULL, ("Not found: " + filename).c_str(), "Image not found", MB_OK);
     exit(1);

@@ -36,6 +36,20 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 52.01 (July 21, 2025):
+
+This version introduces lua scripting.  Right now, this affects procedural object generation, like the forgotten beasts, divine curses (vampires and werebeasts), divine items, necromancers and their lieutenants and experiments, evil weather, and so forth.  For the last fifteen years or so, all of these things have been hard-coded in Dwarf Fortress, inaccessible to modders.  Now the algorithms and data are available for modding.  Scripting will come to encompass more hard-coded features of the game as we proceed.
+
+The relevant scripts establishing the vanilla procedural objects are in data/vanilla/vanilla_procedural.  These scripts are structured in the same way as a mod, like the rest of the data/vanilla content, so you can use it as an example for your mods.  The mod should have an init.lua file, but whether or not you organize further scripts and folders is up to you (the vanilla 'mod' has a generators folder with several scripts and a few subfolders).
+
+General updates
+	(*) Added lua scripting for procedural objects.
+	(*) Fixed a crash related to personality testing of soulless creatures during conversation.
+	(*) Made the legends mode creature list searchable by species and interaction name.
+	(*) Repaired the <> buttons for Z switching after some strange behavior.
+
+******************************************************
+
 Release notes for 51.13 (June 27, 2025):
 
 General updates

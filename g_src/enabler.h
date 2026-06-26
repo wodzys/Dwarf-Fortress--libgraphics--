@@ -275,7 +275,7 @@ class flagarrayst
 				}
 			}
 
-		bool has_flag(long checkflag)
+		bool has_flag(long checkflag) const
 			{
 			if(checkflag<0)return false;
 			long slot=checkflag>>3;
@@ -546,6 +546,12 @@ namespace std {
     }
   };
 };
+
+inline SDL_Surface *IMG_Loadfile(const filest &f) {
+	auto path=f.any_location_unchecked(); // IMG_Load will just return NULL if the file is not found
+	auto str=path.string();
+	return IMG_Load(str.c_str());
+	}
 
 // Being a texture catalog interface, with opengl, sdl and truetype capability
 class textures

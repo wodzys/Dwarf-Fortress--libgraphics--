@@ -100,12 +100,17 @@ void initst::begin()
 	string small_font="data/art/curses_640x300.png";
 	string large_font="data/art/curses_640x300.png";
 
-	int32_t fl;
-	for(fl=0;fl<2;++fl)
+	if ((filest(PORTABLE_FILENAME).any_location()))
 		{
-		std::ifstream fseed;
-		if(fl==0)fseed.open("data/init/init_default.txt");
-		else fseed.open("prefs/init.txt");
+		media.flag.add_flag(INIT_MEDIA_FLAG_PORTABLE_MODE);
+		}
+	else
+		{
+		media.flag.remove_flag(INIT_MEDIA_FLAG_PORTABLE_MODE);
+		}
+	for(auto &f : {filest("data/init/init_default.txt"),filest("prefs/init.txt")})
+		{
+		std::ifstream fseed=f.to_ifstream();
 		if(fseed.is_open())
 			{
 			string str;
@@ -375,7 +380,7 @@ void initst::begin()
 		fseed.close();
 		}
 
-	std::ifstream fseed2("data/init/colors.txt");
+	std::ifstream fseed2=filest("data/init/colors.txt").to_ifstream();
 	if(fseed2.is_open())
 		{
 		string str;
@@ -677,7 +682,6 @@ void initst::begin()
           else enabler.fullscreen_state = 0;
         }
 #endif
-        
 
 	enabler.textures.load_multi_pdim(basic_font,font.basic_font_texpos,16,16,true,&font.basic_font_dispx,&font.basic_font_dispy);
 	enabler.textures.load_multi_pdim(small_font,font.small_font_texpos,16,16,true,&font.small_font_dispx,&font.small_font_dispy);

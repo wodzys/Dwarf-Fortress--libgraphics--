@@ -166,6 +166,8 @@ enum SphereType
 };
 typedef int16_t Sphere;
 
+extern const unordered_bimap<string,Sphere> SPHERESTRINGS; // hopefully we never need gods of strings
+
 enum EngravingIntentType
 {
 	ENGRAVING_INTENT_MEMORIAL,
@@ -1381,6 +1383,8 @@ enum PCGLayeringType
 };
 typedef int32_t PCGLayering;
 
+extern const unordered_bimap<string,PCGLayering> PCG_LAYERINGSTRINGS;
+
 enum PCGLayeringModifierType
 {
 	PCG_LAYERING_MODIFIER_HORN_COUNT_1,
@@ -1421,6 +1425,8 @@ enum PCGLayeringModifierType
 	PCG_LAYERING_MODIFIERNONE=-1
 };
 typedef int32_t PCGLayeringModifier;
+
+extern const unordered_bimap<string,PCGLayeringModifier> PCG_LAYERING_MODIFIERSTRINGS;
 
 enum UnitStatusType
 {

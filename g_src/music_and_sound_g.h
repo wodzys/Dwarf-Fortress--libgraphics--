@@ -570,11 +570,11 @@ class musicsoundst
 
 		int get_custom_sound(std::string &token);
 
-		void set_custom_song(std::string &token,std::string &filename,string &title,string &author, bool loops);
+		void set_custom_song(std::string &token,filest &filename,string &title,string &author, bool loops);
 
-		void set_custom_sound(std::string &token,std::string &filename);
+		void set_custom_sound(std::string &token,filest &filename);
 
-		void prepare_sounds(const string &src_dir);
+		void prepare_sounds(const std::string &src_dir);
 
 	private:
 
