@@ -4,6 +4,12 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 51.07:
+
+	Nothing this time.
+
+******************************************************
+
 Auxiliary file changes for 51.06:
 
 	creature_graphics

@@ -1219,8 +1219,7 @@ void enablerst::set_fps(int fps) {
     async_frombox.write(m);
     async_fromcomplete.acquire();
   } else {
-    if (fps == 0)
-      fps = 1048576;
+    if (fps <= 0) fps = 1048576;
     this->fps = fps;
     fps_per_gfps = fps / gfps;
     struct async_cmd cmd;

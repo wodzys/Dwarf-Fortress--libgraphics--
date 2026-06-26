@@ -37,6 +37,37 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 51.07 (March 12, 2025):
+
+Continuing along with the routine patches after the adventure mode release.
+
+Fortress mode
+	(*) Allowed use of last material when placing simple one-stage buildings and constructions
+	(*) Stopped land holders without a residence from automatically moving to and gumming up capitals
+	(*) Animals marked for slaughter and then assigned as war animal pets are now unmarked for slaughter
+	(*) Stopped hidden zones in NPC fortresses on reclaims from clouding information in tomb and dungeon sheets
+	(*) Work orders: changed "stone stones" to "stone boulders" and "stones" to "boulders", because they can be made from ice
+
+Adventure mode
+	(*) Allowed ordinary destiny adventurers to start anywhere in their civilization
+	(*) Handled infinite loop having to do with sites near oceans
+	(*) Unstackable items no longer stacked in character creation
+	(*) Movement blocking announcements are displayed during travel properly
+	(*) FPS display no longer blocks the speed readout
+	(*) Potential containers are no longer shown with nonsense directions when placing items
+	(*) Classic combat indicators are displayed in the correct position
+	(*) Changes to fort mode sound level sliders no longer affect adv mode sound levels
+
+General updates
+	(*) Stopped projectiles and falling creatures from falling through thin floors if they hit a sideways obstacle first
+	(*) Creatures with multigrasp weapons should no longer be generated with shields
+	(*) Fixed potential troublesome loop involving stone inclusion loops
+	(*) Creatures without exertion have their exertion set to zero
+	(*) Handled situation where FPS caps could underflow
+	(*) Fixed potential overflow in corpse sizes
+
+******************************************************
+
 Release notes for 51.06 (February 26, 2025):
 
 Fortress mode

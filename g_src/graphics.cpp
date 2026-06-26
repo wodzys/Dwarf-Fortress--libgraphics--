@@ -1128,7 +1128,7 @@ void render_things()
     gps.changecolor(0,3,0);
     //static gps_locator fps_locator(init.display.grid_y-1, 40);
     //fps_locator(fps.size());
-	gps.locate(init.display.grid_y-1, 40);
+	gps.locate(init.display.grid_y-gps.frame_display_dy, gps.frame_display_sx);
     gps.addst(fps);
   }
 

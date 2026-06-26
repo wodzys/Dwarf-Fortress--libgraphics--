@@ -4176,6 +4176,7 @@ class graphicst
 		LARGE_INTEGER print_time[100];
 		long print_index;
 		int8_t display_frames;
+		int32_t frame_display_sx,frame_display_dy;
 
 		short force_full_display_count;
 		bool do_clean_tile_cache;//true by main, false by graphics
