@@ -242,5 +242,5 @@ void add_lua_df_globals(lua_State *L) {
 	lua_register(L,"utterance",lua_generate_utterance);
 	lua_register(L,"capitalize_string_words",lua_capitalize_string_words);
 	lua_register(L,"capitalize_string_first_word",lua_capitalize_string_first_word);
-	lua_run_file(L,filest("data/init/globals.lua"));
+	lua_run_file(L,filest("data/init/globals.lua").with_flags(FILE_FLAG_ALWAYS_BASE_FIRST));
 	}

@@ -36,6 +36,19 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 52.02 (July 24, 2025):
+
+General updates
+	(*) Fixed hang on Linux when updating an installed mod the first time.
+	(*) Removed the temporary geology variables placement layer/freq/parent from lua to prevent crashes.
+	(*) Fixed crash when opening the mod menu after deleting the %appdata% folder.
+	(*) Fixed a logic issue where any duplicated raws detected will cause further types of duplicated raws to no longer print.
+	(*) Init files are loaded from the game folder first so that updates always apply properly.
+	(*) The game now checks for prefs/arena.txt and prefs/colors.txt.
+	(*) Added more cases of auto-toggling portable mode if something fails to save.
+
+******************************************************
+
 Release notes for 52.01 (July 21, 2025):
 
 This version introduces lua scripting.  Right now, this affects procedural object generation, like the forgotten beasts, divine curses (vampires and werebeasts), divine items, necromancers and their lieutenants and experiments, evil weather, and so forth.  For the last fifteen years or so, all of these things have been hard-coded in Dwarf Fortress, inaccessible to modders.  Now the algorithms and data are available for modding.  Scripting will come to encompass more hard-coded features of the game as we proceed.

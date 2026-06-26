@@ -574,7 +574,7 @@ class musicsoundst
 
 		void set_custom_sound(std::string &token,filest &filename);
 
-		void prepare_sounds(const std::string &src_dir);
+		void prepare_sounds(const std::filesystem::path &src_dir);
 
 	private:
 

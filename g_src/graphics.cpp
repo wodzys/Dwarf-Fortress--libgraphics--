@@ -232,7 +232,7 @@ const unordered_bimap<string,Sphere> SPHERESTRINGS={
 	{"YOUTH",SPHERE_YOUTH},
 	};
 
-void process_object_lines(textlinesst &lines,const string &chktype,const string &graphics_dir);
+void process_object_lines(textlinesst &lines,const string &chktype,const std::filesystem::path &graphics_dir);
 
 // Add, then increment to the (possible) PBO alignment requirement
 static void align(size_t &sz, off_t inc) {
@@ -823,7 +823,7 @@ void graphicst::color_square(long x,long y,unsigned char f,unsigned char b,unsig
 		}
 }
 
-void graphicst::prepare_graphics(const string &src_dir)
+void graphicst::prepare_graphics(const std::filesystem::path &src_dir)
 {
 	//GET READY TO LOAD
 	textlinesst setuplines;

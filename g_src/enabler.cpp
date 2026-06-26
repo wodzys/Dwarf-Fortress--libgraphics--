@@ -1309,8 +1309,8 @@ int main (int argc, char* argv[]) {
   // Load keyboard map
   keybinding_init();
   //NOTE: this order is important!  load_keybindings does not overwrite keys, so loading prefs first is correct
-  enabler.load_keybindings("prefs/interface.txt");
-  enabler.load_keybindings("data/init/interface.txt");//only adds new keys from new versions etc.
+  enabler.load_keybindings(filest("prefs/interface.txt"));
+  enabler.load_keybindings(filest("data/init/interface.txt").with_flags(FILE_FLAG_ALWAYS_BASE_FIRST));//only adds new keys from new versions etc.
 
   string cmdLine;
   for (int i = 1; i < argc; ++i) { 

@@ -6,6 +6,7 @@
 #include <cassert>
 #include <variant>
 #include <cstring>
+#include <filesystem>
 using std::string;
 
 #include "g_basics.h"
@@ -10274,7 +10275,7 @@ class graphicst
 	void add_top_lower_tile(long texp);
 	void add_top_anchored_tile(long texp,long offset_x,long offset_y,long tdx,long tdy,bool use_color);
 
-	void prepare_graphics(const string &src_dir);
+	void prepare_graphics(const std::filesystem::path &src_dir);
 	void create_derived_textures();
 	void copy_transformed_pixel_data(SDL_Surface *src,SDL_Surface *dst,int32_t cw_rotate,bool flip_vert);
 	void copy_pixel_data_with_alpha_mask(SDL_Surface *src,SDL_Surface *alpha_src,SDL_Surface *dst);

@@ -475,8 +475,12 @@ std::filesystem::path filest::pref_location() const {
 	return (get_pref_path() / path).lexically_normal().make_preferred();
 	}
 
+bool filest::base_first() const {
+	return (flag & FILE_FLAG_ALWAYS_BASE_FIRST) || init.media.flag.has_flag(INIT_MEDIA_FLAG_PORTABLE_MODE);
+	}
+
 std::filesystem::path filest::canon_location() const {
-	if (init.media.flag.has_flag(INIT_MEDIA_FLAG_PORTABLE_MODE))
+	if (base_first())
 		{
 		return base_location();
 		}
@@ -487,7 +491,7 @@ std::filesystem::path filest::canon_location() const {
 	}
 
 std::filesystem::path filest::non_canon_location() const {
-	if (init.media.flag.has_flag(INIT_MEDIA_FLAG_PORTABLE_MODE))
+	if (base_first())
 		{
 		return pref_location();
 		}
@@ -523,7 +527,7 @@ std::filesystem::path filest::any_location_unchecked() const {
 	}
 
 std::array<std::filesystem::path,2> filest::both_locations() const {
-	if (init.media.flag.has_flag(INIT_MEDIA_FLAG_PORTABLE_MODE))
+	if (base_first())
 		{
 		return {base_location(),pref_location()};
 		}
@@ -534,7 +538,7 @@ std::array<std::filesystem::path,2> filest::both_locations() const {
 	}
 
 std::array<std::pair<bool,std::filesystem::path>,2> filest::both_locations_tagged() const {
-	if (init.media.flag.has_flag(INIT_MEDIA_FLAG_PORTABLE_MODE))
+	if (base_first())
 		{
 		return {std::make_pair(true,base_location()),std::make_pair(false,pref_location())};
 		}
@@ -545,7 +549,7 @@ std::array<std::pair<bool,std::filesystem::path>,2> filest::both_locations_tagge
 	}
 
 std::ofstream filest::to_ofstream(std::ios_base::openmode mode) const {
-	return std::ofstream(canon_location());
+	return std::ofstream(canon_location(),mode);
 	}
 
 std::ifstream filest::to_ifstream(std::ios_base::openmode mode) const {

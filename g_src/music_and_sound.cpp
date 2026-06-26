@@ -522,7 +522,7 @@ struct sound_file_infost
 	bool loops;
 };
 
-void musicsoundst::prepare_sounds(const std::string &src)
+void musicsoundst::prepare_sounds(const std::filesystem::path &src)
 {
 	textlinesst lines;
 
