@@ -36,6 +36,18 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.03 (November 10, 2025):
+
+Here are some more fixes for the Siege Update.
+
+(*) Fixed crash when loading certain historical figures from the disk.
+(*) Fixed an occasional crash when doing multi-stage construction.
+(*) Fixed issue where battering ram operators could get stuck in ground when the ram turns.
+(*) Stopped brewing jobs from searching for improper items.
+(*) Stopped babies born in fort from worshipping extra deities.
+
+******************************************************
+
 Release notes for 53.02 (November 4, 2025):
 
 Here's some cleanup for the Siege Update to fix a few issues.
