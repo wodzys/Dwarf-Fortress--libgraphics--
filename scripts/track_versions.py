@@ -311,6 +311,64 @@ def git_commit_and_tag(
 # Main
 # ---------------------------------------------------------------------------
 
+def _write_summary(
+    all_links: list,
+    to_process: list,
+    processed: list[str],
+    deferred_versions: list[str],
+    existing_tags: set[str],
+    total_elapsed: float,
+    requested_version: str,
+):
+    """Write a markdown summary for GitHub Actions step summary."""
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "")
+    if not summary_path:
+        return  # Not running in GitHub Actions
+
+    total = len(all_links)
+    tagged = len(existing_tags)
+    new_count = len(processed)
+    pending = len(deferred_versions)
+
+    lines = []
+    lines.append("## DF libgraphics Version Tracker")
+    lines.append("")
+    if requested_version:
+        lines.append(f"**Mode:** Manual — requested `{requested_version}`")
+    else:
+        lines.append("**Mode:** Auto-discover")
+    lines.append("")
+
+    if new_count > 0:
+        lines.append(f"### ✅ New versions tracked: {new_count}")
+        for vk in processed:
+            lines.append(f"- `v{vk}`")
+        lines.append("")
+    else:
+        lines.append("### ℹ️ No new versions processed this run")
+        lines.append("")
+
+    if pending > 0:
+        lines.append(f"### ⏳ Deferred to next run: {pending}")
+        preview = ", ".join(f"`v{v}`" for v in deferred_versions[:5])
+        lines.append(f"{preview}{' ...' if pending > 5 else ''}")
+        lines.append("")
+
+    lines.append("---")
+    lines.append(f"**Total on page:** {total} versions ≥ baseline")
+    lines.append(f"**Already tagged:** {tagged}")
+    lines.append(f"**Processed now:** {new_count}")
+    lines.append(f"**Remaining:** {pending}")
+    lines.append(f"**Duration:** {total_elapsed:.1f}s")
+
+    try:
+        with open(summary_path, "a", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+        log.info("Step summary written to GITHUB_STEP_SUMMARY")
+    except OSError as e:
+        log.warning("Failed to write step summary: %s", e)
+
+
 def main():
     # Resolve requested version from CLI arg or env var
     requested_version = ""
@@ -387,18 +445,19 @@ def main():
         log.info("No new versions to process — up to date!")
         return
 
+    deferred_versions: list[str] = []
     total_pending = len(to_process)
     if batch_size > 0 and total_pending > batch_size:
-        deferred = to_process[batch_size:]
+        deferred_versions = [vk for vk, _, _, _ in to_process[batch_size:]]
         to_process = to_process[:batch_size]
         log.info(
             "Batching: %d of %d versions this run, %d deferred to next run",
             batch_size,
             total_pending,
-            len(deferred),
+            len(deferred_versions),
         )
         log.info("Will process now: %s", ", ".join(vk for vk, _, _, _ in to_process))
-        log.info("Deferred to next: %s", ", ".join(vk for vk, _, _, _ in deferred))
+        log.info("Deferred to next: %s", ", ".join(deferred_versions))
     else:
         log.info(
             "Will process %d version(s): %s",
@@ -470,6 +529,10 @@ def main():
     else:
         log.warning("No versions were successfully processed")
         sys.exit(1)
+
+    # Write GitHub Actions step summary
+    _write_summary(all_links, to_process, processed, deferred_versions,
+                   existing_tags, total_elapsed, requested_version)
 
 
 if __name__ == "__main__":
