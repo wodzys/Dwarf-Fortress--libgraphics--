@@ -4,6 +4,19 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 51.06:
+
+	creature_graphics
+		fixed a few shark images
+
+	d_init_default
+		[SHOW_RECTANGLE_DIMENSIONS:YES]
+
+	materials
+		updated some metal elasticities
+
+******************************************************
+
 Auxiliary file changes for 51.05:
 
 	d_init_default

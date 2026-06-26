@@ -1029,7 +1029,7 @@ bool widget::activate() {
 	bool ret=false;
 	for (auto &f : custom_activated) 
 		{ 
-		if (f(this)) ret=true;
+		if (f && f(this)) ret=true;
 		}
 	return ret;
 	}
@@ -1042,7 +1042,7 @@ void widget::render(uint32_t curtick)
 	{
 	for (auto &fn : custom_render)
 		{
-		fn(this, curtick);
+		if(fn) fn(this, curtick);
 		}
 	if (enabler.tracking_on)
 		{
@@ -1130,7 +1130,7 @@ void widget::feed(std::set<InterfaceKey> &ev)
 	// (but still highly useful for e.g. certain containers that might want to be keyboard controlled)
 	for (auto &fn : custom_feed)
 		{
-		fn(ev, this);
+		if(fn) fn(ev, this);
 		}
 	if (enabler.tracking_on && enabler.mouse_lbut)
 		{
@@ -1166,7 +1166,7 @@ void widget::logic()
 	{
 	for (auto &fn : custom_logic)
 		{
-		fn(this);
+		if(fn) fn(this);
 		}
 	}
 
@@ -1600,11 +1600,11 @@ void widget_stack::do_replacements() {
 	if (deferred_replacement)
 		{
 		clear();
-		do_pop=false;
+		defer_flags&=~WIDGET_STACK_DEFER_FLAG_POP;
 		add_widget<widget>(deferred_replacement);
 		deferred_replacement.reset();
 		}
-	if (do_pop)
+	if (defer_flags&WIDGET_STACK_DEFER_FLAG_POP)
 		{
 		auto child=children.back();
 		children.pop_back();
@@ -1612,7 +1612,12 @@ void widget_stack::do_replacements() {
 			{
 			remove_child(child->name);
 			}
-		do_pop=false;
+		defer_flags&=~WIDGET_STACK_DEFER_FLAG_POP;
+		}
+	if (defer_flags&WIDGET_STACK_DEFER_FLAG_BREAK_DOWN)
+		{
+		this->set_visible(false);
+		defer_flags&=~WIDGET_STACK_DEFER_FLAG_BREAK_DOWN;
 		}
 	}
 

@@ -568,13 +568,17 @@ namespace widgets {
             }
     };
 
+    #define WIDGET_STACK_DEFER_FLAG_POP BIT1
+    #define WIDGET_STACK_DEFER_FLAG_BREAK_DOWN BIT2
+
     // As container, but simply displays the last of its children, rather than all.
     class widget_stack : public container
         {
-        bool do_pop=false;
+        uint8_t defer_flags=0;
         std::shared_ptr<widget> deferred_replacement=NULL;
     public:
-        void pop() { do_pop=true; }
+        void pop() { defer_flags=WIDGET_STACK_DEFER_FLAG_POP; }
+        void pop_and_close() { defer_flags=(WIDGET_STACK_DEFER_FLAG_POP|WIDGET_STACK_DEFER_FLAG_BREAK_DOWN); }
         void deferred_replace(std::shared_ptr<widget> widget);
         void do_replacements();
         virtual void arrange();

@@ -34,6 +34,33 @@ IF YOUR KEYBOARD ISN'T WORKING:
 
 If you can get to the ESC keybindings menu (from the start screen, press ESC and then 2/8 to scroll to Key Bindings), you can set your key bindings.  If your "?" key on your keyboard doesn't work for help, you can set the keybinding properly here.  It might not display as a "*".  You can set the display up properly in "data/init/interface.txt" using the display strings at the top of the file.
 
+
+******************************************************
+
+Release notes for 51.06 (February 26, 2025):
+
+Fortress mode
+	(*) Made some strange mood dwarves not get stuck at workshop selection stage
+	(*) Stopped people from claiming and using inactive bedroom zones
+	(*) Stopped the dead from claiming inactive tomb zones
+	(*) Decreased prepared food item value
+	(*) Made custom announcement settings load properly
+	(*) Added setting to turn off visible rectangle dimensions
+	(*) Added crash safeguards to report popups and other widgets
+	(*) Fixed seed cap limit and made deletion of seeds over cap respect planting status
+
+Adventure mode
+	(*) Added escape/rbut to leave adventurer difficulty selection
+	(*) Fixed issue with adventurer race selection lists not being unpopulated on exit
+	(*) Fixed buffer overrun involving tents
+	(*) Fixed crash related to site plot use allocations
+	(*) Added highlight to adventurer destiny selection in Classic mode
+
+General updates
+	(*) Added crash safeguard for syndromes
+	(*) Updated some metal elasticities
+	(*) Fixed graphics for tiger, whale, and whitetip reef sharks
+
 ******************************************************
 
 Release notes for 51.05 (February 12, 2025):
