@@ -57,8 +57,7 @@ inline void CHECK_ERR(int err, const char* msg)
 {
 	if (err != Z_OK)
 		{
-		MessageBox(NULL, "One of the compressed files on disk has errors in it.  Restore from backup if you are able.", 0, 0);
-		exit(1);
+		warning_modal_ok("One of the compressed files on disk has errors in it.  Restore from backup if you are able.",[]() {exit(1); });
 		}
 }
 

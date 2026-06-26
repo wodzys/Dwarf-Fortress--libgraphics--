@@ -116,7 +116,7 @@ protected:
 								   surf->format->Bmask,
 								   surf->format->Amask);
       if (!color) {
-        MessageBox (NULL, "Unable to create texture!", "Fatal error", MB_OK | MB_ICONEXCLAMATION);
+        MessageBox (NULL, L"Unable to create texture!", L"Fatal error", MB_OK | MB_ICONEXCLAMATION);
         abort();
       }
 

@@ -79,6 +79,8 @@ using std::string;
 #define BIT64 9223372036854775808ULL
 #endif
 
+enum struct Result : char { SUCCESS,FAILURE };
+
 void emit_logs();
 void gamelog_string(const string &str);
 void errorlog_string(const string &str);

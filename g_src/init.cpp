@@ -673,11 +673,9 @@ void initst::begin() {
 			  }
               else
                 {
-                  if (MessageBox (NULL, "Run in Fullscreen Mode?  You can set your preferences in data/init/init.txt.\rUnless you've changed your bindings, you can press F11 to toggle this setting any time.", "Start FullScreen?", MB_YESNO | MB_ICONQUESTION) == IDNO) {
-                    enabler.fullscreen_state = 0; // If Not, Run In Windowed Mode
-                  } else {
-					enabler.fullscreen_state = FULLSCREEN;
-                  }
+				  confirm_modal_yesno("Run in Fullscreen Mode?  You can set your preferences in data/init/init.txt.  Unless you've changed your bindings, you can press F11 to toggle this setting any time.",
+									  []() { enabler.fullscreen_state=FULLSCREEN; },
+									  []() { enabler.fullscreen_state=0; });
                 }
             }
           else enabler.fullscreen_state = 0;

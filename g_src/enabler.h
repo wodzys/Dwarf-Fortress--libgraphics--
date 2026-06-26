@@ -889,8 +889,8 @@ class enablerst : public enabler_inputst
         int x, y;
       };
 	  struct {
-		  const char *text;
-		  const char *caption;
+		  const wchar_t *text;
+		  const wchar_t *caption;
 		  UINT type;
 		  };
     };
@@ -1001,7 +1001,7 @@ class enablerst : public enabler_inputst
   void set_listen_to_text(bool listening);
   void set_text_input(SDL_Event ev);
   void clear_text_input();
-  void show_message_box(const char *text, const char *caption = "Alert", UINT type = MB_OK) {
+  void show_message_box(const wchar_t *text, const wchar_t *caption = L"Alert", UINT type = MB_OK) {
 	async_msg msg(async_msg::show_message);
 	msg.text = text;
 	msg.caption = caption;

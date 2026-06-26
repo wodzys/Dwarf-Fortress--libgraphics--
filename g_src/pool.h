@@ -6,6 +6,8 @@
 #include <map>
 #include <unordered_set>
 #include <algorithm>
+#include <mutex>
+#include <utility>
 
 template<class T, size_t N>
 class object_pool
@@ -16,16 +18,17 @@ class object_pool
 	std::vector<T*> *glob;
 	std::pair<size_t,bool> get_next_slot()
 	{
+		std::unique_lock lock(pool_mutex);
 		if (no_empty_slots())
 			{
 			if (glob)
 				{
-				garbage_collect(*this,*glob);
+				garbage_collect_no_lock(*this,*glob,lock);
 				}
 			if (no_empty_slots())
 				{
 				const auto current_capacity=capacity();
-				add_capacity(current_capacity>N?current_capacity:N);
+				add_capacity_no_lock(current_capacity>N?current_capacity:N,lock);
 				}
 			}
 		auto smallest=unused_slots.begin();
@@ -35,6 +38,7 @@ class object_pool
 	}
 
 public:
+	std::mutex pool_mutex;
 	T *get(size_t n)
 		{
 		for (auto &p : pool)
@@ -56,11 +60,12 @@ public:
 			{
 			b->T::~T();
 			}
-		new (b) T(args...);
+		new (b) T(std::forward<Args>(args)...);
 		return next_slot.first;
 		}
 	void clear()
 		{
+		std::unique_lock lock(pool_mutex);
 		for(auto i=0; i<capacity(); i++)
 			{
 			if (const auto &p=unused_slots.find(i); p!=unused_slots.end())
@@ -86,19 +91,50 @@ public:
 		{
 		if (!unused_slots.contains(idx))
 			{
+			std::unique_lock lock(pool_mutex);
+			unused_slots[idx]=true;
+			}
+		}
+	void erase_no_lock(size_t idx,std::unique_lock<std::mutex> &lk)
+		{
+		if (!unused_slots.contains(idx))
+			{
 			unused_slots[idx]=true;
 			}
 		}
 	void remove(T *ptr)
 		{
-		// hell yeah we're doing a linear search
-		for (int i=0; i<pool.capacity(); i++)
+		size_t pool_id=ptr->get_pool_id();
+		if (pool_id<capacity())
 			{
-			if (get(i)==ptr)
+			erase(pool_id);
+			}
+		else
+			{
+			// Make sure it's not in the pool before deleting it...
+			bool found=[&]() {
+				for (const auto &span : pool)
+					{
+					if (span.data() <= ptr && ptr <= span.data()+span.size_bytes())
+						{
+						return true;
+						}
+					}
+				return false;
+				}();
+			if (found)
 				{
-				erase(i);
-				return;
+				for (int i=0; i<pool.capacity(); i++)
+					{
+					if (get(i)==ptr)
+						{
+						erase(i);
+						return;
+						}
+					}
 				}
+			// we didn't find it, just delete
+			delete ptr;
 			}
 		}
 	bool no_empty_slots()
@@ -114,6 +150,10 @@ public:
 		return total;
 		}
 	void add_capacity(size_t n) {
+		std::unique_lock lock(pool_mutex);
+		add_capacity_no_lock(n,lock);
+		}
+	void add_capacity_no_lock(size_t n,std::unique_lock<std::mutex> &lk) {
 		T *arr=static_cast<T*>(calloc(n,sizeof(T)));
 		pool.emplace_back(arr,n);
 		auto it=unused_slots.begin();
@@ -157,14 +197,23 @@ public:
 template<class T,size_t N>
 void garbage_collect(object_pool<T,N> &pool,std::vector<T *> &glob)
 {
-		std::unordered_set<size_t> still_extant;
-		for (auto &obj:glob)
+	std::unique_lock lock(pool.pool_mutex);
+	garbage_collect_no_lock(pool,glob,lock);
+}
+
+template<class T,size_t N>
+void garbage_collect_no_lock(object_pool<T,N> &pool,std::vector<T *> &glob,std::unique_lock<std::mutex> &lk)
+{
+	std::unordered_set<size_t> still_extant;
+	for (auto &obj:glob)
+		{
+		still_extant.insert(obj->get_pool_id());
+		}
+	for (auto i=0; i<pool.capacity(); i++)
+		{
+		if (!still_extant.contains(i))
 			{
-			still_extant.insert(obj->get_pool_id());
+			pool.erase_no_lock(i,lk);
 			}
-		for (auto i=0; i<pool.capacity(); i++)
-			{
-			if (!still_extant.contains(i))
-				pool.erase(i);
-			}
+		}
 }

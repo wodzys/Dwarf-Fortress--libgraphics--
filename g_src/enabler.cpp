@@ -28,16 +28,10 @@ int glerrorcount = 0;
 // Set to 0 when the game wants to quit
 static int loopvar = 1;
 
-// Reports an error to the user, using a MessageBox and stderr.
+// Reports an error to the user
 void report_error(const char *error_preface, const char *error_message)
 {
-  char *buf = NULL;
-  // +4 = +colon +space +newline +nul
-  buf = new char[strlen(error_preface) + strlen(error_message) + 4];
-  sprintf(buf, "%s: %s\n", error_preface, error_message);
-  MessageBox(NULL, buf, "Error", MB_OK);
-  fprintf(stderr, "%s", buf);
-  delete [] buf;
+	warning_modal_ok(string(error_preface)+": "+error_message);
 }
 
 Either<texture_fullid,int32_t/*texture_ttfid*/> renderer::screen_to_texid(int x, int y) {
@@ -1287,6 +1281,10 @@ int main (int argc, char* argv[]) {
   }
   enabler.renderer_threadid = SDL_ThreadID();
 
+#ifdef WIN32
+  std::setlocale(LC_ALL,".utf8"); // Ensure UTF-8 locale, since random languages break otherwise
+#endif
+
   // Spawn simulation thread
   SDL_CreateThread(call_loop, NULL, NULL);
 
@@ -1306,12 +1304,6 @@ int main (int argc, char* argv[]) {
     report_error("SDL initialization failure", SDL_GetError());
     return 0;
   }
-
-#ifdef WIN32
-  // Attempt to get as good a timer as possible
-  int ms = 1;
-  while (timeBeginPeriod(ms) != TIMERR_NOERROR) ms++;
-#endif
 
   // Load keyboard map
   keybinding_init();
@@ -1343,10 +1335,6 @@ int main (int argc, char* argv[]) {
   int result = enabler.loop(cmdLine);
 
   SDL_Quit();
-
-#ifdef WIN32
-  timeEndPeriod(ms);
-#endif
   
   return result;
 }

@@ -1021,9 +1021,9 @@ namespace widgets {
 
 }
 
-std::shared_ptr<widgets::container> warning_modal_ok(const std::string &text);
+std::shared_ptr<widgets::container> warning_modal_ok(const std::string_view text,std::function<void()> cb=NULL);
 
-std::shared_ptr<widgets::container> confirm_modal_yesno(const std::string &text,std::function<void()> yes_callback,std::function<void()> no_callback);
+std::shared_ptr<widgets::container> confirm_modal_yesno(const std::string_view text,std::function<void()> yes_callback,std::function<void()> no_callback);
 
 enum InterfaceBreakdownTypes
 {

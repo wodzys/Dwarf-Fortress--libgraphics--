@@ -13,6 +13,7 @@ const std::string lib_ext = ".so";
 #   endif
 #endif
 
+const std::wstring wg_lib_name = L"dfhooks";
 const std::string g_lib_name = "dfhooks";
 void* g_lib_handle = nullptr;
 
@@ -37,9 +38,9 @@ dfhooks_ncurses_key_fn g_dfhooks_ncurses_key = nullptr;
 typedef void (*dfhooks_sdl_loop_fn)();
 dfhooks_sdl_loop_fn g_dfhooks_sdl_loop=nullptr;
 
-static void* open_library(const std::string& lib_name) {
+static void* open_library(const std::wstring& wlib_name,const std::string& lib_name) {
 #if _WIN32
-    return LoadLibrary((lib_name + ".dll").c_str());
+    return LoadLibrary((wlib_name + L".dll").c_str());
 #else
     return dlopen(("./lib" + lib_name + lib_ext).c_str(),RTLD_LAZY);
 #endif
@@ -78,7 +79,7 @@ static void init_fns(void* handle) {
 }
 
 void hooks_init() {
-    g_lib_handle = open_library(g_lib_name);
+    g_lib_handle = open_library(wg_lib_name,g_lib_name);
     init_fns(g_lib_handle);
 
     if (g_dfhooks_init)

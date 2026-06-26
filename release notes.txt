@@ -36,6 +36,34 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.11 (March 4, 2026):
+
+Here's another routine patch.  Notably, good food should make dwarves happier and they should seek out better food.  I've been sick through February so the changes are a bit sparse, but I should be back at things now.
+
+General updates
+	(*) Made happy food thought levels easier to obtain (more in line with newer food values).
+	(*) Dwarves seek good meals more aggressively and value better foods over worse ones more precisely.
+	(*) Stopped dwarves from forgetting friends/grudges they rarely meet after a few years.
+	(*) Added item dimension check to strange moods to make sure they don't gather e.g. infinite cloth from hospital zones.
+	(*) Stopped world gen interrogations from sometimes disordering known site records.
+	(*) Fixed crash issue with error-logging for certain modded languages.
+	(*) Fixed some potential multithreading stability issues.
+	(*) Added some crash-proofing to conversations.
+	(*) Worldgen now aborts instead of quitting the whole game when a raw object is missing.
+	(*) Fixed issue causing deletion of nemesis records for units.
+	(*) Made several distance calculations euclidean instead of rectangular.
+	(*) Fixed issue with temperature check so that certain items (butchery products etc.) respond to temperature properly.
+	(*) Changed filesystem for certain setups to support UTF-8 strings.
+	(*) Fixed problem causing party tactical AI settings to be unchangeable.
+	(*) Fixed display problem for desired metal cages and chains in dungeons.
+	(*) Fixed problem causing generated creatures to not be immune to their own poisons.
+	(*) Stopped channeling in the undiggable underworld.
+	(*) Made choreographers and composers use existing music and poems for their works instead of always making new ones.
+	(*) Made werebeast types duplicate if necessary rather than creating blobs (only applies if werebeast curse number set higher than 72).
+	(*) Fixed typo in angel descriptions.
+
+******************************************************
+
 Release notes for 53.10 (January 12, 2025):
 
 This patch fixes a freeze and a display error in some creature lists.  We also added the final aquatic portraits.

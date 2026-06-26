@@ -171,8 +171,7 @@ void textures::load_multi_pdim(const std::filesystem::path &filename, long *tex_
   
   SDL_Surface *raw = IMG_Loadfile(filest(filename));
   if (!raw) {
-    MessageBox(NULL, ("Not found: " + filename.string()).c_str(), "Tileset not found", MB_OK);
-    exit(1);
+      warning_modal_ok("Not found: " + filename.string(),[]() {exit(1); });
   }
   SDL_Surface *src = canonicalize_format(raw, convert_magenta);
   SDL_SetSurfaceBlendMode(src,SDL_BLENDMODE_NONE);
@@ -205,10 +204,10 @@ void textures::load_multi_pdim(const std::filesystem::path &filename, svector<lo
 			       long dimy, bool convert_magenta,
 			       long *disp_x, long *disp_y) {
   SDL_Surface *raw=IMG_Loadfile(filest(filename));
-  if (!raw) {
-    MessageBox(NULL, ("Not found: " + filename.string()).c_str(), "Tileset not found", MB_OK);
-    exit(1);
-  }
+  if (!raw) 
+      {
+      warning_modal_ok("Not found: " + filename.string(),[]() {exit(1); });
+    }
   tex_pos.resize(dimx*dimy);
   auto tp_s = tex_pos.begin();
   SDL_Surface *src = canonicalize_format(raw, convert_magenta);
@@ -242,8 +241,7 @@ void textures::refresh_multi_pdim(const std::filesystem::path &filename, svector
 			       long dimy, bool convert_magenta) {
   SDL_Surface *raw=IMG_Loadfile(filest(filename));
   if (!raw) {
-    MessageBox(NULL, ("Not found: " + filename.string()).c_str(), "Tileset not found", MB_OK);
-    exit(1);
+      warning_modal_ok("Not found: " + filename.string(),[]() {exit(1); });
   }
 
   long ind=0;
@@ -275,8 +273,7 @@ void textures::refresh_multi_pdim(const std::filesystem::path &filename, svector
 cached_texturest textures::load(const std::filesystem::path &filename, bool convert_magenta) {
   SDL_Surface *raw=IMG_Loadfile(filest(filename));
   if (!raw) {
-    MessageBox(NULL, ("Not found: " + filename.string()).c_str(), "Image not found", MB_OK);
-    exit(1);
+      warning_modal_ok("Not found: " + filename.string(),[]() {exit(1); });
   }
   SDL_Surface *tex = canonicalize_format(raw, convert_magenta);
   return cached_texturest(tex);

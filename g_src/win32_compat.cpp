@@ -18,6 +18,7 @@ using std::min;
 #endif
 
 #ifndef WIN32
+/*
 BOOL CreateDirectory(const char* pathname, void*)
 {
   if (mkdir(pathname, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)) {
@@ -32,6 +33,7 @@ BOOL CreateDirectory(const char* pathname, void*)
     return TRUE;
   }
 }
+*/
 
 BOOL DeleteFile(const char* filename)
 {
@@ -95,7 +97,7 @@ BOOL QueryPerformanceFrequency(LARGE_INTEGER* performanceCount)
   return TRUE;
 }
 
-int MessageBox(HWND *dummy, const char *text, const char *caption, UINT type)
+int MessageBox(HWND *dummy, const wchar_t *text, const wchar_t *caption, UINT type)
 {
 	static int ret=IDOK; // static is mostly just a precaution here
   if (SDL_ThreadID() != enabler.renderer_threadid)
@@ -120,8 +122,12 @@ int MessageBox(HWND *dummy, const char *text, const char *caption, UINT type)
 	  SDL_MessageBoxData data;
 	  data.window=NULL;
 	  data.flags=SDL_MESSAGEBOX_ERROR;
-	  data.title=caption;
-	  data.message=text;
+	  char *buftitle=new char[64]; // needs to be on the heap lest we have a pointer to stack
+	  char *buftext=new char[128];
+	  wcstombs(buftitle,caption,64);
+	  data.title=buftitle;
+	  wcstombs(buftext,text,128);
+	  data.message=buftext;
 	  if (!!(type & MB_YESNO))
 		  {
 		  data.numbuttons=2;

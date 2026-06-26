@@ -4,6 +4,7 @@
 #include "ViewBase.h"
 #include "interface.h"
 #include "init.h"
+#include <codecvt>
 
 #include "audio/audio-play.h"
 int playSoundFromEvent(int eventId);
@@ -898,10 +899,11 @@ void draw_horizontal_nineslice(int32_t *texpos,int sy,int sx,int ey,int ex,overr
 		}
 	}
 
-std::shared_ptr<container> warning_modal_ok(const std::string &text) {
+std::shared_ptr<container> warning_modal_ok(const std::string_view text,std::function<void()> cb) {
 	if (gview.grab_lastscreen()==NULL)
 		{
-		MessageBox(NULL,text.c_str(),"Warning Modal",MB_OK);
+		std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+		MessageBox(NULL,converter.from_bytes(text.data()).c_str(),L"Warning Modal",MB_OK);
 		return NULL;
 		}
 	auto modal=gview.grab_lastscreen()->widgets.add_or_get_widget<container>("Warning Modal");
@@ -909,7 +911,7 @@ std::shared_ptr<container> warning_modal_ok(const std::string &text) {
 	auto nineslice=modal->add_or_get_widget<widgets::nineslice>("Warning Modal Background",&init.texpos_border_nw);
 	nineslice->set_layout_preset(LayoutPreset::FULL);
 	auto text_widget=modal->add_or_get_widget<widgets::text_multiline>("Warning Text");
-	text_widget->set_text(text);
+	text_widget->set_text(string(text));
 	text_widget->set_color(7,0,1);
 	text_widget->set_layout_preset(LayoutPreset::FULL);
 	text_widget->set_offsets(1,-4,1,-1);
@@ -929,8 +931,9 @@ std::shared_ptr<container> warning_modal_ok(const std::string &text) {
 	n2->set_layout_preset(LayoutPreset::FULL);
 	}
 	button->activation_hotkeys={INTERFACEKEY_MENU_CONFIRM,INTERFACEKEY_SELECT,INTERFACEKEY_LEAVESCREEN};
-	button->set_custom_activated([](widget *w) {
+	button->set_custom_activated([cb](widget *w) {
 		gview.grab_lastscreen()->widgets.add_or_get_widget<widgets::container>("Warning Modal")->set_active(false);
+		if (cb) cb();
 		return true;
 		});
 	text_widget->arrange();
@@ -940,9 +943,13 @@ std::shared_ptr<container> warning_modal_ok(const std::string &text) {
 	return modal;
 	}
 
-std::shared_ptr<container> confirm_modal_yesno(const std::string &text,std::function<void()> yes_callback,std::function<void()> no_callback) {
+std::shared_ptr<container> confirm_modal_yesno(const std::string_view text,std::function<void()> yes_callback,std::function<void()> no_callback) {
 	if (gview.grab_lastscreen()==NULL)
 		{
+		std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+		auto res=MessageBox(NULL,converter.from_bytes(text.data()).c_str(),L"Confirm",MB_YESNO | MB_ICONQUESTION);
+		if (res==IDYES && yes_callback) yes_callback();
+		if (res==IDNO && no_callback) no_callback();
 		return NULL;
 		}
 	auto modal=gview.grab_lastscreen()->widgets.add_or_get_widget<container>("Yes/No Modal");
@@ -950,7 +957,7 @@ std::shared_ptr<container> confirm_modal_yesno(const std::string &text,std::func
 	auto nineslice=modal->add_or_get_widget<widgets::nineslice>("Warning Modal Background",&init.texpos_border_nw);
 	nineslice->set_layout_preset(LayoutPreset::FULL);
 	auto text_widget=modal->add_or_get_widget<widgets::text_multiline>("Warning Text");
-	text_widget->set_text(text);
+	text_widget->set_text(string(text));
 	text_widget->set_color(7,0,1);
 	text_widget->set_layout_preset(LayoutPreset::FULL);
 	text_widget->set_offsets(1,-4,1,-1);

@@ -10,6 +10,7 @@
 #include <map>
 #include <set>
 #include <stdio.h>
+#include <codecvt>
 //#include <unistd.h>
 
 extern "C" {
@@ -59,8 +60,7 @@ inline void CHECK_ERR(int err, const char* msg)
 {
 	if (err != Z_OK)
 		{
-		MessageBox(NULL, "One of the compressed files on disk has errors in it.  Restore from backup if you are able.", 0, 0);
-		exit(1);
+		warning_modal_ok("One of the compressed files on disk has errors in it.  Restore from backup if you are able.",[]() {exit(1); });
 		}
 }
 
@@ -687,10 +687,19 @@ void create_directory(const filest &src) {
 	display_file_error(ec,"Failed to create directory "+src.canon_location().string()+": ");
 	}
 
-bool display_file_error(const std::error_code &ec,const std::string &message) {
+bool display_file_error(const std::error_code &ec,const std::string &message,bool fatal) {
 	if (ec)
 		{
-		warning_modal_ok(message+ec.message());
+		if (fatal)
+			{
+			std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+			std::wstring s=converter.from_bytes(message+ec.message());
+			MessageBox(NULL,s.c_str(),L"FATAL ERROR",MB_OK|MB_ICONEXCLAMATION);
+			}
+		else
+			{
+			warning_modal_ok(message+ec.message());
+			}
 		return true;
 		}
 	return false;

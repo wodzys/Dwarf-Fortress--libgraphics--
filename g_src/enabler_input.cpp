@@ -109,9 +109,9 @@ static void update_keydisplay(InterfaceKey binding, string display) {
 
 static void assertgood(ifstream &s) {
   if (s.eof())
-    MessageBox(NULL, "EOF while parsing keyboard bindings", 0, 0);
+    MessageBox(NULL, L"EOF while parsing keyboard bindings", 0, 0);
   else if (!s.good())
-    MessageBox(NULL, "I/O error while parsing keyboard bindings", 0, 0);
+    MessageBox(NULL, L"I/O error while parsing keyboard bindings", 0, 0);
   else
     return;
   abort();
@@ -460,16 +460,16 @@ bool enabler_inputst::load_keybindings(const filest &file) {
 
 void enabler_inputst::save_keybindings(const string &file) {
   cout << "Saving bindings to " << file << endl;
-  string temporary = file + ".partial";
+  std::filesystem::path temporary = std::filesystem::path(file + ".partial");
   ofstream s=filest(temporary).to_ofstream(); 
   multimap<InterfaceKey,EventMatch> map;
   InterfaceKey last_key = INTERFACEKEY_NONE;
 
   if (!s.good()) {
-    string t = "Failed to open " + temporary + " for writing";
+    wstring t = L"Failed to open " + temporary.wstring() + L" for writing";
     if (!init.media.flag.has_flag(INIT_MEDIA_FLAG_PORTABLE_MODE))
         {
-        t+="; switching to portable mode to compensate";
+        t+=L"; switching to portable mode to compensate";
         init.media.flag.add_flag(INIT_MEDIA_FLAG_PORTABLE_MODE);
         }
     MessageBox(NULL, t.c_str(), 0, 0);
@@ -487,7 +487,7 @@ void enabler_inputst::save_keybindings(const string &file) {
   // And write.
   for (multimap<InterfaceKey,EventMatch>::iterator it = map.begin(); it != map.end(); ++it) {
     if (!s.good()) {
-      MessageBox(NULL, "I/O error while writing keyboard mapping", 0, 0);
+      MessageBox(NULL, L"I/O error while writing keyboard mapping", 0, 0);
       s.close();
       return;
     }
@@ -977,7 +977,7 @@ void enabler_inputst::load_macro_from_file(const string &file) {
   for(;;) {
     s.getline(buf, 100);
     if (!s.good()) {
-      MessageBox(NULL, "I/O error while loading macro", 0, 0);
+      MessageBox(NULL, L"I/O error while loading macro", 0, 0);
       s.close();
       return;
     }
@@ -1039,7 +1039,7 @@ void enabler_inputst::load_macro_from_file(const string &file) {
   if (s.good())
     macros[name] = macro;
   else
-    MessageBox(NULL, "I/O error while loading macro", 0, 0);
+    MessageBox(NULL, L"I/O error while loading macro", 0, 0);
   s.close();
 }
 

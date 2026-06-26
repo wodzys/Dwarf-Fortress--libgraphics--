@@ -206,7 +206,7 @@ bool remove_file(const filest &src);
 /// <param name="ec">The errorcode in question.</param>
 /// <param name="message">The message to be displayed before the errorcode's own.</param>
 /// <returns>`true` if there was an error.</returns>
-bool display_file_error(const std::error_code &ec,const std::string &message);
+bool display_file_error(const std::error_code &ec,const std::string &message,bool fatal=false);
 
 /// <summary>
 /// Prints an error to the errorlog if there is one.
