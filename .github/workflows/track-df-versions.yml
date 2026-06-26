@@ -1,0 +1,78 @@
+name: Track DF Linux g_src Versions
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'DF version to track (e.g., 51_05). Leave empty to auto-discover all new versions.'
+        required: false
+        type: string
+  schedule:
+    - cron: '37 2 * * 1'  # Weekly on Monday at 10:37 CST (UTC+8)
+
+permissions:
+  contents: write
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Print environment info
+        run: |
+          echo "===== Environment ====="
+          echo "Trigger: ${{ github.event_name }}"
+          echo "Requested version: ${{ github.event.inputs.version }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "SHA: ${{ github.sha }}"
+          echo ""
+          echo "===== Python ====="
+          python --version
+          echo ""
+          echo "===== Git ====="
+          git --version
+          git config user.name || echo "(user.name not set)"
+          git config user.email || echo "(user.email not set)"
+          echo ""
+          echo "===== Repo status (before) ====="
+          git log --oneline -5
+          echo ""
+          git tag -l 'v*' | head -20
+          echo "Tag count: $(git tag -l 'v*' | wc -l)"
+          echo ""
+          echo "===== g_src status ====="
+          echo "Files in g_src/: $(find g_src/ -type f | wc -l)"
+
+      - name: Run version tracker
+        env:
+          REQUESTED_VERSION: ${{ github.event.inputs.version }}
+          CI: 'true'
+        run: python scripts/track_versions.py
+
+      - name: Print repo status (after)
+        run: |
+          echo "===== Repo status (after) ====="
+          git log --oneline -10
+          echo ""
+          echo "===== Tags ====="
+          git tag -l 'v*'
+          echo "Tag count: $(git tag -l 'v*' | wc -l)"
+          echo ""
+          echo "===== Working tree ====="
+          git status
+
+      # - name: Push commits and tags
+      #   if: success()
+      #   run: git push origin master --tags
