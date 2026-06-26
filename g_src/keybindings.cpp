@@ -2471,7 +2471,7 @@ void keybinding_init() {
 	{INTERFACEKEY_D_TOGGLE_FLUID_NUMBERS, "Main: Toggle fluid numbers"},
 
 	{INTERFACEKEY_D_DESIGNATE_DIG, "Main: Dig"},
-	{INTERFACEKEY_D_DESIGNATE_CHOP, "Main: Chop tress"},
+	{INTERFACEKEY_D_DESIGNATE_CHOP, "Main: Chop trees"},
 	{INTERFACEKEY_D_DESIGNATE_GATHER, "Main: Gather plants"},
 	{INTERFACEKEY_D_DESIGNATE_SMOOTH, "Main: Smooth and engrave"},
 	{INTERFACEKEY_D_DESIGNATE_ITEMS, "Main: Item properties"},

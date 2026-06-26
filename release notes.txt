@@ -34,6 +34,55 @@ IF YOUR KEYBOARD ISN'T WORKING:
 
 If you can get to the ESC keybindings menu (from the start screen, press ESC and then 2/8 to scroll to Key Bindings), you can set your key bindings.  If your "?" key on your keyboard doesn't work for help, you can set the keybinding properly here.  It might not display as a "*".  You can set the display up properly in "data/init/interface.txt" using the display strings at the top of the file.
 
+******************************************************
+
+Release notes for 53.09 (January 7, 2025):
+
+Here's a patch with lots of routine fixes.  Lots of new portraits and some updated portraits.  Small experimental beasts now have their own colorful graphics to match the forgotten beasts.  Find details below:
+
+Graphics updates
+	(*) New procedural graphics for small experiments.
+	(*) New animal portraits, and some new full body animal tiles.
+	(*) Can pop up basic small animal sheets to view portraits and read descriptions for small animals.
+	(*) Offering place, display furniture, and nest box show proper item materials when placed as buildings.
+	(*) Uses proper list icons for creatures when choosing animals in embark or adventure setup.
+	(*) Added further box highlighting for chosen/hero/ordinary selection in Classic.
+	(*) Added error log for unrecognized tile graphics rectangle tokens.
+	(*) Properly sized giant flying/gray squirrel list icons and corpses.
+	(*) Fixed upright weapon trap display error.
+	(*) Minimap properly updates on certain recenter commands.
+
+General updates
+	(*) Stopped mood dwarves from choosing inaccessible workshops and causing path cancellation lag.
+	(*) Dwarves no longer try to store pile and tomb items which are located outside their burrows.
+	(*) Dwarves no longer try to store carried objects outside of their burrows.
+	(*) Stopped dwarves with no working grasps from trying to store owned objects and excess equipment.
+	(*) Made armor appear again on many non-sieging units where it was missing.
+	(*) Mothers seeking lost infants no longer respect burrows but do respect chains.
+	(*) Mothers no longer seek ghostly babies.
+	(*) If an egg hatches and the mother is assigned to a zone (e.g. pasture), the baby is now assigned to the zone.
+	(*) Soldiers given an order while hauling will now drop their hauled job items instead of taking them along on duty.
+	(*) Dwarves heading off to meetings will drop hauled items from cancelled jobs.
+	(*) Dwarves are more likely to handle their hauled drink-related items after drinking.
+	(*) Appropriate buildings now stop rain and snow.
+	(*) Added indication during assignment of specific military items whether the item is already assigned elsewhere.
+	(*) Animal traps can catch subterranean water creatures like cave lobsters again.
+	(*) Cave lobsters can be processed in the fishery and their shell can be used for shell crafts.
+	(*) Creatures that leave statue corpses now leave statues of themselves rather than of random creatures.
+	(*) Prophets and other religious people with prophetic belief systems will no longer include incorrect beliefs in their greetings.
+	(*) Stopped pedestals and display cases from being allowed to display themselves.
+	(*) Made mussels and oysters stop appearing on land when animals root around near oceans.
+	(*) Stopped a few illegal werebeast types from being created.
+	(*) Added visual button to back out of art element creation and deletion.
+	(*) Fixed conflicting hauling/hot keys keybindings.  You may have to restore defaults or update it yourself if you have custom bindings.
+	(*) Specified amount created in some job names.
+	(*) Fixed some item description grammar.
+	(*) Fixed broken child/baby strings in certain contexts like action reports.
+	(*) Cleaned up procedural creature text a bit.
+	(*) Fixed incorrect name for coral material.
+	(*) Fixed improper text for mythical dream objects.
+	(*) Giant and animal person variants of pool creatures will now appear in savage lakes. (New worlds)
+	(*) Fixed a few typos with key binding text.
 
 ******************************************************
 

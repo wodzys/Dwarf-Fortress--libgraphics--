@@ -4,6 +4,13 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.09:
+
+	lua has the new small experiment graphics and some typo-level fixes.
+	Lots of new/updated creature portraits.
+
+******************************************************
+
 Auxiliary file changes for 53.08:
 
 	gave unsmelted native metals (copper, gold, silver, platinum, aluminum) stone material properties until more information can be added - it was like trying to mine a solid sheet of metal instead of a vein.
