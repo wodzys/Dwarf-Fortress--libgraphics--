@@ -74,6 +74,6 @@ jobs:
           echo "===== Working tree ====="
           git status
 
-      # - name: Push commits and tags
-      #   if: success()
-      #   run: git push origin master --tags
+      - name: Push commits and tags
+        if: success()
+        run: git push origin master --tags
