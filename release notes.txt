@@ -36,6 +36,39 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.12 (April 15, 2026):
+
+Here's a quality of life patch that addresses various issues.  You can see your active petitions now and it's harder to disband squads accidentally.  Clothing wears down more slowly.  Selecting items inside bins during trade works more intuitively.  You can see the products and required items for jobs in workshops.  Soldiers wear boots properly.  See the full list below.
+
+General updates
+	(*) Added display of accepted petition building projects (guildhalls and temples).
+	(*) Added standing orders to automatically accept or reject citizen petitions and various residency petitions.
+	(*) Added standing orders allowing mining designations to globally ignore new warm/damp stone warnings.
+	(*) Squad disband icon is no longer a red X that looks like it closes the menu.
+	(*) Disbanding squads now requires confirmation.
+	(*) Items suffer less damage from age and worn items wear down more slowly.
+	(*) Traders bring clothes properly sized for all fortress citizens and long-term residents.
+	(*) Added tooltips showing products and required materials when adding new tasks in workshops.
+	(*) Changed behavior of bin selection in trade menu.  Clicking the bin now selects all items inside as well, and these can be unselected one at a time.  Clicking a selected bin unselects all of its contents.
+	(*) You can now click anywhere on item listings in the trade/barter menus to select the item.
+	(*) Added a select all button to the move-goods-to-depot menu.
+	(*) Made squad soldiers remove shoes properly if they conflict with their uniform's boots.
+	(*) Reordered work order buttons.
+	(*) Clicking on name of work order or shop text allows number entry.
+	(*) Made the difficulty setting "priesthood unit count" properly effect temple petitions.
+	(*) Closing the unit selector no longer also closes menu that opened it.
+	(*) Made stone use and children's chore scrollbars work properly.
+	(*) Changed citizens label to residents in unit list to reflect all who are listed.
+	(*) Show residency vs. citizenship status on unit summary sheet.
+	(*) Shows the deity being worshipped in meeting hall location info box.
+	(*) Shows the deity being worshipped in location assignment list.
+	(*) Shows location type in meeting hall location info box.
+	(*) Shows location type in location assignment list.
+	(*) Shows current guildhall existence/petition status when choosing a new guildhall.
+	(*) Shows current temple existence/petition status when choosing a new temple.
+
+******************************************************
+
 Release notes for 53.11 (March 4, 2026):
 
 Here's another routine patch.  Notably, good food should make dwarves happier and they should seek out better food.  I've been sick through February so the changes are a bit sparse, but I should be back at things now.
