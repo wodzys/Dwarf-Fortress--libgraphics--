@@ -215,6 +215,8 @@ bool display_file_error(const std::error_code &ec,const std::string &message);
 /// <param name="message">The message to be displayed in the errorlog before the errorcode's own.</param>
 #define log_file_error(ec, m) if(ec) errorlog_string(std::string(m)+ec.message()); 
 
+void open_path_in_file_manager(const std::filesystem::path &p);
+
 class file_compressorst
 {
 	public:

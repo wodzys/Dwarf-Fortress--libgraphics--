@@ -548,6 +548,27 @@ std::array<std::pair<bool,std::filesystem::path>,2> filest::both_locations_tagge
 		}
 	}
 
+#ifdef WINDOWS
+#include "shlobj_core.h"
+#endif
+
+void open_path_in_file_manager(const std::filesystem::path &p) {
+	std::filesystem::path loc=p.lexically_normal().make_preferred();
+#ifdef WINDOWS
+	PIDLIST_ABSOLUTE pidl;
+	auto pathwstring=p.wstring();
+	PCWSTR pszPath=pathwstring.c_str();
+	if (SHILCreateFromPath(pszPath,&pidl,NULL)==S_OK)
+		{
+		SHOpenFolderAndSelectItems(pidl,0,0,0);
+		}
+#else
+	// TODO: do something that isn't this?? I trust Linux users to know how to use a file manager, at least, but that's sucky to rely on -- Putnam
+	string loc_str="file://"+loc.string();
+	SDL_OpenURL(loc_str.c_str());
+#endif
+	}
+
 std::ofstream filest::to_ofstream(std::ios_base::openmode mode) const {
 	return std::ofstream(canon_location(),mode);
 	}

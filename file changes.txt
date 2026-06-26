@@ -4,6 +4,15 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 52.03:
+
+	plants and reactions and entities have new dyes and jobs for them.
+	there are a few new colors and a few minerals were updated to reflect this.
+	a few lua scripts have been updated with fixes.
+	a few broken gaits were fixed in creatures.
+
+******************************************************
+
 Auxiliary file changes for 52.02:
 
 	Nothing this time.

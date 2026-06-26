@@ -856,7 +856,12 @@ set<InterfaceKey> enabler_inputst::key_translation(EventMatch &match) {
   pair<multimap<EventMatch,InterfaceKey>::iterator,multimap<EventMatch,InterfaceKey>::iterator> its;
   if (match.type == type_mwheel) {
       int orig_y = match.y;
-      match.y = orig_y < 0 ? -1 : 1;
+      match.y=0;
+      if (orig_y > 0) {
+          match.y = 1;
+      } else if (orig_y < 0) {
+          match.y = -1;
+      }
       for (its = keymap.equal_range(match); its.first != its.second; ++its.first)
           bindings.insert((its.first)->second);
       match.y = orig_y;

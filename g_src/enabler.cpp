@@ -736,6 +736,12 @@ void enablerst::async_wait() {
     case async_msg::reset_textures:
       reset_textures = true;
       break;
+	case async_msg::show_message:
+		{
+		MessageBox(NULL,r.text,r.caption,r.type);
+		async_fromcomplete.release();
+		break;
+		}
     default:
       puts("EMERGENCY: Unknown case in async_wait");
       abort();
