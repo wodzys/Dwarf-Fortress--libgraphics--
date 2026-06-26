@@ -58,6 +58,7 @@ jobs:
       - name: Run version tracker
         env:
           REQUESTED_VERSION: ${{ github.event.inputs.version }}
+          BATCH_SIZE: '2'
           CI: 'true'
         run: python scripts/track_versions.py
 

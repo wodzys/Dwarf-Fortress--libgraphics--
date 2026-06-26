@@ -192,20 +192,34 @@ def _find_df_linux_dir(extract_root: Path, archive_path: Path) -> Path:
     # Direct child
     candidate = extract_root / "df_linux"
     if candidate.is_dir():
+        log.info("Found df_linux/ as direct child of extract_root")
         return candidate
 
-    # The archive may use a different top-level directory name.
-    # Read the member list to find the common prefix.
+    # Debug: list what's actually in extract_root
+    log.info("Contents of %s:", extract_root)
+    for item in sorted(extract_root.iterdir()):
+        log.info("  %s  (%s)", item.name, "dir" if item.is_dir() else "file")
+
+    # Debug: list first 20 tar member names
     with tarfile.open(archive_path, "r:*") as tar:
-        members = [m.name for m in tar.getmembers() if not m.isdir()]
-    if members:
-        prefix = members[0].split("/")[0]
-        candidate = extract_root / prefix
-        if candidate.is_dir():
-            return candidate
+        all_members = [m.name for m in tar.getmembers()]
+        log.info("First 20 tar members:")
+        for name in all_members[:20]:
+            log.info("  %s", name)
+
+    # Try to find any directory containing a "g_src" subdirectory
+    for item in extract_root.iterdir():
+        if item.is_dir() and (item / "g_src").is_dir():
+            log.info("Found g_src/ inside %s", item.name)
+            return item
+
+    # Fallback: if g_src/ exists at extract_root itself (flat archive)
+    if (extract_root / "g_src").is_dir():
+        log.info("g_src/ found directly in extract_root (flat archive structure)")
+        return extract_root
 
     raise FileNotFoundError(
-        f"Cannot locate df_linux/ directory inside {archive_path.name}"
+        f"Cannot locate directory containing g_src/ inside {archive_path.name}"
     )
 
 
@@ -305,8 +319,13 @@ def main():
     if not requested_version:
         requested_version = os.environ.get("REQUESTED_VERSION", "").strip()
 
+    # Resolve batch size from env var (0 = unlimited)
+    batch_size = int(os.environ.get("BATCH_SIZE", "0"))
+
     log.info("=== DF libgraphics Version Tracker ===")
     log.info("Baseline: v%d.%02d", BASELINE[0], BASELINE[1])
+    if batch_size > 0:
+        log.info("Batch size: %d versions per run", batch_size)
 
     configure_git_author()
 
@@ -368,11 +387,24 @@ def main():
         log.info("No new versions to process — up to date!")
         return
 
-    log.info(
-        "Will process %d version(s): %s",
-        len(to_process),
-        ", ".join(vk for vk, _, _, _ in to_process),
-    )
+    total_pending = len(to_process)
+    if batch_size > 0 and total_pending > batch_size:
+        deferred = to_process[batch_size:]
+        to_process = to_process[:batch_size]
+        log.info(
+            "Batching: %d of %d versions this run, %d deferred to next run",
+            batch_size,
+            total_pending,
+            len(deferred),
+        )
+        log.info("Will process now: %s", ", ".join(vk for vk, _, _, _ in to_process))
+        log.info("Deferred to next: %s", ", ".join(vk for vk, _, _, _ in deferred))
+    else:
+        log.info(
+            "Will process %d version(s): %s",
+            len(to_process),
+            ", ".join(vk for vk, _, _, _ in to_process),
+        )
 
     # 3. Process each version
     temp_base = Path(tempfile.mkdtemp(prefix="df_tracker_"))
