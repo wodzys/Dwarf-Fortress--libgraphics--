@@ -4,6 +4,19 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 51.12:
+
+	creature_graphics
+		New forgotten beast images and supporting txt.
+
+	items
+		New tags for ranged weapons.
+
+	interface
+		Nock/load key for adventure mode.
+
+******************************************************
+
 Auxiliary file changes for 51.11:
 
 	creature_graphics

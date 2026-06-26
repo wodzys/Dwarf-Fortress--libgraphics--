@@ -34,10 +34,37 @@ IF YOUR KEYBOARD ISN'T WORKING:
 
 If you can get to the ESC keybindings menu (from the start screen, press ESC and then 2/8 to scroll to Key Bindings), you can set your key bindings.  If your "?" key on your keyboard doesn't work for help, you can set the keybinding properly here.  It might not display as a "*".  You can set the display up properly in "data/init/interface.txt" using the display strings at the top of the file.
 
+******************************************************
+
+Release notes for 51.12 (June 26, 2025):
+
+Ranged weapon update
+	(*) Stopped ranged soldiers from aggressively entering melee combat when out of ammo.
+	(*) Made ranged units step away from close enemies and try to use any nearby fortifications.
+	(*) Ranged attackers can aim at specific body parts.
+	(*) Added loading and nocking states and actions for ranged weapons.
+	(*) Made firing take much less time than loading.
+	(*) Differentiated shooting and post-shot recovery times.
+	(*) Added weapon-specific attribute and skill effects for aiming and delays.
+	(*) Can set ammunition, food, and drink assignments for squads.
+	(*) Fixed various issues with extra ammo being kept in quivers and ammo not being picked up.
+
+New graphics
+	(*) Added colorful forgotten beasts and titans.
+
+General updates
+	(*) Dwarves that meet with misfortune lose their room assignments properly.
+	(*) Changed how item deletion works to fix some army crashes.
+	(*) Stopped crash from unspecified inorganic dusts.
+	(*) Stopped keyboard cursor from skipping large distances when scroll distance is larger than 1.
+	(*) Made modded night trolls appear even when no night trolls are generated.
+	(*) Made NO_PHYS_ATT_GAIN/RUST add/remove syndromes work properly.
+	(*) Stopped requiring music and sound definitions to load saves (makes classic saves compatible again).
+
 
 ******************************************************
 
-Release notes for 51.11 (April 21, 2025):
+Release notes for 51.11 (April 20, 2025):
 
 Fortress mode
 	(*) People that leave the map no longer lose their room ownership associations
