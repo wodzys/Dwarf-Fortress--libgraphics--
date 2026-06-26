@@ -37,6 +37,21 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.08 (December 19, 2025):
+
+Here's a little patch to clean up some issues that sprang up (broken deconstruction speeds, broken work detail scrollbar.)
+
+I've also tried to adjust the new material-based dwarf dig speeds to be faster overall - there had to be give somewhere, so legendary miners now aren't as relatively speedy (they are still twice as fast as a novice.)  Native metals were also taking way too long to mine.  And the lack of drinks effect was coming on a little too strong too early in mining in a noticeable way.
+
+General updates
+	(*) Reduced erroneously long deconstruction speeds.
+	(*) Fixed broken scrollbar for work detail labor list.
+	(*) Changed relationship between mining speed, mining skill, and materials.
+	(*) Fixed broken mining speeds for native metals.
+	(*) Moderated lack of drink effect on work speed.
+
+******************************************************
+
 Release notes for 53.07 (December 18, 2025):
 
 Here's another patch for the Siege Update.  Dwarves will now have happy thoughts to bolster them after sieges, while invader movement has been made a bit more dynamic.  There are lots of new animal portraits.  Hundreds of them!  And the lua has been brought in line with our full set of procedural creature graphics, so forgotten beasts in new worlds should look extra fancy now.
