@@ -37,6 +37,47 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.07 (December 18, 2025):
+
+Here's another patch for the Siege Update.  Dwarves will now have happy thoughts to bolster them after sieges, while invader movement has been made a bit more dynamic.  There are lots of new animal portraits.  Hundreds of them!  And the lua has been brought in line with our full set of procedural creature graphics, so forgotten beasts in new worlds should look extra fancy now.
+
+Siege Updates
+	(*) Added a positive thought for everybody in the fortress when a siege is defeated.
+	(*) Made siege leaders a bit more dynamic when cut off.
+	(*) Made fleeing invaders with special movement (flying, magma etc.) escape more cleanly.
+	(*) Added invasion creature cap and strength to the difficulty settings.
+	(*) Pick/wall material now impacts digging speed through natural materials (for invaders and the player).
+	(*) Hunters reserve only 25 bolts at embark now.
+	(*) Default archer uniforms at embark specifies weapon if civilization has only one type.
+	(*) Default archer uniforms at embark created for both leather and metal armor.
+
+Graphics Updates
+	(*) Added hundreds of new creature portraits, and added new full body graphics for a few natural creatures.
+	(*) Added some new graphical layers to forgotten beasts/demons/titans and enhanced other layers.
+	(*) Added some missing graphical layers and tweaks to forgotten beasts/demons/titans/experiments.
+
+General Updates
+	(*) Fixed a crash caused by kitchen input with no entries.
+	(*) Fixed a crash related to post-worldgen population growth.
+	(*) Stopped items thrown at visitors by tantruming dwarves from causing an escalation to lethal combat.
+	(*) Stopped drunk/tantrum brawlers from attacking small and vulnerable body parts like the throat.
+	(*) Throwing and pinching are no longer considered brawling-level moves.
+	(*) Added a chance for falling creatures and objects to bounce at each level of stairs or heavy branches, rather than falling all the way down.
+	(*) Added (economic) difficulty setting for fortress dig speed.  Currently the same on normal/hard.
+	(*) Tree/axe material impacts tree felling speed.
+	(*) Stopped certain children/animals from being born with negative sizes and/or random ages.
+	(*) Displayed correct age in years on sheets, respecting birthday.
+	(*) Displayed proper experimented-upon historical figure name in experiment description.
+	(*) Stopped fort vampires from attempting to disguise their kills with unique "Zero Kill" text on their kill list.
+	(*) Handled a few more issues with hospital patients and caretakers being frozen.
+	(*) Fixed grazer status only being displayed for grazers with long names.
+	(*) Brought mead value in line with other drinks.
+	(*) Properly respected complete ocean edge minimum settings of 1 and 2 during world generation.
+	(*) Added a mitigation for underground feature save corruption.
+	(*) Fixed some sort issues with lua for RNG stability.
+
+******************************************************
+
 Release notes for 53.06 (November 24, 2025):
 
 Continuing to add improvements to the Siege Update.  Some sources of siege freezes/lag are gone, and the invaders should be a bit smarter with more active rams.  Some new graphics tweaks, and a new song, "Nabidas"!  The problem with inter-party fighting in adventure mode on ambush is fixed.

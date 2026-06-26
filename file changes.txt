@@ -4,6 +4,14 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.07:
+
+	lua updated with lots of procedural creature changes
+	Lots of new creature portraits.
+	Mead value brought in line with other drinks.
+
+******************************************************
+
 Auxiliary file changes for 53.06:
 
 	New song Nabidas.
