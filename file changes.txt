@@ -4,6 +4,14 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.06:
+
+	New song Nabidas.
+	lua glob spitter poison properly set.
+	Various graphics updates (see release notes.)
+
+******************************************************
+
 Auxiliary file changes for 53.05:
 
 	Nothing this time.

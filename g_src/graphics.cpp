@@ -10265,6 +10265,10 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_item_cloth=0;
 	texpos_item_sheet=0;
 	texpos_item_tanned_skin=0;
+		texpos_item_tanned_skin_bicolor=0;
+		texpos_item_tanned_skin_stripes=0;
+		texpos_item_tanned_skin_spots=0;
+		texpos_item_tanned_skin_mottled=0;
 	texpos_item_totem=0;
 	texpos_item_totem_encrusted=0;
 	texpos_item_book_wood=0;
@@ -10425,7 +10429,15 @@ void graphicst::zero_and_clear_all_texpos()
 	texpos_item_bodypart_brain=0;
 	texpos_item_bodypart_skull_1=0;
 	texpos_item_bodypart_skull_2=0;
-	texpos_item_bodypart_skin=0;
+	{int32_t s;
+	for(s=0;s<TEXTURE_BODYPART_SKIN_SURFACENUM;++s)
+		{
+		texpos_item_bodypart_skin[s]=0;
+		texpos_item_bodypart_skin_bicolor[s]=0;
+		texpos_item_bodypart_skin_stripes[s]=0;
+		texpos_item_bodypart_skin_spots[s]=0;
+		texpos_item_bodypart_skin_mottled[s]=0;
+		}}
 	texpos_item_bodypart_meat=0;
 	texpos_item_bodypart_horn=0;
 	texpos_item_bodypart_hoof=0;

@@ -32,6 +32,17 @@ struct palettest
 		}
 };
 
+enum TextureBodypartSkinSurfaceType
+{
+	TEXTURE_BODYPART_SKIN_SURFACE_HAIR,
+	TEXTURE_BODYPART_SKIN_SURFACE_SKIN,
+	TEXTURE_BODYPART_SKIN_SURFACE_SCALES,
+	TEXTURE_BODYPART_SKIN_SURFACE_FEATHERS,
+	TEXTURE_BODYPART_SKIN_SURFACENUM,
+	TEXTURE_BODYPART_SKIN_SURFACE_NONE=-1
+};
+typedef int32_t TextureBodypartSkinSurface;
+
 enum SphereType
 {
 	SPHERE_AGRICULTURE,
@@ -7476,6 +7487,10 @@ class graphicst
 		int32_t texpos_item_cloth;
 		int32_t texpos_item_sheet;
 		int32_t texpos_item_tanned_skin;
+			int32_t texpos_item_tanned_skin_bicolor;
+			int32_t texpos_item_tanned_skin_stripes;
+			int32_t texpos_item_tanned_skin_spots;
+			int32_t texpos_item_tanned_skin_mottled;
 		int32_t texpos_item_totem;
 		int32_t texpos_item_totem_encrusted;
 		int32_t texpos_item_book_wood;
@@ -7627,7 +7642,11 @@ class graphicst
 		int32_t texpos_item_bodypart_brain;
 		int32_t texpos_item_bodypart_skull_1;
 		int32_t texpos_item_bodypart_skull_2;
-		int32_t texpos_item_bodypart_skin;
+		int32_t texpos_item_bodypart_skin[TEXTURE_BODYPART_SKIN_SURFACENUM];
+			int32_t texpos_item_bodypart_skin_bicolor[TEXTURE_BODYPART_SKIN_SURFACENUM];
+			int32_t texpos_item_bodypart_skin_stripes[TEXTURE_BODYPART_SKIN_SURFACENUM];
+			int32_t texpos_item_bodypart_skin_spots[TEXTURE_BODYPART_SKIN_SURFACENUM];
+			int32_t texpos_item_bodypart_skin_mottled[TEXTURE_BODYPART_SKIN_SURFACENUM];
 		int32_t texpos_item_bodypart_meat;
 		int32_t texpos_item_bodypart_horn;
 		int32_t texpos_item_bodypart_hoof;

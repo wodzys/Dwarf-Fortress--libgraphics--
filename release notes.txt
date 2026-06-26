@@ -34,6 +34,44 @@ IF YOUR KEYBOARD ISN'T WORKING:
 
 If you can get to the ESC keybindings menu (from the start screen, press ESC and then 2/8 to scroll to Key Bindings), you can set your key bindings.  If your "?" key on your keyboard doesn't work for help, you can set the keybinding properly here.  It might not display as a "*".  You can set the display up properly in "data/init/interface.txt" using the display strings at the top of the file.
 
+
+******************************************************
+
+Release notes for 53.06 (November 24, 2025):
+
+Continuing to add improvements to the Siege Update.  Some sources of siege freezes/lag are gone, and the invaders should be a bit smarter with more active rams.  Some new graphics tweaks, and a new song, "Nabidas"!  The problem with inter-party fighting in adventure mode on ambush is fixed.
+
+Siege updates
+	(*) Fixed slowdown associated with invaders trying to break through certain floors from below.
+	(*) Made builders always try to connect staircases even if the main siege path has changed.
+	(*) Fixed issue causing siege path to sometimes reset if it required both miners and builders.
+	(*) Fixed issue causing battering ram pathing spam.
+	(*) Added some more pathing spam prevention to invader planning.
+	(*) Made building invaders give up on stale irrelevant far away build jobs.
+	(*) Improved siege composition to stop overemphasis on heavily armored unskilled invaders.
+	(*) Fixed some exploration behavior that got invaders stuck in trees too often.
+	(*) Made rams more active.
+
+Audio
+	(*) New song "Nabidas" plays in any context.
+
+Graphics
+	(*) Updated dwarf and human skin tones/eyes in full body pictures.
+	(*) Blind cave ogre fingers and toes properly represented.
+	(*) Updated snail people graphics.
+	(*) Updated gem graphics.
+	(*) Updated jeweler's workshop graphics.
+	(*) Added palettes for leather and skins.
+	(*) Creatures without corpse pictures show a skeleton or liquid blob.
+	(*) Centered cave swallow and serpent person images and fixed serpent person corpse image.
+
+General updates
+	(*) Stopped adventure mode party members from feeling instinctual need to hunt and kill other party members when ambushed by wild animals.
+	(*) Stopped glob spitting procedural creatures from spitting unknown material rather than poison.
+	(*) Fixed issue that could cause adventure mode bandit harassment from ending prematurely.
+	(*) Added more medical job exemptions to mount-being-controlled-by-rider rule.
+	(*) Stopped ghosts that return from the dead twice from reporting an improper location as the site of the return.
+
 ******************************************************
 
 Release notes for 53.05 (November 18, 2025):
