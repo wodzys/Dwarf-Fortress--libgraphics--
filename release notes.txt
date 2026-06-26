@@ -36,6 +36,21 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.10 (January 12, 2025):
+
+This patch fixes a freeze and a display error in some creature lists.  We also added the final aquatic portraits.
+
+General updates
+	(*) Stopped game from freezing during some item storage checks related to burrows.
+
+Graphics updates
+	(*) Added 28 aquatic portraits to finish the set.
+	(*) Made dwarves clothed again in certain lists.
+	(*) Stopped last portrait being shown on small animal sheets if the animal has no portrait.
+	(*) Made female peachick visible again.
+
+******************************************************
+
 Release notes for 53.09 (January 7, 2025):
 
 Here's a patch with lots of routine fixes.  Lots of new portraits and some updated portraits.  Small experimental beasts now have their own colorful graphics to match the forgotten beasts.  Find details below:

@@ -4,6 +4,12 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.10:
+
+	New aquatic portraits, fixed peachick.
+
+******************************************************
+
 Auxiliary file changes for 53.09:
 
 	lua has the new small experiment graphics and some typo-level fixes.
