@@ -37,6 +37,12 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 51.08 (March 13, 2025):
+
+Fixed an input problem related to popups in adventure mode travel.
+
+******************************************************
+
 Release notes for 51.07 (March 12, 2025):
 
 Continuing along with the routine patches after the adventure mode release.
