@@ -36,6 +36,14 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 51.13 (June 27, 2025):
+
+General updates
+	(*) Fixed a timing error introduced by ammo loading that caused many actions to be performed in slow motion, leading to all of the dwarves dying over a long period as drinking could not catch up with thirst.
+	(*) Adventurer can wait when under attack while nocking or loading.
+
+******************************************************
+
 Release notes for 51.12 (June 26, 2025):
 
 Ranged weapon update
