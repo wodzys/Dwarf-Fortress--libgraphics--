@@ -7285,6 +7285,9 @@ class graphicst
 		int32_t texpos_item_goblet_metal;
 		int32_t texpos_item_goblet_stone;
 		int32_t texpos_item_goblet_wood;
+		int32_t texpos_item_goblet_metal_encrusted;
+		int32_t texpos_item_goblet_stone_encrusted;
+		int32_t texpos_item_goblet_wood_encrusted;
 		int32_t texpos_item_instrument_keyboard_building;
 		int32_t texpos_item_instrument_stringed_building;
 		int32_t texpos_item_instrument_wind_building;
@@ -7474,8 +7477,11 @@ class graphicst
 		int32_t texpos_item_sheet;
 		int32_t texpos_item_tanned_skin;
 		int32_t texpos_item_totem;
+		int32_t texpos_item_totem_encrusted;
 		int32_t texpos_item_book_wood;
 		int32_t texpos_item_book_metal;
+		int32_t texpos_item_book_stone;
+		int32_t texpos_item_book_glass;
 		int32_t texpos_item_liquid;
 		int32_t texpos_item_powder;
 		int32_t texpos_item_mechanisms;
@@ -7508,6 +7514,20 @@ class graphicst
 		int32_t texpos_item_ring_wood;
 		int32_t texpos_item_bracelet_wood;
 		int32_t texpos_item_earring_wood;
+		int32_t texpos_item_figurine_metal_encrusted;
+		int32_t texpos_item_amulet_metal_encrusted;
+		int32_t texpos_item_scepter_metal_encrusted;
+		int32_t texpos_item_crown_metal_encrusted;
+		int32_t texpos_item_ring_metal_encrusted;
+		int32_t texpos_item_bracelet_metal_encrusted;
+		int32_t texpos_item_earring_metal_encrusted;
+		int32_t texpos_item_figurine_wood_encrusted;
+		int32_t texpos_item_amulet_wood_encrusted;
+		int32_t texpos_item_scepter_wood_encrusted;
+		int32_t texpos_item_crown_wood_encrusted;
+		int32_t texpos_item_ring_wood_encrusted;
+		int32_t texpos_item_bracelet_wood_encrusted;
+		int32_t texpos_item_earring_wood_encrusted;
 
 		int32_t texpos_item_bed;
 			int32_t texpos_item_bed_wood[7];

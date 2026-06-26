@@ -36,6 +36,39 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.04 (November 17, 2025):
+
+Continuing to improve the Siege Update.  You can now view and set the status of your siege engines from a centralized tab.  Lots of improvement for invader AI, and ogres look properly scary now.  There are also some general improvements to item pictures, as well as various stability fixes.
+
+Siege updates
+	(*) Randomized attack times throughout a given season.
+	(*) Added siege engines to Places.
+	(*) Fixed some issues with invader building targeting.
+	(*) Fixed issue causing humans and elves to sometimes be unable to send serious attacks.
+	(*) Fixed an issue causing more brazen thieves to not have their support groups.
+	(*) Fixed issue stopping beasts from exploring the map.
+	(*) Stopped immediate fleeing of non-ranged support groups.
+	(*) Made support groups want to leave soon after the group being supported is done or aborts.
+	(*) Ogres and blind cave ogres have new graphics, including respect of blocks and great picks.
+	(*) Fixed error making certain creatures like ogres appear with incorrect ages.
+	(*) Fixed issue causing catapult/ballista firing job not to cancel when requested.
+	(*) Fixed catapult and ballista hover instructions.
+
+General updates
+	(*) Updated various item graphics.
+	(*) Fixed occasional crash in the justice screen.
+	(*) Fixed justice menu in Classic Mode.
+	(*) Fixed potential crash from constructed walls without materials.
+	(*) Fixed potential load crash from corrupt strings.
+	(*) Fixed issue causing necromancers to always have summons.
+	(*) Fixed lua type issue with world gen seeds.
+	(*) Fixed issue with kitchen ingredient hash.
+	(*) Made multithreading option save after choice during popup.
+	(*) Fixed issue with identity selection of infiltrators versus buildings available for visitors.
+	(*) Some additional stability changes.
+
+******************************************************
+
 Release notes for 53.03 (November 10, 2025):
 
 Here are some more fixes for the Siege Update.

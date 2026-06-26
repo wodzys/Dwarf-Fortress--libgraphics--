@@ -4,6 +4,14 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.04:
+
+	The new ogres.
+	Lots of item graphics updates.
+	A lua fix for necromancers.
+
+******************************************************
+
 Auxiliary file changes for 53.03:
 
 	Nothing this time.

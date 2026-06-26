@@ -1938,11 +1938,12 @@ std::shared_ptr<container> radio_rows::add_entry(const string &s,std::function<v
 	new_row->min_h=3;
 	new_row->set_anchors_preset(widgets::LayoutPreset::WIDE_TOP);
 	new_row->offset_right=-1;
+	auto n=new_row->add_or_get_widget<nineslice_horizontal>("Slice",(int32_t*)gps.texpos_button_category_rectangle);
+	n->set_anchors_preset(widgets::LayoutPreset::FULL);
 	auto t=new_row->add_or_get_widget<text>("Text",s);
 	t->set_anchors_preset(widgets::LayoutPreset::CENTER_LEFT);
 	t->offset_left=2;
-	auto n=new_row->add_or_get_widget<nineslice_horizontal>("Slice",(int32_t*)gps.texpos_button_category_rectangle);
-	n->set_anchors_preset(widgets::LayoutPreset::FULL);
+	t->set_color(7,0,1);
 	std::weak_ptr<nineslice> n_wk=n;
 	select_callback[row_idx]=f;
 	new_row->set_custom_activated([this, row_idx, f](widgets::widget *w) {
