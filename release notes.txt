@@ -36,6 +36,21 @@ If you can get to the ESC keybindings menu (from the start screen, press ESC and
 
 ******************************************************
 
+Release notes for 53.02 (November 4, 2025):
+
+Here's some cleanup for the Siege Update to fix a few issues.
+
+General updates
+	(*) Hospital patients and babies don't shut off the brains of people carrying them, again.
+	(*) Made siege engine operators leave their engines when not commanded to be there.
+	(*) Added practice fire mode for siege engines.
+	(*) Fixed a crash if world population is uncapped.
+	(*) Corrected minor issues with siege engine target selection and skill use.
+	(*) Stopped wagon goods from creating incorrect transparent pixels in wagon.
+	(*) Fixed typo with some plurals.
+
+******************************************************
+
 Release notes for 53.01 (November 3, 2025):
 
 This is the Siege Update.  Invaders should cause some more trouble now.  Aside from a few minor things mentioned below, you don't have to create a new fort or world for this update.

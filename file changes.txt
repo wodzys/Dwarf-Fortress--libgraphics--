@@ -4,6 +4,12 @@ See command_line.txt for information on world generation from command lines.
 
 ******************************************************
 
+Auxiliary file changes for 53.02:
+
+	Practice fire button.
+
+******************************************************
+
 Auxiliary file changes for 53.01:
 
 	Danger Room audio track.
