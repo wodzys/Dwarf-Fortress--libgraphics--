@@ -480,8 +480,8 @@ def main():
             archive_name = f"df_{version_key}_linux.tar.bz2"
             archive_path = temp_base / archive_name
             if not download_file(download_url, archive_path):
-                log.error("SKIPPED %s — download failed after retries", version_display)
-                continue
+                log.error("FAILED %s — download failed after retries, stopping", version_display)
+                break
 
             # Extract & replace
             extract_dir = temp_base / f"extract_{version_key}"
@@ -494,15 +494,15 @@ def main():
                         version_display,
                     )
             except Exception as e:
-                log.error("SKIPPED %s — extraction failed: %s", version_display, e)
-                continue
+                log.error("FAILED %s — extraction failed, stopping: %s", version_display, e)
+                break
 
             # Commit & tag
             try:
                 git_commit_and_tag(version_key, version_display, download_url)
             except Exception as e:
-                log.error("SKIPPED %s — git operation failed: %s", version_display, e)
-                continue
+                log.error("FAILED %s — git operation failed, stopping: %s", version_display, e)
+                break
 
             processed.append(version_key)
             v_elapsed = time.time() - v_start
